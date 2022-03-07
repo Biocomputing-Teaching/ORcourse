@@ -5,4 +5,3 @@ Lecturer: Jordi Villà-Freixa, [Computational Biochemistry and Biophysics Lab](h
 
 Material created on purpose for the course, unless stated. Check the [syllabus](https://mon.uvic.cat/cbbl/teaching/operational-research/).
 
-* 
