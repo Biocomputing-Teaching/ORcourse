@@ -4,5 +4,3 @@ iPython repository for and Operational Research (OR) course code at the [Faculty
 Lecturer: Jordi Villà-Freixa, [Computational Biochemistry and Biophysics Lab](https://mon.uvic.cat/cbbl)
 
 Material created on purpose for the course, unless stated. Check the [syllabus](https://mon.uvic.cat/cbbl/teaching/operational-research/).
-
-* 
