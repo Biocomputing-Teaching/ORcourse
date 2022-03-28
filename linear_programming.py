@@ -25,11 +25,11 @@ def ShowResults(solver, variable_list, constraint_list):
                '               final value (activity) = %f' %
                (i, constraint.dual_value(), activities[constraint.index()])))
 
-
+# Define the solver to use
 solver = pywraplp.Solver.CreateSolver('GLOP')
 
+# Define the problem
 infinity = solver.infinity()
-   
 x1 = solver.NumVar(0.0, infinity, 'x1')
 x2 = solver.NumVar(0.0, infinity, 'x2')
    
@@ -37,6 +37,5 @@ solver.Maximize(50 * x1 + 60 * x2)
 c0 = solver.Add(50 * x1 + 30 * x2  <= 2000, 'Material')
 c1 = solver.Add(6 * x1 + 5 * x2  <= 300, 'MachineTime')
 c2 = solver.Add(3 * x1 + 5 * x2  <= 200, 'Labor')
-sum_of_vars = sum([x1, x2])
 
 ShowResults(solver, [x1, x2], [c0, c1, c2])
