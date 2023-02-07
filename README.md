@@ -83,3 +83,5 @@ The repository contains code developed on purpose for the course, as well as a b
   *  “[Operations research. A practical Introduction (2nd Ed)](https://www.taylorfrancis.com/books/mono/10.1201/9781315153223/operations-research-michael-carter-camille-price-ghaith-rabadi)” by Michael W. Carter, Camile C. Price and Ghaith Rabadi. CRC Press 
 
 Material created on purpose for the course, unless stated. Check the [syllabus](https://mon.uvic.cat/cbbl/teaching/operational-research/).
+
+Jordi Villà-Freixa, 2021-2023
