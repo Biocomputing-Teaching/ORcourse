@@ -1,0 +1,29 @@
+\documentclass[tikz,border=10cm]{standalone}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \draw[gray!50, thin, step=50] (-25,-25) grid (300,300);
+    \draw[very thick,->] (-25,0) -- (310,0) node[right] {\large $x_1$};
+    \draw[very thick,->] (0,-25) -- (0,310) node[above] {$x_2$};
+
+    \foreach \x in {0,50,100,150,200,250} \draw (\x,5) -- (\x,-5) node[below] {\x};
+    \foreach \y in {0,50,100,150,200,250} \draw (-5,\y) -- (5,\y) node[left] {\y};
+
+    \draw (150,0) -- node[below] {$x_1=150$} (150,300);
+    \draw (0,250) -- node[above] {$x_2=5$} (250,250);
+    \draw (100,300) -- node[above left,sloped] {$x_1+x_2=10$} (250,0);
+    \draw[dashed,red] (100,290) -- node[above right,sloped] {$max\, z=8x_1+5x_2$} (2250/8,0);
+
+    \filldraw [black] (0,0) circle (2pt) node[above right] {A};
+    \filldraw [black] (150,0) circle (2pt) node[below right] {B};
+    \filldraw [black] (150,200) circle (2pt) node[below left] {C};
+    \filldraw [red] (125,250) circle (2pt) node[left] {D};
+    \filldraw [black] (0,250) circle (2pt) node[above left] {E};
+
+    \fill[blue!50!cyan,opacity=0.3] (0,0) -- (150,0) -- (150,200) -- (125,250) -- (0,250) -- (0,0);
+
+\end{tikzpicture}
+
+\end{document}

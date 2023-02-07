@@ -1,0 +1,11 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+  \draw[->] (-0.2, 0) -- (4.2, 0) node[right] {$x$};
+  \draw[->] (0, -0.2) -- (0, 3) node[above] {$y$};
+  \node[] at (2,2) {$f(x)=\frac{1}{x}$};
+  \draw[scale=0.5, domain=0.2:6, smooth, variable=\x, blue] plot ({\x}, {1/\x});
+\end{tikzpicture}
+\end{document}

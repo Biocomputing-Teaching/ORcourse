@@ -1,0 +1,29 @@
+\tikzstyle{decision} = [diamond, draw, fill=blue!20,text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,text width=15em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,minimum height=2em]
+
+
+\begin{adjustbox}{max totalsize={.9\textheight},center}
+
+  \begin{tikzpicture}[node distance = 2cm, auto,rotate=90,transform shape]
+    % Place nodes
+    \node [block] (step1) {Area in need of model?};
+    \node [block, below of=step1] (step2) {Controllable aspects?};
+    \node [block, below of=step2] (step3) {Goals and purpose?};
+    \node [block, below of=step3] (step4) {Constraints and limitations?};
+    \node [block, below of=step4] (step5) {Create model};
+    \node [block, below of=step5] (step6) {Collect data};
+    \node [block, below of=step6] (step7) {Solve model and analyse};
+    \node [coordinate, above right =1cm and 1cm of step7] (inici){};
+    \node [coordinate, below right =1cm and 1cm of step4] (final){};
+    % Draw edges
+    \path [line] (step1) -- (step2);
+    \path [line] (step2) -- (step3);
+    \path [line] (step3) -- (step4);
+    \path [line] (step4) -- (step5);
+    \path [line] (step6) -- (step7);
+    \path [line] (step7.east) -| (inici) -- (final) |- (step4.east);
+  \end{tikzpicture}
+
+\end{adjustbox}

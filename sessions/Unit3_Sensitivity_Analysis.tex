@@ -1,0 +1,192 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[c]{beamer}
+%\documentclass[notes]{beamer}
+\setbeamertemplate{note page}[show only notes]
+\input{OR_common.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Introduction]{Unit 3. Sensitivity Analysis}
+
+\author{Jordi Villà i Freixa}
+\institute[FCTE]{
+Universitat de Vic - Universitat Central de Catalunya \\
+Study Abroad. Operations Research\\
+\medskip
+\textit{jordi.villa@uvic.cat}
+}
+\date{9/05, 2023}
+\logo{\includegraphics[width=.1\textwidth]{FCTE}}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Preliminary}
+This course is strongly based on the monography on Operations Research by Carter, Price and Rabadi \cite{carter}, and in material obtained from different sources (quoted when needed through the slides).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Learning outcomes}
+\begin{itemize}
+  \item Understanding the concept of postoptimality analysis
+  \item Understanding and solving LP problems requiring sensitvity analysis
+  \item Understanding the matrix representation of the Simplex solution
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The concept}
+\begin{itemize}
+  \item After an optimal solution is found, the analyst needs to review the problem parameters and the solution.
+  \item This process is called {\bf postoptimality analysis}:
+  \begin{itemize}
+    \item confirming or updating problem parameters (cost and availabilities of activities and resources)
+    \item if changes need to be introduced in the original parameters, assessing their impact on the optimality of the solution.
+  \end{itemize}
+  \item If changes are smallre-optimization may not be needed.
+  \item {\bf Sensitivity analysis} is the study of the effect that types, ranges , and magnitude of changes in problem parameters have in the value of the objective function, {\em without the need to solving again the new linear problem}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Two types of parameter modifications}
+  In a LP problem, I can have two situations
+\begin{eqnarray*}
+ \text{max }\quad\uvec{c}^t \uvec{x}\\
+ \text{subject to }\quad A\uvec{x}\leq \uvec{b}, \forall x_i\geq0
+\end{eqnarray*}
+
+I may have interest in knowing what happens with modifications in the parameters $c$ or modifications in the parameters $b$.
+
+\end{frame}
+
+\begin{frame}{Case 1: sensitivity with respect to $c$}
+
+  \begin{Exercise}
+    A farmer wants to minimize the cost of the food given of two different types of nutrients $A$ and $B$, provided that she needs a minimum nutrition to be achieved.
+    \begin{center}
+    \begin{tabular}{c|c|c|c}
+     & A & B & price\\
+     \hline
+     Feed 1 & 10 & 3 & 16\\
+     Feed 2 & 4 & 5 & 14\\
+     \hline
+     requirements & 124 & 60 & \\
+    \end{tabular}
+    \end{center}
+
+    Find how resilient is she to the changes in the price?
+
+  \end{Exercise}
+\note{veure  \url{https://youtu.be/o1pznRt_-y0?t=3378}}
+\end{frame}
+
+\begin{frame}{Case 2: sensitivity with respect to $b$}
+
+  In such cases we will explore the coeficients of the objective function in the dual problem, instead.
+
+  \begin{Exercise}
+    Given the LP problem
+    \begin{equation*}
+      \begin{aligned}
+        \text{maximize } \quad & z = 16x_1+14x_2 \\
+        \text{subject to }\quad &
+        \begin{array}{rcl}
+          10x_1 + 4x_2 &\geq &124 \\
+          3x_1 + 5x_2 &\geq &60 \\
+          x_1,x_2 &\geq& 0
+        \end{array}
+      \end{aligned}
+    \end{equation*}
+
+    Explore the sensitivity of the minimum value of $z$ with respect to the parameters in the RHS of the contraints.
+
+  \end{Exercise}
+
+\end{frame}
+
+
+
+\note{venim de \url{https://youtu.be/o1pznRt_-y0?t=1603} i \url{https://www.youtube.com/watch?v=yU8updOR87c}}
+
+\begin{frame}{Shadow price is the solution of the dual problem}
+
+  Solving the dual problem gives a lot of insight into the actual situation.
+
+  \begin{Exercise}
+  In a company that manufactures two types of cans, $A$ and $B$, the owners want to maximize the production, which dependence on a restricted amount of aluminum, the time the machines can devote to the work and the manpower is given the following table:
+  \begin{center}
+  \begin{tabular}{c|c|c|c}
+   & A & B & limit\\
+   \hline
+   Aluminium & 50 & 30 & 2000\\
+    Machine time & 6 & 5 & 300\\
+    Labor & 3 & 5 &200\\
+   \hline
+   price & 124 & 60 & \\
+  \end{tabular}
+  \end{center}
+
+
+  Given an optimal solution of the problem, how the objective function will depend on variations in the different constraints?
+  \end{Exercise}
+
+\end{frame}
+
+\begin{frame}{Some tools that help interpreting the calculations}
+
+  Find \href{https://github.com/JordiVillaFreixa/ORcode/blob/main/linear_programming.py}{\em here} a code with the solution using ORtools.
+
+  The Senstivity analysis tool in Excel is nicely explained \href{https://www.youtube.com/watch?v=zKqU5NGE-t0&list=PLjiMsqjDUvBiArYMqCGZSDJNgEMPALdQu&index=1}{\em here}.
+
+\end{frame}
+
+
+\begin{frame}{References}
+\footnotesize
+\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+  \begin{columns}[t]
+    \begin{column}{.45\textwidth}
+      \bibitem[Carter, 2019]{carter} Michael W. Carter, Camille C. Price, and Ghaith Rabadi (2019)
+        \newblock Operations Research, 2nd Edition
+        \newblock \emph{CRC Press}.
+        \bibitem[Harel, 2019]{harel} David Harel, with Yishai Feldman (2004)
+          \newblock Algorithmics: the spirit of computing, 3rd Edition
+          \newblock \emph{Addison-Wesley}.
+    \end{column}
+    \begin{column}{.45\textwidth}
+      \bibitem[Riley, 2002]{riley} K.F. Riley, M.P. Hobson, S.J. Bence (2002)
+        \newblock Mathematical Methods for Physics and Engineering (2nd Ed)
+        \newblock \emph{McGraw Hill}.
+      \bibitem[Nocedal, 2006]{nocedal} J. Nocedal, S. J. Wright (2006)
+        \newblock Numerical Optimization (2nd Ed)
+        \newblock \emph{Springer}.
+    \end{column}
+  \end{columns}
+\end{thebibliography}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\end{document}

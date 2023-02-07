@@ -1,0 +1,112 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+
+\makeatletter
+\pgfplotsset{
+    compat=1.12,
+    /tikz/max node/.style={
+        anchor=south,
+    },
+    /tikz/min node/.style={
+        anchor=north,
+        name=minimum
+    },
+    mark min/.style={
+        point meta rel=per plot,
+        visualization depends on={x \as \xvalue},
+        scatter/@pre marker code/.code={%
+            \ifx\pgfplotspointmeta\pgfplots@metamin
+            \def\markopts{}%
+            \coordinate (minimum);
+            \node[name=#1] {};%
+            \else
+            \def\markopts{mark=none}
+            \fi
+            \expandafter\scope\expandafter[\markopts,every node near coord/.style=green]
+        },%
+        scatter/@post marker code/.code={%
+            \endscope
+        },
+        scatter,
+    },
+    mark min/.default={below},
+    mark max/.style={
+        point meta rel=per plot,
+        visualization depends on={x \as \xvalue},
+        scatter/@pre marker code/.code={%
+            \ifx\pgfplotspointmeta\pgfplots@metamax
+            \def\markopts{}%
+            \coordinate (maximum);
+            \node[name=#1] {};%
+            \else
+            \def\markopts{mark=none}
+            \fi
+            \expandafter\scope\expandafter[\markopts]
+        },%
+        scatter/@post marker code/.code={%
+            \endscope
+        },
+        scatter
+    },
+    mark max/.default={above},
+}
+\makeatother
+
+\usepackage{filecontents}
+\begin{filecontents*}{sample.table}
+    x y
+    1 0.2
+    5 0.
+    10 0.1
+    20 0.4
+    30 -0.3
+    40 0.3
+    50 -0.2
+\end{filecontents*}
+
+
+\pgfplotsset{
+    discard if/.style n args={3}{
+        x filter/.code={
+            \edef\tempa{\thisrow{#1}}
+            \edef\tempb{#2}
+            \edef\tempc{#3}
+            \ifnum\tempa>\tempb
+              \ifnum\tempa<\tempc
+              \else
+              \def\pgfmathresult{inf}
+              \fi
+            \else
+              \def\pgfmathresult{inf}
+            \fi
+        }
+    }
+}
+
+
+\begin{document}
+
+        \begin{tikzpicture}
+        \begin{axis}[
+        xlabel={x},
+        ylabel={f(x)},
+        xmax=50,
+        xmin=0,
+        ymax=.5,
+        ymin=-.5,
+        width=15cm,
+        height=5cm,
+        ]
+        \addplot[blue,smooth,mark max=A]table{sample.table};
+        \addplot[blue,smooth, discard if={x}{30}{45},mark max=B,red,draw=none]table{sample.table};
+        \addplot[blue,smooth,mark min=C]table{sample.table};
+        \addplot[blue,smooth, discard if={x}{5}{15},mark min=D,red,draw=none]table{sample.table};
+        \end{axis}
+
+        \node[above] at (A) {Global max};
+        \node[above] at (B) {Local max};
+        \node[above] at (C) {Global min};
+        \node[above] at (D) {Local min};
+        \end{tikzpicture}
+
+\end{document}

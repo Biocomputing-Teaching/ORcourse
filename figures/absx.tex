@@ -1,0 +1,13 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+
+
+\begin{document}
+\begin{tikzpicture}
+  \draw[->] (-4, 0) -- (4, 0) node[right] {$x$};
+  \draw[->] (0, -0.2) -- (0, 4) node[above] {$y$};
+  \node[] at (2,1) {$f(x)=|x|$};
+  \draw[domain=-3:0, smooth, variable=\x, blue] plot ({\x}, {-\x});
+  \draw[ domain=0:3, smooth, variable=\x, blue] plot ({\x}, {\x});
+\end{tikzpicture}
+\end{document}

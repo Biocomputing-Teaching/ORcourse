@@ -1,0 +1,11 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+  \draw[->] (-3, 0) -- (3, 0) node[right] {$x$};
+  \draw[->] (0, -0.2) -- (0, 3) node[above] {$y$};
+  \node[] at (2.5,1) {$f(x)=x^2$};
+  \draw[domain=-1.8:1.8, smooth, variable=\x, blue] plot ({\x}, {\x*\x});
+\end{tikzpicture}
+\end{document}
