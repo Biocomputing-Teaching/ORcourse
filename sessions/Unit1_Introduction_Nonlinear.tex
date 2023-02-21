@@ -71,7 +71,7 @@ This course is strongly based on the monography on Operations Research by Carter
 
   \begin{block}{Production cost}
 
-    A company aims at minimizing the production cost during a series of production periods of time $T_i$, characterised by the demand $D_ii$, equipment capacities and material limitations $E_i$, labor force $L_i$ (which cost depends quadratically on the difference of labor force between two periods $CL(L_i-L{i-1})^2$), productivity of each worker $P_i$, the number of units of inventory at the end of each production period $I_i$ and the cost to bring them to the next production period $C_I$.
+    A company aims at minimizing the production cost during a series of production periods of time $T_i$, characterised by the demand $D_ii$, equipment capacities and material limitations $E_i$, labor force $L_i$ (which cost depends quadratically on the difference of labor force between two periods $C_L(L_i-L_{i-1})^2$), productivity of each worker $P_i$, the number of units of inventory at the end of each production period $I_i$ and the cost to bring them to the next production period $C_I$.
 
   \begin{center}
     \includegraphics[width=0.4\textwidth]{ProductionSchedule.pdf}
@@ -97,7 +97,7 @@ This course is strongly based on the monography on Operations Research by Carter
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Introduction}
+\begin{frame}{Introduction}
 
 \begin{itemize}
   \item We want to obtain the best solution to a mathematical programming problem in which both  objective function and constraints have general non-linear forms.
@@ -109,17 +109,23 @@ This course is strongly based on the monography on Operations Research by Carter
     \item Constrained Problems (may include systems of equations to be solved)
   \end{itemize}
 
-  \item Classical underlying mathematical theories do not necessarily provide practical methods suitable for efficient numerical computation. BUT both rigorous mathematical description and algorithm understanding is needed to solve the problems.
+  \item Classical underlying mathematical theories do not necessarily provide practical methods suitable for efficient numerical computation.
 
   \item Points of optimality can be anywhere inside the problem boundaries
 
   \item No methods applicable to all non-linear problems
+\end{itemize}
+\end{frame}
+
+\begin{frame}
 
  \begin{block}{Feasible region}
    Set of points satisfying all the constraints (the area between constraint boundaries).
  \end{block}
 
-\end{itemize}
+ \begin{center}
+  \includegraphics[width=0.6\linewidth]{feasibleregion.pdf}
+ \end{center}
 
 \end{frame}
 %--- Next Frame ---%
@@ -131,7 +137,7 @@ This course is strongly based on the monography on Operations Research by Carter
 
   A local maximum of the function $f(x)$ exists in $x^*$ if there is a small positive number $\epsilon$ such that
   \[
-    f(x^*)>f(x), \; \forall x\in\mathbf{R} | \|x-x^*\| < \epsilon
+    f(x^*)>f(x), \; \forall x\in\mathbf{R} : \|x-x^*\| < \epsilon
   \]
   A global maximum of $f(x)$ exists in $x^*$ if
   \[
@@ -159,6 +165,11 @@ This course is strongly based on the monography on Operations Research by Carter
     The term "convex" can be applied both to sets and functions. A set $S\in \mathbf{R}^n$ is a {\it convex set} if the straight line segment connecting any two points in $S$ lies entirely inside $S$.
 \end{block}
 Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if for any two points $x_1$ and $x_2$ in $S$ Eq. \ref{eq:convex} holds.
+
+\begin{Exercise}
+  Can you draw a convex function that depends on two variables, $f(x,y)$? Can you generalize Eq. \ref{eq:convex}?
+\end{Exercise}
+
 \end{frame}
 
 
@@ -168,7 +179,7 @@ Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if f
     \begin{center}
       \includegraphics[width=0.5\textwidth]{1overx.pdf}
     \end{center}
-    \item If the feasible region for a nonlinear programming problem is convex whenever each of the constraint functions is convex and the constraints are of the form $g_i(x)\leq b_i$
+    \item If the feasible region for a nonlinear programming problem is convex, each of the constraint functions is convex and are of the form $g_i(x)\leq b_i$
   \end{itemize}
 
 \end{frame}
@@ -205,11 +216,34 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
   \item If all of the eigenvalues are negative, it is said to be a negative-definite matrix. This is like “concave down”. (we call it "concave" in this course).
   \item It the eigenvalues are mixed, you have a saddle point.
 \end{itemize}
+\end{frame}
 
+
+\begin{frame}
 \begin{Exercise}
   Study the critical points of the function $f(x,y)=4x+2y-x^2-3y^2$
 \end{Exercise}
+
+
+\begin{Exercise}
+    Check the character of the stationary point in $(0,0)$ for the functions:
+    \begin{itemize}
+      \item $f(x,y)=x^2+y^2$
+      \item $g(x,y)=-x^2-y^2$
+      \item $h(x,y)=x^2-y^2$
+      \item $k(x,y)=x^3+2y^3-xy$ (is it concave or convex in $(3,3)$? what about in $(-3,-3)$?)
+    \end{itemize}
+
+\end{Exercise}
+
 \end{frame}
+
+\begin{frame}{$k(x,y)=x^3+2y^3-xy$}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{../figures/x3plus2y3minusxy.png}
+  \end{center}
+\end{frame}
+
 
 \begin{frame}{Unconstrained optimization of continuous $f:\mathbf{R}\rightarrow\mathbf{R}$}
   For unconstrained problems with just one variable $x$, if first and second derivatives exist in $x^*$:
@@ -246,9 +280,9 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
   Let $f$ be a twice-differentiable function of many variables on the convex open set $S$ and denote the Hessian of $f$ at the point $x$ by $H(x)$. Then
 \begin{itemize}
   \item $f$ is concave if and only if $H(x)$ is negative semidefinite $\forall x \in S$
-  \item if $H(x)$ is negative definite $\forall x \in S$ then $f$ is strictly concave
+  \item if $H(x)$ is negative definite $\forall x \in S$ then $f$ is strictly concave (see Eq. \ref{eq:convex})
   \item $f$ is convex if and only if $H(x)$ is positive semidefinite $\forall x \in S$
-  \item if $H(x)$ is positive definite $\forall x \in S$ then $f$ is strictly convex.
+  \item if $H(x)$ is positive definite $\forall x \in S$ then $f$ is strictly convex (see Eq. \ref{eq:convex})
 \end{itemize}
 
 \end{frame}
@@ -259,7 +293,7 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
     \includegraphics[width=0.4\textwidth]{x2.pdf}
     \includegraphics[width=0.4\textwidth]{absx.pdf}
   \end{center}
-  Or, if the function is not convex m(or concave), the sufficient condition is lost and we may find local optimal points, instead of global.
+  Or, if the function is not convex (nor concave), the sufficient condition is lost and we may find local optimal points, instead of global.
 
   For constrained optimization problems, the shape of the feasible region adds difficulty.
 \end{frame}
@@ -312,7 +346,7 @@ Procedure of the Golden search method, given a function  to be minimized, $f(x)$
 %--- Next Frame ---%
 \begin{frame}[t]{E1. NLO program}
 \begin{program}
-  E1. Build a Python code that can run one-dimensional search algorithms for user defined functions, using or not first derivatives. Implement the one-dimensional line search and the golden search algorithms and find the optimal solution for the functions:
+  E2. Build a Python code that can run one-dimensional search algorithms for user defined functions, using or not first derivatives. Implement the one-dimensional line search and the golden search algorithms and find the optimal solution for the functions:
   \begin{itemize}
     \item $f(x)=x^4-16x^3+45 x^2-20x+203$ within the range $x\in(2.5,14)$
     \item $g(x)=x^5-2x^4-23x^3-12x^2+36x$ within the range $x\in(2,3)$
@@ -321,26 +355,7 @@ Procedure of the Golden search method, given a function  to be minimized, $f(x)$
 \end{program}
 \end{frame}
 
-\begin{frame}{Refresh}
 
-  \begin{Exercise}
-    Check the character of the stationary point in $(0,0)$ for the functions:
-    \begin{itemize}
-      \item $f(x,y)=x^2+y^2$
-      \item $g(x,y)=-x^2-y^2$
-      \item $h(x,y)=x^2-y^2$
-      \item $k(x,y)=x^3+2y^3-xy$ (is it concave or convex in $(3,3)$? what about in $(-3,-3)$?)
-    \end{itemize}
-
-  \end{Exercise}
-
-\end{frame}
-
-\begin{frame}{$k(x,y)=x^3+2y^3-xy$}
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{../figures/x3plus2y3minusxy.png}
-  \end{center}
-\end{frame}
 
 \begin{frame}{Algorithms for unconstrained optimization}
 
