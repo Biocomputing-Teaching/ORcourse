@@ -358,13 +358,13 @@ Procedure of the Golden search method, given a function  to be minimized, $f(x)$
 
 
 \begin{frame}{Algorithms for unconstrained optimization}
-
+%https://suzyahyah.github.io/calculus/optimization/2018/04/06/Taylor-Series-Newtons-Method.html
   As a reference (not the central aim of this course) here is a list of some algorithms/methods to explore to perform unconstrained optimization in multiple dimensions:
   \begin{itemize}
     \item Newton's method,
-    \item Quasi-Newton methods (BFGS, SRI,...),
+    \item Quasi-Newton methods (e.g., \href{https://machinelearningmastery.com/bfgs-optimization-in-python/}{BFGS}),
     \item Trust-region methods,
-    \item Conjugated gradient methods.
+    \item \href{https://en.wikipedia.org/wiki/Conjugate_gradient_method}{Conjugated gradient methods}.
   \end{itemize}
   and their many variants.
 \end{frame}
@@ -409,16 +409,13 @@ In the previous section we have considered functions of several variables that a
 
 \end{frame}
 
-\begin{frame}
-  \begin{Exercise}
-  Find the optimal values of the function $f(x,y)=x^2-y$ constrained within the circumference $x^2+y^2=4$. (note that, interestingly, in the optimal value $x^*$ we will get a gradient for the constraint that is parallel to the gradient of the function: $\grad f(x^*)=\lambda^* \grad g(x^*)$)
-\end{Exercise}
-%preparat per poder posar preguntes wooclap
+\begin{frame}[allowframebreaks]
   \begin{center}
-    \includegraphics<2>[width=0.5\textwidth]{../figures/Lagrangex2minusy.png}
+  \includegraphics<2>[width=0.4\textwidth]{../figures/Lagrangex2minusy.png}
   \end{center}
-  %http://citadel.sjfc.edu/faculty/kgreen/vector/block2/der_app/node12.html
-
+  \begin{Exercise}
+  Find the optimal values of the function $f(x,y)=x^2-y$ constrained within the circumference $x^2+y^2=4$. (note that, interestingly, in the optimal value $x^*$ we will get a gradient for the constraint that is parallel to the gradient of the function: $\grad f(x^*)=\lambda^* \grad g(x^*)$).
+\end{Exercise}
 \end{frame}
 
 \begin{frame}
@@ -447,7 +444,14 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{The Lagrangian}
+\begin{frame}[allowframebreaks]{Case when $\uvec{g}(\uvec{x})\geq 0$: The Lagrangian}
+
+  In the Lagrange approach, the constrained maximization (minimization) problem is rewritten as a Lagrange function 
+  
+  \[L(x,\lambda)=f(x)-\lambda g(x)\]
+  
+  whose optimal point is a saddle point, i.e. a global maximum (minimum) over the domain of the choice variables and a global minimum (maximum) over the multipliers.
+
   Let us take this example:
   \begin{center}
   \begin{tabular}{cc}
@@ -471,7 +475,7 @@ Regional and functional constraints define the {\bf feasible set} for $x$
   \[
   Y=\left\{\lambda: \lambda_1=-2, \lambda_2<0 \right\}
   \]
-  \item For $\lambda \in Y$, the miniumum will be obtained at some $x(\lambda)$ (that depends on $\lambda$ in general). Here, $x(\lambda)=(3/2\lambda_2,1/2\lambda_2,x_3)^T$.
+  \item For $\lambda \in Y$, the minimum will be obtained at some $x(\lambda)$ (that depends on $\lambda$ in general). Here, $x(\lambda)=(3/2\lambda_2,1/2\lambda_2,x_3)^T$.
   \item Finally, we find a $\lambda$ value that provides a feasible value $x(\lambda)$. Here
   \[
     x_1^2+x_2^2=4 \Rightarrow \lambda_2 = -\sqrt{5/8}
@@ -484,8 +488,8 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 
 \end{frame}
 
-\begin{frame}{Kuhn-Tucker theorem}
-
+\begin{frame}{what if $\uvec{g}(\uvec{x})\geq 0$? Karush-Kuhn-Tucker theorem}
+% https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions
   \note[item]{\url{https://people.maths.bris.ac.uk/~maxmr/opt/kt1.pdf}}
   \note[item]{\url{https://www.cmi.ac.in/~madhavan/courses/dmml2018/literature/Lagrangian_Methods_for_Constrained_Optimization.pdf}}
 
@@ -502,6 +506,14 @@ Regional and functional constraints define the {\bf feasible set} for $x$
     \end{eqnarray*}
   \end{theorem}
 
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \begin{Exercise}
+  Maximize $f(x,y)=xy$ subject to $100 \geq x+y$ and $x\leq 40$.
+\end{Exercise}
+%https://www.sfu.ca/~wainwrig/Econ400/lecture-notes-Kuhntucker.pdf
 \end{frame}
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
