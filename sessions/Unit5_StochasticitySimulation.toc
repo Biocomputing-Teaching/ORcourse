@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Markov chains}{3}{0}{1}
+\beamer@sectionintoc {2}{Hidden Markov Models}{16}{0}{2}
+\beamer@sectionintoc {3}{Discrete Evenet Simulations (DES)}{20}{0}{3}
+\beamer@sectionintoc {4}{References}{22}{0}{4}

@@ -18,17 +18,17 @@
 \documentclass[c]{beamer}
 %\documentclass[notes]{beamer}
 \setbeamertemplate{note page}[show only notes]
-\input{OR_common.tex}
+\input{../OR_common.tex}
 
-\usepackage{array}
-\newcolumntype{C}{@{}c@{}}
-\newcommand{\bottombox}[1]{\makebox[2em][r]{#1}\hspace*{\tabcolsep}\hspace*{2em}}%
-\newcommand{\innerbox}[2]{%
-    \begin{tabular}[b]{c|c}
-       \rule{2em}{0pt}\rule[-2ex]{0pt}{5ex} & \makebox[2em]{#2} \\\cline{2-2}
-       \multicolumn{2}{r}{{#1}\hspace*{1.5\tabcolsep}\hspace*{2em}\rule[-2ex]{0pt}{5ex}}
-    \end{tabular}}
-\renewcommand{\arraystretch}{1.25}
+% \usepackage{array}
+% \newcolumntype{C}{@{}c@{}}
+% \newcommand{\bottombox}[1]{\makebox[2em][r]{#1}\hspace*{\tabcolsep}\hspace*{2em}}%
+% \newcommand{\innerbox}[2]{%
+%     \begin{tabular}[b]{c|c}
+%        \rule{2em}{0pt}\rule[-2ex]{0pt}{5ex} & \makebox[2em]{#2} \\\cline{2-2}
+%        \multicolumn{2}{r}{{#1}\hspace*{1.5\tabcolsep}\hspace*{2em}\rule[-2ex]{0pt}{5ex}}
+%     \end{tabular}}
+% \renewcommand{\arraystretch}{1.25}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -590,17 +590,17 @@ https://www.techiedelight.com/word-break-problem/
 \begin{frame}
 We can start wth the graphical representation of the HMM
 \begin{center}
-  \includegraphics[width=0.7\linewidth]{../figures/HMM.png}
+ \includegraphics[width=0.7\linewidth]{../figures/HMM.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}
-To learn more on HMM:
-\begin{itemize}
-  \item \url{https://alliance.seas.upenn.edu/~cis520/wiki/index.php?n=Lectures.HMMs#toc7}
-  \item \url{http://www.columbia.edu/~mh2078/MachineLearningORFE/HMMs_MasterSlides.pdf}
-\end{itemize}
-\begin{frame}
+% \begin{frame}
+% To learn more on HMM:
+% \begin{itemize}
+%   \item \url{https://alliance.seas.upenn.edu/~cis520/wiki/index.php?n=Lectures.HMMs#toc7}
+%   \item \url{http://www.columbia.edu/~mh2078/MachineLearningORFE/HMMs_MasterSlides.pdf}
+% \end{itemize}
+% \begin{frame}
 
 \section{Discrete Evenet Simulations (DES)}
 \begin{frame}{Running simulations in OR}

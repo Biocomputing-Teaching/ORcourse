@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Definitions}{9}{0}{1}
+\beamer@sectionintoc {2}{Maximum flow}{16}{0}{2}
+\beamer@sectionintoc {3}{Minimum Cost Network Flow}{23}{0}{3}
+\beamer@sectionintoc {4}{References}{31}{0}{4}
