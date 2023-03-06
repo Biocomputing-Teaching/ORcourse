@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{Nonlinear optimization}{4}{0}{1}
-\beamer@subsectionintoc {1}{1}{Concavity/convexity}{10}{0}{1}
-\beamer@subsectionintoc {1}{2}{Iterative methods}{22}{0}{1}
-\beamer@subsectionintoc {1}{3}{Constrained optimization}{27}{0}{1}

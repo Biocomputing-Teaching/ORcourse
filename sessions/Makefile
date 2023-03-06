@@ -11,4 +11,4 @@ all: $(PDFFILES)
  .PHONY: clean 
 
  clean: 
-	rm -f *.aux *.log *.out 
+	rm -f *.aux *.log *.out *.nav *.snm *.toc

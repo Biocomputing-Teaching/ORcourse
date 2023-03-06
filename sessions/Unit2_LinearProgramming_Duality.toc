@@ -1,2 +1,0 @@
-\beamer@sectionintoc {1}{Duality}{4}{0}{1}
-\beamer@sectionintoc {2}{Some theory}{11}{0}{2}
