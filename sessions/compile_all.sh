@@ -1,7 +1,7 @@
 # ara mateix preparat per al curs 22-23, on he eliminat les simulacions estocàstiques i Markov
 
 for file in \
-            Unit2_LinearProgramming_Introduction \
+            Unit2_LinearProgramming_Simplex \
         ; do
 #            lualatex $file.tex
         lualatex $file.tex

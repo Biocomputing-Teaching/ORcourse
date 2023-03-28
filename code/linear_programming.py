@@ -1,3 +1,17 @@
+""" A function to solve a linear programming problem using OR-Tools library.
+
+Input: 
+- solver: A solver object created using pywraplp module of OR-Tools library.
+- variable_list: A list of variables used in the problem, created using the NumVar method of the solver object.
+- constraint_list: A list of constraints added to the problem, created using the Add method of the solver object.
+
+Output:
+- Prints the number of variables and constraints in the problem.
+- Solves the problem and prints the optimal solution, time taken, and reduced cost of each variable.
+- Prints the dual value and activity level of each constraint. """
+
+
+
 from ortools.linear_solver import pywraplp
 
 def ShowResults(solver, variable_list, constraint_list):
