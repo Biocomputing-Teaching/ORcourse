@@ -40,10 +40,8 @@ Study Abroad. Operations Research\\
 \titlepage
 \end{frame}
 
-\begin{frame}
-\frametitle{Preliminary}
-This course is strongly based on the monography on Operations Research by Carter, Price and Rabadi \cite{carter}, and in material obtained from different sources (quoted when needed through the slides).
-\end{frame}
+\input{../tools/Refs.tex}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,6 +58,23 @@ This course is strongly based on the monography on Operations Research by Carter
 \end{frame}
 
 \section{Preparing the LP problem for applying the Simplex method}
+
+\begin{frame}{Classification of solutions in an LP problem}
+  \begin{columns}[T]
+    \begin{column}{.45\textwidth}
+      \begin{center}
+        \includegraphics[width=\linewidth]{points_classification.png}
+      \end{center}
+    \end{column}
+    \begin{column}{.45\textwidth}
+      (a), (c), and (d) are both extreme points and boundary points. \\
+      (b) and (e) are boundary points that are not extreme. \\
+      (f) is interior because no constraint is active. \\
+      (g) is neither interior nor boundary (nor extreme) because it is infeasible.\cite{rardin}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 
 \begin{frame}{The standard form}
 
@@ -254,28 +269,22 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
 
 
 \begin{frame}{References}
-\footnotesize
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-  \begin{columns}[t]
-    \begin{column}{.45\textwidth}
-      \bibitem[Carter, 2019]{carter} Michael W. Carter, Camille C. Price, and Ghaith Rabadi (2019)
-        \newblock Operations Research, 2nd Edition
-        \newblock \emph{CRC Press}.
-        \bibitem[Harel, 2019]{harel} David Harel, with Yishai Feldman (2004)
-          \newblock Algorithmics: the spirit of computing, 3rd Edition
-          \newblock \emph{Addison-Wesley}.
-    \end{column}
-    \begin{column}{.45\textwidth}
-      \bibitem[Riley, 2002]{riley} K.F. Riley, M.P. Hobson, S.J. Bence (2002)
-        \newblock Mathematical Methods for Physics and Engineering (2nd Ed)
-        \newblock \emph{McGraw Hill}.
-      \bibitem[Nocedal, 2006]{nocedal} J. Nocedal, S. J. Wright (2006)
-        \newblock Numerical Optimization (2nd Ed)
-        \newblock \emph{Springer}.
-    \end{column}
-  \end{columns}
-\end{thebibliography}
-\end{frame}
+  \begin{thebibliography}{99}
+  \setbeamertemplate{bibliography item}[text]
+    \begin{columns}[t]
+      \begin{column}{.45\textwidth}
+        \bibitem{carter} Michael W. Carter, Camille C. Price, and Ghaith Rabadi. Operations Research, 2nd Edition. CRC Press.
+        \bibitem{harel} David Harel, with Yishai Feldman. Algorithmics: the spirit of computing, 3rd Edition. Addison-Wesley.
+        \bibitem{rardin} Ronald L. Rardin. Optimization in Operations Research, 2nd Edition. Pearson.
+      \end{column}
+      \begin{column}{.45\textwidth}
+        \bibitem{riley} K.F. Riley, M.P. Hobson, S.J. Bence. Mathematical Methods for Physics and Engineering (2nd Ed). McGraw Hill.
+        \bibitem{nocedal} J. Nocedal, S. J. Wright. Numerical Optimization (2nd Ed). Springer.
+      \end{column}
+    \end{columns}
+  \end{thebibliography}
+  \end{frame}
+  
 %----------------------------------------------------------------------------------------
 
 \end{document}
