@@ -155,18 +155,28 @@ basic feasible solution that optimizes the objective function.
 \section{The Simplex algorithm}
 
 \begin{frame}
- "We define
-two extreme points of the feasible region (or two basic feasible solutions) as being adja-
-cent if all but one of their basic variables are the same. Thus, {\em a transition from one basic
+We define
+two extreme points of the feasible region (or two basic feasible solutions) as being adjacent if all but one of their basic variables are the same. Thus, {\em a transition from one basic
 feasible solution to an adjacent basic feasible solution can be thought of as exchanging
-the roles of one basic variable and one non-basic variable}. The Simplex method per-
-forms a sequence of such transitions and thereby examines a succession of adjacent
+the roles of one basic variable and one non-basic variable}. The Simplex method performs a sequence of such transitions and thereby examines a succession of adjacent
 extreme points. A transition to an adjacent extreme point will be made only if by doing
-so the objective function is improved (or stays the same). It is a property of linear pro-
-gramming problems that this type of search will lead us to the discovery of an optimal
+so the objective function is improved (or stays the same). It is a property of linear programming problems that this type of search will lead us to the discovery of an optimal
 solution (if one exists). The Simplex method is not only successful in this sense, but it
 is remarkably efficient because it succeeds after examining only a fraction of the basic
-feasible solutions."\cite{carter}
+feasible solutions.\cite{carter}
+\end{frame}
+
+\begin{frame}
+The algorithm consists in:
+\begin{enumerate}
+  \item obtaining an initial feasible
+solution,
+\item make transitions to a better basic feasible solution,
+\item recognizing an optimal solution.
+\end{enumerate}
+From any basic feasible solution, we have the assurance
+that, if a better solution exists at all, then there is an adjacent solution that is better than the
+current one.\cite{carter}
 \end{frame}
 
 \begin{frame}{The algorithm}
@@ -200,7 +210,7 @@ feasible solutions."\cite{carter}
   \end{equation*}
 We build first the standard form:
 \begin{eqnarray*}
-  -8x_1-5x_2+z&=&0\\
+  -8x_1-5x_2-0s-0t-0u+z&=&0\\
   x_1+s&=&150\\
   x_2+t&=&250\\
   2x_1+x_2+u&=&500
@@ -208,7 +218,7 @@ We build first the standard form:
 \end{frame}
 
 \begin{frame}{Example. The Simplex Tableau}
-  We write the coefficients matrix and we identify the basic ($m=3$) and non-basic ($n-m=5-3=2$) variables:
+  We write the coefficients matrix and we identify the basic ($m=3$) and non-basic ($n-m=5-3=2$ degrees of freedom) variables:
   \begin{equation}
 \begin{array}{cc}
 &\\
@@ -306,9 +316,169 @@ R_1+5R_4&z \\
 $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constraints), $s=25$ (non-binding constraint).
 \end{frame}
 
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{simplex_example.png}
+  \end{center}
+  Simplex steps for the given example (taken from \cite{carter}).
+\end{frame}
+
 \begin{frame}{Exercises}
   Solve, using the Simplex method, the Exercises 3 (p17) and 6 (p23) of the previous session
 \end{frame}
+
+\section{Initial solutions for General Constraints}
+
+\begin{frame}{Artificial variables}
+
+  When adding slack variables, we end up finding an initial feasible set of basic variables. But what happens when not all constraints are of the form $\leq$?\cite{carter}
+
+  \begin{enumerate}
+    \item Make all right hand sides $b_i$ of the constraint (in)equalities positive. If they are not, multiply the expression by $(-1)$.
+    \item If we end up just with slack variables, they can be directly used as initial basic variables. If the expressions are of the type $\geq$ the selection of initial basic variables is not trivial.
+    \item We then create {\bf artificial variables}, as a trick to create a starting basic solution
+  \end{enumerate}
+  \begin{equation*}
+    \begin{aligned}
+      \text{maximize } \quad & z = x_1+3x_2 \\
+      \text{subject to }\quad &
+      \begin{array}{rcl}
+        2x_1 -x_2 &\leq &-1 \\
+        x_1+x_2 &= &3 \\
+        x_1,x_2 &\geq& 0
+      \end{array}
+    \end{aligned}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}
+  By leaving the right hand side of the constraints positive and adding a surplus variable, we end up having
+  \begin{equation*}
+    \begin{aligned}
+       \text{subject to }\quad &
+      \begin{array}{rcl}
+        -2x_1 +x_2 -s_1 &= &1 \\
+        x_1+x_2 &= &3
+      \end{array}
+    \end{aligned}
+  \end{equation*}
+  and now we introduce the artificial variables to create an initial solution:
+  \begin{equation*}
+    \begin{aligned}
+       \text{subject to }\quad &
+      \begin{array}{rcl}
+        -2x_1 +x_2 -s_1 +R_1&= &1 \\
+        x_1+x_2 +R_2&= &3
+      \end{array}
+    \end{aligned}
+  \end{equation*}
+  with all variables non-negative. Recall that, in fact, $R_1=R_2=0$, so they will be just used temporarily.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{The Two-Phase method}
+
+  \begin{enumerate}
+    \item First we will use the Simplex method to minimize the values of $R_1$ and $R_2$. 
+    \item If they reach the value of zero, there is a solution for the original problem. If not, there is no feasible solution to the original problem.
+  \end{enumerate}
+  In the above example, we want to minimize the function $z_R=R_1+R_2$ or, what is the same, we want to maximize the function $z_R=-R_1-R_2$
+  \begin{equation*}
+    \begin{array}{c}
+    \\
+    z_R\\
+    R_1\\
+    R_2\\
+    \end{array}
+    \begin{array}{ccccc|c}
+       x_1 & x_2 & s_1 & R_1 & R_2 & Solution \\ \hline
+       0 & 0 & 0 & 1 & 1 & 0 \\ \hline
+       -2 & 1 & -1 & 1 & 0 & 1  \\
+       1 & 1 & 0 & 0 & 1 & 3 \\
+    \end{array}
+    \end{equation*}
+
+  
+  Next, we transform the problem in order to get  basic variables (columns of one 1 and the rest zeros). For example, by using the second and third row to make appear 0 in the first row for the artificial variables:
+  \begin{equation*}
+    \begin{array}{c}
+    \\
+    z_R\\
+    R_1\\
+    R_2\\
+    \end{array}
+    \begin{array}{ccccc|c}
+       x_1 & x_2 & s_1 & R_1 & R_2 & Solution \\ \hline
+       1 & -2 & 1 & 0 & 0 & -4 \\ \hline
+       -2 & 1 & -1 & 1 & 0 & 1  \\
+       1 & 1 & 0 & 0 & 1 & 3 \\
+    \end{array}
+    \end{equation*}
+  \end{frame}
+  We can solve this problem with the Simplex method, obtaining a tableau:
+  \begin{equation*}
+    \begin{array}{c}
+    \\
+    z_R\\
+    x_2\\
+    x_1\\
+    \end{array}
+    \begin{array}{ccccc|c}
+       x_1 & x_2 & s_1 & R_1 & R_2 & Solution \\ \hline
+       0 & 0 & 0 & 1 & 1 & 0 \\ \hline
+       0 & 1 & -1/3 & 1/3 & 2/3 & 7/3  \\
+       1 & 0 & 1/3 & -1/3 & 1/3 & 2/3 \\
+    \end{array}
+    \end{equation*}
+    which provides the optimal solution for Phase 1. This means that the original problem has solution (as $R_1=R_2=0$). In Phase 2, we will replace the first row by the original maximization problem and leave out the artificial varioables, solving the now standard Simplex problem:
+    \begin{equation*}
+      \begin{array}{c}
+      \\
+      z\\
+      x_2\\
+      x_1\\
+      \end{array}
+      \begin{array}{ccc|c}
+         x_1 & x_2 & s_1 &  Solution \\ \hline
+         -1 & -3 & 0 &  0 \\ \hline
+         0 & 1 & -1/3 & 7/3  \\
+         1 & 0 & 1/3  & 2/3 \\
+      \end{array}
+      \end{equation*}
+      that leads to
+      \begin{equation*}
+        \begin{array}{c}
+        \\
+        z\\
+        x_2\\
+        s_1\\
+        \end{array}
+        \begin{array}{ccc|c}
+           x_1 & x_2 & s_1 &  Solution \\ \hline
+           2 & 0 & 0 &  9 \\ \hline
+           1 & 1 & 0 & 3  \\
+           3 & 0 & 1  & 2 \\
+        \end{array}
+        \end{equation*}
+
+        Draw the graphical solution of this problem and interpret the results.
+
+  \end{frame}
+
+  \begin{frame}{Information in the tableau}
+    Some special cases:
+    \begin{description}
+      \item[Multiple optimal solutions] If a zero appears in the objective function row corresponding to a non-basic
+      variable, then that non-basic variable can enter the basis without changing the value of
+      the objective function. So, two adjhacent points have the same objective function value.
+      \item[Unbounded solution] If in any tableau the constraint coefficients corresponding to a non-basic variable are all
+      either negative or zero, then that non-basic variable can be increased arbitrarily without
+      violating any constraint. Thus, the feasible region is unbounded in the direction of that
+      variable.
+      \item[Degenerate solutions] A solution to a linear programming problem is said to be degenerate if one or more of the
+      basic variables has a value of zero. This shows redundancy in the constraints.
+    \end{description}
+  \end{frame}
 
 \section{Application of SIMPLEX to non-linear problems}
 
