@@ -62,10 +62,13 @@ Study Abroad. Operations Research\\
 \begin{frame}{The linear programming model}
 
   \begin{block}{Linear programming}
-    Linear programming is a special class of mathematical programming models in which the objective function and the constraints can be expressed as linear functions of the decision variables.
+    Linear programs have a linear objective function and linear constraints, which may
+    include both equalities and inequalities. The feasible set is a polytope, that is, a convex,
+    connected set with ﬂat, polygonal faces. The contours of the objective function are planar.
+   \cite{nocedal}
   \end{block}
-
   A wide variety of applications can be modeled with linear programming.
+
 \end{frame}
 
 \begin{frame}{Variables, function and bounds}
@@ -304,29 +307,7 @@ Study Abroad. Operations Research\\
   This is the foundation for a {\bf general solution method} of a LP problem called the {\bf Simplex method}.
 \end{frame}
 
-\begin{frame}{References}
-\footnotesize
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-  \begin{columns}[t]
-    \begin{column}{.45\textwidth}
-      \bibitem[Carter, 2019]{carter} Michael W. Carter, Camille C. Price, and Ghaith Rabadi (2019)
-        \newblock Operations Research, 2nd Edition
-        \newblock \emph{CRC Press}.
-        \bibitem[Harel, 2019]{harel} David Harel, with Yishai Feldman (2004)
-          \newblock Algorithmics: the spirit of computing, 3rd Edition
-          \newblock \emph{Addison-Wesley}.
-    \end{column}
-    \begin{column}{.45\textwidth}
-      \bibitem[Riley, 2002]{riley} K.F. Riley, M.P. Hobson, S.J. Bence (2002)
-        \newblock Mathematical Methods for Physics and Engineering (2nd Ed)
-        \newblock \emph{McGraw Hill}.
-      \bibitem[Nocedal, 2006]{nocedal} J. Nocedal, S. J. Wright (2006)
-        \newblock Numerical Optimization (2nd Ed)
-        \newblock \emph{Springer}.
-    \end{column}
-  \end{columns}
-\end{thebibliography}
-\end{frame}
+\input{../tools/Biblio.tex}
 %----------------------------------------------------------------------------------------
 
 \end{document}

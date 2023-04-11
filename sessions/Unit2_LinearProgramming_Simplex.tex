@@ -57,6 +57,16 @@ Study Abroad. Operations Research\\
 \end{itemize}
 \end{frame}
 
+\section{Introduction to the Simplex method for LP}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=\linewidth]{george-danzig-simplex.jpg}
+  \end{center}
+
+  Left: George Dantzig (1914-2005), the American mathematical scientist who devised linear programming and the simplex algorithm. Right: The simplex algorithm moves along the edges of the polytope until it reaches the optimum solution [Image Wikimedia Commons].
+\end{frame}
+
 \section{Preparing the LP problem for applying the Simplex method}
 
 \begin{frame}{Classification of solutions in an LP problem}
@@ -111,7 +121,7 @@ Thus:
 \end{frame}
 
 \begin{frame}
-Of course, not always the system is proposed in this standard form, so:
+Of course, not always the system is proposed in this standard form, so\cite{carter}:
 \begin{itemize}
   \item We need to leave a maximization problem. If the problem is to minimize the objective function, we simply multiply it by $(-1)$.
   \item In order to change inequality constraints into equality constraints we use {\it slack} variables for $\leq$ inequalities:
@@ -122,8 +132,41 @@ Of course, not always the system is proposed in this standard form, so:
   \[
   x_1+3x_2\geq 10 \rightarrow x_1+3x_2 -s_2 =10
   \]
-  \item All variables should be non-negative.
+  \item All variables should be non-negative. If some variable $x_1$ needs to be considered as unrestricted in sign, we will replace it by $x_1'-x_1''$, with $x_1',x_1''\geq 0$
 \end{itemize}
+\end{frame}
+
+\section{The algebra behind the standard form}
+
+\begin{frame}
+  \begin{itemize}
+ \item The system of linear equations, $Ax = b$, consists of $m$ equations and $n$
+unknowns (the original decision variables plus the rest introduced to get a standard form). If the system has any solution, then $m \leq n$.
+\item If $m = n$ (and if $rank (A) = m$ and $A$ is nonsingular), then 
+$x = A^{-1}b$. No optimization needed!
+\item If $m < n$, there are infinitely many solutions and $n -m$ degrees of freedom. 
+\item A {\bf basic solution} is obtained by setting $n - m$ of the variables to zero ({\bf non-basic variables}), and solving for the remaining ({\bf basic}) $m$ variables. The number of basic solutions is $\binom{n}{n-m}=\binom{n}{m}=\frac{n!}{m!(n-m)!}$
+\item Basic solutions that do not satisfy all problem constraints and non-negativity constraints are {\bf infeasible solutions}.
+\item An {\bf optimal basic feasible solution} is a
+basic feasible solution that optimizes the objective function. 
+\end{itemize}
+\end{frame}
+
+\section{The Simplex algorithm}
+
+\begin{frame}
+ "We define
+two extreme points of the feasible region (or two basic feasible solutions) as being adja-
+cent if all but one of their basic variables are the same. Thus, {\em a transition from one basic
+feasible solution to an adjacent basic feasible solution can be thought of as exchanging
+the roles of one basic variable and one non-basic variable}. The Simplex method per-
+forms a sequence of such transitions and thereby examines a succession of adjacent
+extreme points. A transition to an adjacent extreme point will be made only if by doing
+so the objective function is improved (or stays the same). It is a property of linear pro-
+gramming problems that this type of search will lead us to the discovery of an optimal
+solution (if one exists). The Simplex method is not only successful in this sense, but it
+is remarkably efficient because it succeeds after examining only a fraction of the basic
+feasible solutions."\cite{carter}
 \end{frame}
 
 \begin{frame}{The algorithm}
@@ -267,24 +310,25 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
   Solve, using the Simplex method, the Exercises 3 (p17) and 6 (p23) of the previous session
 \end{frame}
 
+\section{Application of SIMPLEX to non-linear problems}
 
-\begin{frame}{References}
-  \begin{thebibliography}{99}
-  \setbeamertemplate{bibliography item}[text]
-    \begin{columns}[t]
-      \begin{column}{.45\textwidth}
-        \bibitem{carter} Michael W. Carter, Camille C. Price, and Ghaith Rabadi. Operations Research, 2nd Edition. CRC Press.
-        \bibitem{harel} David Harel, with Yishai Feldman. Algorithmics: the spirit of computing, 3rd Edition. Addison-Wesley.
-        \bibitem{rardin} Ronald L. Rardin. Optimization in Operations Research, 2nd Edition. Pearson.
-      \end{column}
-      \begin{column}{.45\textwidth}
-        \bibitem{riley} K.F. Riley, M.P. Hobson, S.J. Bence. Mathematical Methods for Physics and Engineering (2nd Ed). McGraw Hill.
-        \bibitem{nocedal} J. Nocedal, S. J. Wright. Numerical Optimization (2nd Ed). Springer.
-      \end{column}
-    \end{columns}
-  \end{thebibliography}
-  \end{frame}
-  
+\begin{frame}
+  Algorithm (see example in the next page):
+\begin{enumerate}
+\item In $\mathbf{R}^2$, we form a triangle with vertices at $x^{[0]}$ and the two points $x^{[1]} = x^{[0]} + l_1e^{[1]}$ and  $x^{[2]} = x^{[0]} + l_2e^{[2]}$. In $\mathbf{R}^N$ the triangle becomes a simplex with $N + 1$ vertices.
+\item We aim at moving ${x^{[0]}, x^{[1]}, x^{[2]},...}$ so that the triangle comes to enclose a local minimum $x_{\mathrm{min}}$ while shrinking in size.  First, the vertex of highest cost function value is moved in the direction of the {\bf triangle’s center} towards a region where we expect the cost function values to be lower. After a sequence of such moves, the triangle eventually contains in its interior a local minimum. 
+\item The size of the triangle is progressively reduced until it tightly bounds the local minimum, as the vertex moves are most likely to succeed when the triangle is small enough that $F(x)$ varies linearly over the triangle region.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{simplex_nonlinear.png}
+  \end{center}
+  The simplex method moves the vertices of the simplex (in two dimensions, a triangle) until it contains the local minimum, and shrinks the simplex to find the local minimum (taken from \cite{beers}).
+\end{frame}
+
+\input{../tools/Biblio.tex}
 %----------------------------------------------------------------------------------------
 
 \end{document}

@@ -5,7 +5,7 @@ all: $(PDFFILES)
 	@echo "Done!"
 	@echo "Compiled PDFs:" $(PDFFILES) 
 	 
-%.pdf: %.tex 
+%.pdf: %.tex ../tools/Biblio.tex ../tools/Refs.tex
 	lualatex $< 
 	lualatex $< 
 
