@@ -1,0 +1,3 @@
+lualatex SolvedExercises
+lualatex SolvedExercises
+lualatex SolvedExercises

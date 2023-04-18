@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\input{common.tex}
+\usepackage{amsmath, amssymb, amsthm, commath, mathtools,gensymb}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{tabularx,makecell}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{graphicx}
+\graphicspath{{../figures/}}
+
+%numeracions dels llistats
+\usepackage{enumitem}
+\newlist{llista}{enumerate}{3}
+\setlist[llista,1]{label=(\arabic*)}
+\setlist[llista,2]{label=(\arabic{llistai}.\arabic*)}
+\setlist[llista,3]{label=(\arabic{llistai}.\arabic{llistaii}.\arabic*)}
+
+
+\usepackage{color,colortbl} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{UVICRED}{RGB}{255,0,0}
+
+\setenumerate[0]{label=(\Alph*)}
+
+% % Definition of \maketitle
+% \makeatletter
+% \def\@maketitle{
+% \raggedright
+% \includegraphics[width = 40mm]{figures/FCTE.png}\\[8ex]
+% \begin{center}
+% {\Huge \bfseries \sffamily \@title }\\[4ex]
+% {\Large  \@author}\\[4ex]
+% \@date\\[8ex]
+% \includegraphics[width = 40mm]{image.png}
+% \end{center}}
+% \makeatother
+
+\newenvironment{exercici}[1]{%
+\refstepcounter{excounter}%
+\label{#1}%
+\noindent\textbf{Exercixi~\theexcounter}%
+}%
+
+\newcommand{\veci}{\ensuremath{\mathbf i}}
+\newcommand{\vecj}{\ensuremath{\mathbf j}}
+\newcommand{\veck}{\ensuremath{\mathbf k}}
+
+% comanda per definir Gauss-Jordan Elimination
+\allowdisplaybreaks
+\makeatletter
+\newcounter{elimination@steps}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash$}p{#1}<{$}}
+\def\elimination@num@rights{}
+\def\elimination@num@variables{}
+\def\elimination@col@width{}
+\newenvironment{elimination}[4][0]
+{
+    \setcounter{elimination@steps}{0}
+    \def\elimination@num@rights{#1}
+    \def\elimination@num@variables{#2}
+    \def\elimination@col@width{#3}
+    \renewcommand{\arraystretch}{#4}
+    \start@align\@ne\st@rredtrue\m@ne
+}
+{
+    \endalign
+    \ignorespacesafterend
+}
+\newcommand{\eliminationstep}[2]
+{
+    \ifnum\value{elimination@steps}>0\sim\quad\fi
+    \left[
+        \ifnum\elimination@num@rights>0
+            \begin{array}
+            {@{}*{\elimination@num@variables}{R{\elimination@col@width}}
+            |@{}*{\elimination@num@rights}{R{\elimination@col@width}}}
+        \else
+            \begin{array}
+            {@{}*{\elimination@num@variables}{R{\elimination@col@width}}}
+        \fi
+            #1
+        \end{array}
+    \right]
+    &
+    \begin{array}{l}
+        #2
+    \end{array}
+    &%                                    moved second & here
+    \addtocounter{elimination@steps}{1}
+}
+\makeatother
+
+\usepackage{tkz-euclide}
+
+
+\begin{document}
+
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},
+}
+
+
+\title{Solved Exercises \\ \large Optimization and Operations Research \newline \newline \includegraphics[width = 60mm]{FCTE}
+\thanks{e.mail: \texttt{jordi.villa@uvic.cat}}}
+\author{Jordi Villà-Freixa}
+\date{Last update: \today}
+\maketitle
+
+\tableofcontents
+
+%\listofexercises
+\newpage
+
+%
+
+\begin{ExerciseList}
+
+\section{Non-linear optimization}
+
+\subsection{Karush-Kuhn-Tucker theorem}
+
+\input{ex_KKT.tex}
+
+\end{ExerciseList}
+
+\end{document}

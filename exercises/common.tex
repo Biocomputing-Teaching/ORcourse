@@ -1,0 +1,417 @@
+
+% feina a fer per al curs 2010-2011
+% 1) l'exercici proposat de maximitzar una funció de dues variables és difícil i cal treballar-lo. Mirar bé el mètode d'steepest descent i el de Newton Raphson (els dos proposats a l'exercici). Mirar també d'entendre correctament el mètode d'optimitzar la funció de Davidson. Mirar una bona explicació a http://linneus20.ethz.ch:8080/1_5_3.html#SECTION00253100000000000000 Fer un dibuis que mostri el concepte de "constant norm", entès com un radi determinat al voltant d'x, un radi donat per l'stepsize. És prou entendor així
+\usepackage{framed}
+\usepackage{url}
+\usepackage{ifthen}
+\usepackage{longtable}
+\usepackage{fancyvrb}
+\usepackage{cancel}
+\usepackage{enumitem}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage[arrowdel]{physics}
+\usepackage{multirow,booktabs}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{fullpage}
+\usepackage{lastpage}
+\usepackage{pstricks} 
+\usepackage{graphicx}
+\graphicspath{{../figures/}}
+
+
+
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{gensymb}
+\usepackage{listings}
+\usepackage{siunitx}
+
+\usepackage{cancel}
+%\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+\usepackage{empheq}
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{systeme}
+
+\usepackage[most]{tcolorbox}
+\usepackage{chemfig,chemmacros,chemnum}
+\usepackage{chemformula}
+
+%\usepackage{unicode-math}
+
+\usepackage{tcolorbox}
+\usepackage{url}
+  \let\oldurl\url
+\usepackage{hyperref}
+  \let\linkurl\url
+  \let\url\oldurl
+
+% \usepackage[
+% backend=biber,
+% citestyle=numeric-comp
+% ]{biblatex}
+% \addbibresource{/Users/556079/Documents/teaching.bib}
+
+
+%\chemsetup[chemformula]{format=\sffamily}
+%\renewcommand*\printatom[1]{\ensuremath{\mathsf{#1}}}
+%\setatomsep{2em}
+%\setdoublesep{.6ex}
+%\setbondstyle{semithick}
+%\colorlet{shadecolor}{orange!15}
+% \parindent 0in
+% \parskip 12pt
+% \geometry{margin=1in, headsep=0.25in}
+% \theoremstyle{definition}
+% \newtheorem{defn}{Definition}
+% \newtheorem{reg}{Rule}
+% \newtheorem{exer}{Exercise}
+% \newtheorem{note}{Note}
+%\RequirePackage{mathrsfs}
+%\RequirePackage[psamsfonts]{amsfonts} %for Y&Y BSR AMS fonts
+\RequirePackage{amsmath,amsfonts,amsthm,amssymb}
+\RequirePackage{setspace}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{extramarks}
+\RequirePackage{chngpage}
+\RequirePackage{soul}
+
+
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{makecell}
+\usepackage{caption}
+\usepackage{systeme}
+\usepackage{fancybox}
+
+%\RequirePackage[dvipsnames]{xcolor}
+%\RequirePackage{graphicx,float,wrapfig}
+%\RequirePackage{pgf,tikz}
+%\usetikzlibrary{arrows,automata}
+%\RequirePackage{pstricks}
+%\RequirePackage[text]{amsthm}
+%\RequirePackage{array}
+%\RequirePackage{amscd}
+%\RequirePackage{array}\RequirePackage{dcolumn}
+%\putfig{3.5truein}{PSfig1.3}{Peter's winnings in 40 plays of heads or tails.}{fig 1.3}
+
+\newcommand*{\DIRFig}{../../../../talks/figures}
+\newcommand{\barefig}[2]{\makebox{\includegraphics*[width=#2] {\DIRFig/#1}}}
+\newcommand{\putfig}[4]
+{\begin{figure}
+\centerline{\barefig{#2}{#1}}
+\caption{#3}
+\label{#4}
+\end{figure}}
+
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dt}{\, dt}
+\newcommand{\dth}{\, d\theta}
+\newcommand{\dr}{\, dr}
+\newcommand{\du}{\, du}
+\newcommand\uvec[1]{\textbf{#1}}
+\newcommand{\iu}{\hat{\uvec{i}}}
+\newcommand{\ju}{\hat{\uvec{j}}}
+\newcommand{\ku}{\hat{\uvec{k}}}
+
+\newcommand{\emx}[1]{{\em{#1}\/}}
+\newcommand{\abin}{{\it ab initio}}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\citenum}{\cite}
+\newcommand{\dGo}{\ensuremath{\Delta G_0}}
+\newcommand{\dG}[2]{\ensuremath{\Delta G_{\rm #1}^{\rm #2}}}
+\newcommand{\dX}[3]{\ensuremath{\Delta #1_{\rm #2}^{\rm #3}}}
+\newcommand{\ddgo}[1]{\ensuremath{\Delta \Delta G_{\rm solv}^{\rm #1}}}
+\newcommand{\ddgstarcat}{\ensuremath{\Delta \Delta g^{\ddagger}_{\rm cat}}}
+\newcommand{\ddgstar}{\ensuremath{\Delta \dgstar}}
+\newcommand{\ddgt}[2]{\ensuremath{\Delta \Delta G_{\rm solv}^{\rm #1, \rm #2}}}
+\newcommand{\ddsstarprime}{\ensuremath{(\Delta \dsstar)'}}
+\newcommand{\deltaepsel}{\ensuremath{\Delta \varepsilon_{\rm el}}}
+\newcommand{\deltaeps}{\ensuremath{\Delta \varepsilon}}
+\newcommand{\dgab}[2]{\ensuremath{\Delta g_{\rm #1}^{\rm #2}}}
+\newcommand{\dga}[1]{\ensuremath{\Delta g_{\rm #1}}}
+\newcommand{\dgb}[1]{\ensuremath{\Delta g^{\rm #1}}}
+\newcommand{\dgcage}{\ensuremath{\Delta g_{\rm cage}}}
+\newcommand{\dgcat}{\ensuremath{\Delta g_{\rm cat}}}
+\newcommand{\dgsoltsatsa}{\ensuremath{\dgsol (\rm TSA)_{\rm TSA}}}
+\newcommand{\dgsoltstsa}{\ensuremath{\dgsol (\rm TS)_{\rm TSA}}}
+\newcommand{\dgsoltsts}{\ensuremath{\dgsol (\rm TS)_{\rm TS}}}
+\newcommand{\dgsol}{\ensuremath{\Delta G_{\rm sol}}}
+\newcommand{\dgstarcage}{\ensuremath{\dgstar_{\rm cage}}}
+\newcommand{\dgstarcat}{\ensuremath{\dgstar_{\rm cat}}}
+\newcommand{\dgstarw}{\ensuremath{\dgstar_{\rm w}}}
+\newcommand{\dgstar}{\ensuremath{\Delta g^{\ddagger}}}
+\newcommand{\dgw}{\ensuremath{\Delta g_{\rm w}}}
+\newcommand{\dg}[2]{\ensuremath{\Delta g_{\rm #1}^{\rm #2}}}
+\newcommand{\dino}{\texttt{DINO}}
+\newcommand{\dsstarcageprime}{\ensuremath{(\dsstarcage)'}}
+\newcommand{\dsstarcage}{\ensuremath{\dsstar_{\rm cage}}}
+\newcommand{\dsstarcatprime}{\ensuremath{(\dsstarcat)'}}
+\newcommand{\dsstarcat}{\ensuremath{\dsstar_{\rm cat}}}
+\newcommand{\dsstarwprime}{\ensuremath{(\dsstarw)'}}
+\newcommand{\dsstarw}{\ensuremath{\dsstar_{\rm w}}}
+\newcommand{\dsstar}{\ensuremath{\Delta S^{\ddagger}}}
+\newcommand{\eg}{{\it e.g.}}
+\newcommand{\etal}{{\it et al.}}
+\newcommand{\gamess}{\texttt{GAMESS}}
+\newcommand{\gauss}{\texttt{GAUSSIAN} 98}
+\newcommand{\golpe}{\texttt{GOLPE}}
+\newcommand{\grid}{\texttt{GRID}}
+\newcommand{\ie}{{\it i.e.}}
+\newcommand{\ith}{{\it i}$^{\rm th}$\ }
+\newcommand{\kbt}{\ensuremath{k_{\rm B} T}}
+\newcommand{\kb}{\ensuremath{k_{\rm B}}}
+\newcommand{\kcage}{\ensuremath{k_{\rm cage}}}
+\newcommand{\kcatkm}{\ensuremath{k_{\rm cat}/K_{\rm M}}}
+\newcommand{\kcat}{\ensuremath{k_{\rm cat}}}
+\newcommand{\km}{kcal mol$^-1$}
+\newcommand{\knon}{\ensuremath{k_{\rm non}}}
+\newcommand{\kw}{\ensuremath{k_{\rm w}}}
+\newcommand{\mepsim}{\texttt{MEPSIM}}
+\newcommand{\mgp}[1]{\marginpar{\scriptsize{#1}}}
+\newcommand{\mipsim}{\texttt{MIPSIM}}
+\newcommand{\mola}{\texttt{MOLARIS}}
+\newcommand{\msms}{\texttt{MSMS}}
+\newcommand{\pdras}{p21$^{\rm ras}$}
+\newcommand{\rgran}{\ensuremath{\mathbb{R}}}
+\newcommand{\rx}[2]{\ensuremath{#1_{\rm #2}}}
+\newcommand{\vs}{{\it vs.}}
+\newcommand{\z}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\composed}[2]{#1\mathbin\circ #2}
+\newcommand{\wrt}[1]{{\mbox{\scriptsize w.r.t. \( #1 \)} }}
+\newcommand{\polyspace}{\mathcal{P}}
+\newcommand{\matspace}{\mathcal{M}}
+%\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\Re}{\mathbb{R}}
+\newcommand{\rtres}{\ensuremath{\Re^3}}
+\newcommand{\union}{\cup}
+\newcommand{\dotprod}{\cdot}
+\newcommand*\pkg[1]{\textsf{#1}}
+
+%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+\newcommand{\trans}[1]{{#1}^{\ensuremath{\mathsf{T}}}} % transpose
+\newcommand{\nbyn}[1]{\ensuremath{#1 \! \times \! #1 }}
+\newcommand{\nbym}[2]{#1 \! \times \! #2 }       % Use in math mode.
+\newcommand{\cat}[2]{#1\!\mathbin{\raise.6ex\hbox{\( {}^\frown \)}}\!#2}
+\newcommand{\generalmatrix}[3]{ %arg1: low-case letter, arg2: rows, arg3: cols
+               \left(
+                  \begin{array}{cccc}
+                    #1_{1,1}  &#1_{1,2}  &\ldots  &#1_{1,#2}  \\
+                    #1_{2,1}  &#1_{2,2}  &\ldots  &#1_{2,#2}  \\
+                              &\vdots                         \\
+                    #1_{#3,1} &#1_{#3,2} &\ldots  &#1_{#3,#2}
+                  \end{array}
+               \right)  }
+\newcommand{\colvec}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\pr}[1]{\ensuremath{\mathrm{Pr}(#1)}}
+\newcommand{\rep}[2]{ {\rm Rep}_{#2}(#1) }
+\newcommand{\mapsunder}[1]{\stackrel{#1}{\longmapsto}}
+\newcommand{\map}[3]{\mbox{$#1\colon #2\to #3$}}
+\newcommand{\identity}{\mbox{id}}
+\newcommand{\stdbasis}{{\cal E}}
+\newcommand{\sequence}[1]{ \langle#1\rangle }
+\newcommand{\spacer}{\rule[-3mm]{0mm}{8mm}}
+\newcommand{\email}[1]{\url{#1}}
+\newcommand{\zero}{\vec{0}}
+\newcommand{\proj}[2]{\mbox{proj}_{#2}({#1}) }
+%\AtBeginDocument{\newlength{\heightofcdot}
+%\newlength{\widthofcdot}
+%\settoheight{\heightofcdot}{$\cdot$}
+%\settowidth{\widthofcdot}{$\cdot$}
+%\newsavebox{\dotprodcircle}
+%\savebox{\dotprodcircle}{\includegraphics{dotprod.1}}
+%\newcommand{\dotprod}{\mathbin{\raisebox{.5\heightofcdot}{%
+%          \makebox[\widthofcdot]{$\smash{\usebox{\dotprodcircle}}$}}}}}
+\newcommand{\spanof}[1]{\relax [#1\relax ]} % no optional argument!
+\newcommand{\set}[1]{\mbox{$\{#1\}$}} \newcommand{\suchthat}{\bigm|}
+\newcommand{\deter}[1]{ \mathchoice{\left|#1\right|}{|#1|}{|#1|}{|#1|} }
+\newcommand{\secuence}[1]{ \langle#1\rangle }
+\newcommand{\basis}[2]{\secuence{\vec{#1}_1,\ldots,\vec{#1}_{#2}}}
+
+
+
+%--------linsys
+%  Use as \begin{linsys}{3}
+%           x &+ &3y &+ &a &= &7 \\
+%           x &- &3y &+ &a &= &7
+%         \end{linsys}
+% Remark: TeXbook pp. 167-170 says to put a medmuskip around a +; and that's
+% 4/18-ths of an em.  Why does 2/18-ths of an em work?  I don't know, but
+% comparing to a regular displayed equation suggests it is right.
+% (darseneau says LaTeX puts in half an \arraycolsep.)
+\newenvironment{linsys}[2][m]{%
+\setlength{\arraycolsep}{.1111em} % p. 170 TeXbook; a medmuskip
+\begin{array}[#1]{@{}*{#2}{rc}r@{}}
+}{%
+\end{array}}
+
+
+%\newtheorem{teorema}{Teorema}
+%\newtheorem{exercici}{Exercici}
+%\newtheorem{definicio}{Definici\'o}
+%\newtheorem{theorem}{Theorem}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{definition}{Definition}
+
+\newcounter{EXMP}
+\newenvironment{EXMP}[1][]{\definecolor{shadecolor}{rgb}{0.6,0.6,0.6}
+							\begin{shaded}\refstepcounter{EXMP}\par\medskip\noindent%
+   							\textbf{EXAMPLE~\theEXMP. #1} \rmfamily}
+   							{\end{shaded}\medskip}
+
+\newcounter{BOXT}
+\newenvironment{BOXT}[1][]{\definecolor{shadecolor}{rgb}{0.8,0.8,0.8}
+							\begin{shaded}\refstepcounter{BOXT}\par\medskip\noindent%
+   							\textbf{BOX~\theBOXT. #1} \rmfamily}
+   							{\end{shaded}\medskip}
+
+\parskip 4mm
+
+
+\usepackage{makeidx}
+\makeindex
+
+
+% margins
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6in        %
+\textheight=8.5in       %
+\headsep=0.25in         %
+
+% header and footer
+\pagestyle{fancy}       %                %
+\cfoot{\includegraphics[width=2cm]{FCTE}}                %
+\rfoot{\thepage}        %
+\renewcommand\headrulewidth{0.4pt}   %
+\renewcommand\footrulewidth{0.4pt}   %
+
+%\setcounter{section}{-1}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{dfn}{Definition}
+\newtheorem{lem}{Lemma}
+\newtheorem{prp}{Proposition}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% lecturer or student text
+% in principle the lecturer text includes some examples to be done in the c lass
+\newboolean{LECT}
+\setboolean{LECT}{false}
+\setboolean{LECT}{true}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{lect}{ %
+	\definecolor{shadecolor}{rgb}{1.0,0.8,0.8} %
+	\begin{shaded} %
+	\textcolor{BrickRed}{\bf Resultat\\}%
+
+} %
+{ %
+	\end{shaded}
+} %
+
+\newcommand{\lct}[1]{\ifthenelse{\boolean{LECT}}{\begin{lect} #1 \end{lect}}{}}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+% ANGLÈS
+%%%%%%%%%%%%%%%%%%%
+
+%\newcommand{\problemName}{}%
+%\newcounter{problemCounter}%
+%\newenvironment{problem}[1][Problem \arabic{problemCounter}]%
+%	{\stepcounter{problemCounter}%
+%		\renewcommand{\problemName}{#1}%
+%		\section*{\problemName}%
+%		\nobreak\extramarks{\problemName}{\problemName continued on next page\ldots}\nobreak%
+%		\nobreak\extramarks{\problemName (continued)}{\problemName continued on next page\ldots}\nobreak}%
+%	{\nobreak\extramarks{\problemName (continued)}{\problemName continued on next page\ldots}\nobreak%
+%		\nobreak\extramarks{\problemName}{}\nobreak}%
+
+\newenvironment{example}{ %
+	\definecolor{shadecolor}{rgb}{0.8,1.0,0.8} %
+	\begin{shaded} %
+	\textcolor{OliveGreen}{\bf Example\\}%
+} %
+{ %
+	\end{shaded}
+} %
+
+
+\newenvironment{introduction}{ %
+	\definecolor{shadecolor}{rgb}{1.0,1.0,0.8} %
+	\begin{shaded} %
+	% \textcolor{BrickRed}{\bf Introduction\\}%
+} %
+{ %
+	\end{shaded}
+} %
+
+%veure http://en.wikibooks.org/wiki/LaTeX/Advanced_Topics
+\newcounter{myc}
+%environment for exercises in the class notes
+\newenvironment{exr}{ %
+    \addtocounter{myc}{1}
+	\definecolor{shadecolor}{rgb}{0.9,1.0,0.8} %
+	\begin{shaded} %
+	\textcolor{OliveGreen}{\bf Exercise \arabic{myc}\\}%
+} %
+{ %
+	\end{shaded}
+} %
+%environment for questions in exams
+\newenvironment{qst}{ %
+    \addtocounter{myc}{1}
+	\definecolor{shadecolor}{rgb}{0.9,1.0,0.8} %
+	\begin{shaded} %
+	\textcolor{OliveGreen}{\bf Qüestió \arabic{myc}\\}%
+} %
+{ %
+	\end{shaded}
+} %
+
+
+\usepackage[lastexercise]{exercise}
+\renewcommand{\listexercisename}{Index}
+\renewcommand{\ExerciseListName}{Exercise}
+\renewcommand{\AnswerListName}{Solution}
+\renewcommand{\AnswerName}{Soluci\'{o} de l'exercici}
+\renewcommand{\ExerciseName}{Exercici}
+\renewcommand{\ExerciseHeaderTitle}{\ExerciseTitle \quad---\quad \medskip}
+\renewcommand{\ExerciseListHeader}{
+	\shadowbox*{
+		\ExerciseHeaderDifficulty%
+		\textbf{\ExerciseListName\ \ExerciseHeaderNB%
+		\ --- \ \ExerciseHeaderTitle}%
+		\medskip\ExerciseHeaderOrigin%
+		\ignorespaces
+	}
+}

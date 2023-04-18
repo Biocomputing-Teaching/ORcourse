@@ -1,0 +1,77 @@
+\Exercise Maximize $f(x,y)=xy$ subject to $100 \geq x+y$ and $x\leq 40$
+
+\Answer 
+
+The Karush Kuhn Tucker (KKT) conditions  for optimality are a set of necessary conditions for a solution to be optimal in a mathematical optimization problem. They are necessary and sufficient conditions for a local minimum in nonlinear programming problems. The KKT conditions consist of the following elements:
+
+For an optimization problem in its standard form:
+
+\begin{equation*}
+  \begin{aligned}
+    \text{min} f(x) \\
+    \text{subject to }\quad &
+    \begin{array}{rcl}
+      g_i(x)-b_i  & \geq & 0 \quad i=1,\ldots,k \\
+      g_i(x)-b_i  & = & 0 \quad i=k+1,\ldots,m \\
+    \end{array}
+  \end{aligned}
+\end{equation*}
+
+There are 4 KKT conditions for optimal primal ($x4$) and dual ($\lambda$) variables. If $x^*$ denotes optimal values:
+\begin{enumerate}
+  \item Primal feasibility: all constraints must be satisfied: $g_i(x^*)-b_i$ is feasible. Applies to both equality and non-equality constraints.
+  \item Gradient condition or No feasible descent: No possible improvement at the solution: 
+  \[ \nabla f(x^*)-\sum_{i=1}^m \lambda_i^* \nabla g_i (x^*)=0\]
+  \item Complementariety slackness: 
+  \[\lambda_i^* (g_i(x^*)-b_i)=0\]
+  \item Dual feasibility: $\lambda_i^*\geq 0$
+\end{enumerate}
+
+The last two conditions (3 and 4) are only required with inequality constraints and enforce a positive Lagrange multiplier when the constraint is active (=0) and a zero Lagrange multiplier when the constraint is inactive (>0). 
+
+to solve our problem, first we will put it in its standard form:
+
+
+\begin{equation*}
+  \begin{aligned}
+    \text{min } f(x,y)=-xy \\
+    \text{subject to }\quad &
+    \begin{array}{rcl}
+      -x-y+100  & \geq & 0  \\
+      -x-40 & \geq & 0  \\
+    \end{array}
+  \end{aligned}
+\end{equation*}
+
+We will go through the different conditions:
+
+\begin{enumerate}
+  \item Primal feasibility:  $g_i(x^*)-b_i$ is feasible. 
+  \[-x^* -y^* +100 =0\]
+  \[-x^*-40=0\]
+  \item Gradient condition or No feasible descent:  
+  \[ \begin{pmatrix}\pdv{f}{x}\\\pdv{f}{y}\end{pmatrix} 
+  -\lambda_1 \begin{pmatrix}\pdv{g_1}{x}\\\pdv{g_1}{y}\end{pmatrix}
+  -\lambda_2 \begin{pmatrix}\pdv{g_2}{x}\\\pdv{g_2}{y}\end{pmatrix} =0\]
+  which, in this example, resolves into:
+  \[\systeme[xy\lambda_1\lambda_2]{-y+\lambda_1+\lambda_2=0,-x-\lambda_1=0 }\]
+  \item Complementariety slackness: 
+  \[\lambda_1^* (-x^* -y^* +100)=0\]
+  \[\lambda_2^* (-x^*-40)=0\]
+  \item Dual feasibility: $\lambda_1,\lambda_2\geq 0$
+\end{enumerate}
+
+We can put the resulting 5 expressions for conditions 1 and 2 into matrix form:
+
+\[
+  \begin{pmatrix} -1 & -1 & 0&0\\ -1&0&0&0\\ 0&-1&1&1\\ -1&0&-1&0 \end{pmatrix}
+  \begin{pmatrix} x\\y\\\lambda_1\\\lambda_2\end{pmatrix}=
+  \begin{pmatrix} -100\\ 40\\0\\0 \end{pmatrix}
+\]
+
+  % \begin{minipage}[t]{\linewidth}
+  %   \vspace{-2ex}
+  %   %\includegraphics[width=\textwidth]{../figures/Afiquadrilater.pdf}
+  %   \captionof{figure}{Transformacions afins d'un quadrilàter de vèrtex $(4,0)$, $(2,2)$, $(1,1)$ i $(2,-1)$.}
+  %   \label{fig:trafquadril}
+  % \end{minipage}
