@@ -13,3 +13,6 @@ all: $(PDFFILES)
 
  clean: 
 	rm -f *.aux *.log *.out *.nav *.snm *.toc
+
+ cleanpdf: 
+	rm -f *.pdf

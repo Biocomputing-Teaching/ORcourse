@@ -58,7 +58,9 @@ Study Abroad. Operations Research\\
 
 \section{Duality}
 \note{\url{https://www.youtube.com/watch?v=yU8updOR87c}}
-\begin{frame}{A first example}
+\begin{frame}[allowframebreaks]{A first example}
+
+  Linear programming problems come in pairs!
 
   \begin{equation*}
     \begin{aligned}
@@ -75,12 +77,9 @@ Study Abroad. Operations Research\\
     \end{aligned}
   \end{equation*}
 
-\end{frame}
-  \begin{frame}{A first example}
 note that
-
 \begin{eqnarray*}
-  y_1(x_1 - x_2 -x_3 +3x_4)+\\y_2(5x_1 + x_2 +3x_3 +8x_4)+\\y_3(-x_1 + x_2 +3x_3 -5x_4) \\ \leq \\y_1+55y_2+3y_3
+  y_1(x_1 - x_2 -x_3 +3x_4)&+&\\y_2(5x_1 + x_2 +3x_3 +8x_4)&+&\\y_3(-x_1 + x_2 +3x_3 -5x_4) &\leq& y_1+55y_2+3y_3
 \end{eqnarray*}
 
 \end{frame}
@@ -95,8 +94,8 @@ We see that maximizing the {\bf Primal objective function} $4x_1 + x_2 +5x_3 +3x
       \text{subject to }\quad &
       \left\{
       \begin{array}{rcl}
-        y_1 - 5y_2 -y_3 &\geq &4 \\
-        -y_1 +y_2 +2y_3 &\geq &1 \\
+        y_1 + 5y_2 -y_3 &\geq &4 \\
+        -y_1 +y_2 +y_3 &\geq &1 \\
         -y_1 +3y_2 +3y_3 &\geq &5 \\
         3y_1 +8y_2 -5y_3 &\geq &3 \\
         y_1,y_2,y_3,y_4 &\geq& 0
@@ -123,7 +122,18 @@ In general, if we can write the LP problem in its {\bf normal formulation}:
 \text{subject to }\quad A^t\uvec{y}\leq \uvec{c}, \forall y_i\geq0
 \end{rcases} \text{DUAL}
 \]
-The dual problem is a transposition of the primal problem.
+The dual problem is a transposition of the primal problem. Since any LP can be written in the standard form
+above, any LP has a dual.
+\end{frame}
+
+\begin{frame}{Problem transformations}
+  \begin{enumerate}
+    \item if you are asked to minimize $f(x)$, this is equivalent to maximize $-f(x)$;
+    \item add slack/surplus variables if you want to transform an inequality into an equality contraint;
+    \item $a\cdot x=b$ is equivalent to having, simultaneously, $a \cdot x \leq b$ and $a \cdot x \geq b$;
+    \item replace an unconstrained variable $x_i$ by $u_i-v_i$ and impose that $u_i,v_i \geq 0$
+  \end{enumerate}
+  Trick: Leave equality constraints to use the simplex algorithm. Use the inequality constraints for the duality theorem to be used.
 \end{frame}
 
 \begin{frame}{}
@@ -142,16 +152,14 @@ The dual problem is a transposition of the primal problem.
     \right.
   \end{aligned}
 \end{equation*}
-Solve it graphically and using Simplex.
+Solve it graphically and using Simplex. 
 \end{Exercise}
 \end{frame}
-\note{\begin{center}
-  \includegraphics[width=0.8\linewidth]{answer1.png}
-  \includegraphics[width=0.8\linewidth]{answer3.png}
-  \includegraphics[width=0.8\linewidth]{answer2.png}
-  \includegraphics[width=0.8\linewidth]{answer4.png}
-\end{center}
-}
+
+\note{\begin{center}\includegraphics[width=0.8\linewidth]{answer1.png}\end{center}}
+\note{\begin{center}\includegraphics[width=0.8\linewidth]{answer3.png}\end{center}}
+\note{\begin{center}\includegraphics[width=0.8\linewidth]{answer2.png}\end{center}}
+\note{\begin{center}\includegraphics[width=0.8\linewidth]{answer4.png}\end{center}}
 
 \begin{frame}{}
 \begin{Exercise}
@@ -283,7 +291,7 @@ The statement is analogous to a minimization problem.
 \end{theorem}
 \end{frame}
 
-\begin{frame}{Duality properties}
+\begin{frame}[allowframebreaks]{Duality properties}
 
 
 \begin{theorem}[Strong Duality]
@@ -306,6 +314,19 @@ Thus: if feasible objective function values are found for a primal and dual pair
 The Shadow prices that appear at the top of the optimal tableau of the primal problem are precisely the optimal values of the dual variables!
 \end{frame}
 
+\begin{frame}{A useful table}
+  For any two given LP problems:
+\begin{table}
+  \begin{tabular}{c|c|c|c}
+    Primal / Dual & not feasible & unbounded  & has a solution \\\hline
+    not feasible & possible & possible & no \\\hline
+    unbounded & possible & no & no \\\hline
+    has a solution & no & no & same values\\
+  \end{tabular}
+\end{table}
+The simplex algorithm solves the primal and dual problems simultaneously.
+\end{frame}
+
 \begin{frame}{Cases with no optimal solutions for primal and dual}
   Exactly one of the following mutually exclusive cases always occurs:
   \begin{itemize}
@@ -316,18 +337,30 @@ The Shadow prices that appear at the top of the optimal tableau of the primal pr
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Complementary slackness}
+
+\begin{frame}[allowframebreaks]{Complementary slackness}
   Because each decision variable in a primal problem is associated with a constraint in the dual problem, each such variable is also associated with a slack or surplus variable in the dual.
 
-  In any solution, if the primal variable is basic (with value $\geq0$, hence having slack), then the associated dual variable is non-basic ($=0$, hence having no slack), and viceversa.
+  In any solution, if the primal variable is basic (with value $\geq0$, hence having slack, hence being non-binding), then the associated dual variable is non-basic ($=0$, hence having no slack, hence being binding), and viceversa.
 
   \begin{theorem}
-    If in an optimal solution to a LP problem and inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem. In other words: suppose $x_0$ and $y_0$ are feasible solutions of (max) and (min) representations. Then, $x_0,y_0$ are optimal solutions if and only if
+    If in an optimal solution to a LP problem and inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem. 
+  \end{theorem}
+  
+  In other words: 
+  \begin{itemize}
+    \item if a variable is positive, then the associated dual constraint must be binding; or
+    \item if a constraint fails to bind, than the associated variable must be zero; but recall that
+    \item it is possible for a primal constraint to be binding while the associated dual variable is equal to zero (no slack in both primal and dual).
+  \end{itemize}
+  {\bf There cannot be slack in both a constraint and the associated dual variable.}
+  
+  Suppose $x_0$ and $y_0$ are feasible solutions of (max) and (min) representations. Then, $x_0,y_0$ are optimal solutions if and only if
     \begin{eqnarray*}
       (b-Ax_0)\cdot y_0 =0\\
       (A^ty_0-c) \cdot x_0 =0
     \end{eqnarray*}
-  \end{theorem}
+  
 \end{frame}
 \note{Veure exemple pràctic a \url{https://youtu.be/o1pznRt_-y0?t=1603}}
 
