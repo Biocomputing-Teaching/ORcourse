@@ -337,16 +337,22 @@ The simplex algorithm solves the primal and dual problems simultaneously.
   \end{itemize}
 \end{frame}
 
+\section{Complementary slackness}
 
 \begin{frame}[allowframebreaks]{Complementary slackness}
   Because each decision variable in a primal problem is associated with a constraint in the dual problem, each such variable is also associated with a slack or surplus variable in the dual.
 
+  {\bf Variables in one problem are complementary to constraints in the other.}
+
   In any solution, if the primal variable is basic (with value $\geq0$, hence having slack, hence being non-binding), then the associated dual variable is non-basic ($=0$, hence having no slack, hence being binding), and viceversa.
 
+
   \begin{theorem}
-    If in an optimal solution to a LP problem and inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem. 
+    If in an optimal solution to a LP problem an inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem. 
   \end{theorem}
   
+  \framebreak
+
   In other words: 
   \begin{itemize}
     \item if a variable is positive, then the associated dual constraint must be binding; or
@@ -354,7 +360,9 @@ The simplex algorithm solves the primal and dual problems simultaneously.
     \item it is possible for a primal constraint to be binding while the associated dual variable is equal to zero (no slack in both primal and dual).
   \end{itemize}
   {\bf There cannot be slack in both a constraint and the associated dual variable.}
-  
+ 
+  \framebreak
+
   Suppose $x_0$ and $y_0$ are feasible solutions of (max) and (min) representations. Then, $x_0,y_0$ are optimal solutions if and only if
     \begin{eqnarray*}
       (b-Ax_0)\cdot y_0 =0\\
@@ -364,7 +372,44 @@ The simplex algorithm solves the primal and dual problems simultaneously.
 \end{frame}
 \note{Veure exemple pràctic a \url{https://youtu.be/o1pznRt_-y0?t=1603}}
 
+\begin{frame}[allowframebreaks]{Example: The diet problem}
 
+  \begin{Exercise}
+    You are feeding animals in a farm.Your animals have some basic requirements for nutrients, and you want to minimize the cost fulfilling those requirements. You need to know:
+    \begin{enumerate}
+      \item What foods do I have avaliable and which is each ones cost?
+      \item What nutrients are needed and which is the nutrients content per food?
+    \end{enumerate}
+    Formulate the problem in an abstract way.
+  \end{Exercise}
+  \begin{Exercise}
+    Come back to the previous problem, but now, there is a seller that tells you she has the pills you need to ensure the nutrients, forgetting about specific food. Reformulate the problem in terms of the maximum revenue the seller company wants. What is the price per pill to maximize her benefits, subject to the constraint that the pills are cheaper than the actual food.
+  \end{Exercise}
+  \begin{Exercise}
+    Rationalize the complementarity slackness theorem within the context of the previous exercise. What does it mean to buy a positive quantity of the first food (primal LP problem) in terms of the constraint related to the first pill (dual problem)?
+  \end{Exercise}
+\end{frame}
+  \note{Problema formulat a les notes I que tinc a material}
+\begin{frame}{Using duality and CS to solve LP problems}
+  \begin{Exercise}
+    Just by checking the feasibility of the primal and dual problem for
+    \begin{equation*}
+      \begin{aligned}
+        \text{maximize } \quad & z = x_1-x_2 \\
+        \text{subject to }\quad &
+        \begin{array}{rcl}
+          -2x_1 +x_2 &\leq &2 \\
+          x_1-2x_2 &\leq &2 \\
+          x_1+x_2 &\leq &5 \\
+          x_1,x_2 &\geq& 0
+        \end{array}
+      \end{aligned}
+    \end{equation*}
+    find what is the solution.
+  \end{Exercise}
+\end{frame}
+
+\note{extret les notes duality. Comença per trobar els punts de creuament de les restriccions del p`rimal. Aleshores aplica CS per avaluar què passa al problema dual}
 
 \input{../tools/Biblio.tex}
 %----------------------------------------------------------------------------------------
