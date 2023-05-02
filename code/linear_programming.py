@@ -36,20 +36,39 @@ def ShowResults(solver, variable_list, constraint_list):
     activities = solver.ComputeConstraintActivities()
     for i, constraint in enumerate(constraint_list):
         print(('constraint %d: dual value (shadow price) = %f\n'
-               '               final value (activity) = %f' %
-               (i, constraint.dual_value(), activities[constraint.index()])))
+               '              final value (activity) = %f\n'
+               '              slack  = %f' %
+               (i, constraint.dual_value(), activities[constraint.index()],constraint.ub()-activities[constraint.index()])))
 
 # Define the solver to use
 solver = pywraplp.Solver.CreateSolver('GLOP')
 
 # Define the problem
 infinity = solver.infinity()
-x1 = solver.NumVar(0.0, infinity, 'x1')
-x2 = solver.NumVar(0.0, infinity, 'x2')
-   
-solver.Maximize(50 * x1 + 60 * x2)
-c0 = solver.Add(50 * x1 + 30 * x2  <= 2000, 'Material')
-c1 = solver.Add(6 * x1 + 5 * x2  <= 300, 'MachineTime')
+x1 = solver.NumVar(0.0, infinity, 'XA')
+x2 = solver.NumVar(0.0, infinity, 'XB')
+
+solver.Maximize(1240 * x1 + 600 * x2)
+c0 = solver.Add(50 * x1 + 30 * x2  <= 3333, 'Material')
+c1 = solver.Add(6 * x1 + 5 * x2  <= 500, 'MachineTime')
 c2 = solver.Add(3 * x1 + 5 * x2  <= 200, 'Labor')
 
 ShowResults(solver, [x1, x2], [c0, c1, c2])
+
+
+# (un)finnished tables and chairs problem
+# Define the problem
+
+# infinity = solver.infinity()
+# tu = solver.NumVar(0.0, infinity, 'TU')
+# tf = solver.NumVar(0.0, infinity, 'TF')
+# cu = solver.NumVar(0.0, infinity, 'CU')
+# cf = solver.NumVar(0.0, infinity, 'CF')
+
+   
+# #solver.Maximize(70 * tu + 140 * tf + 60 * cu + 110 * cf)
+# solver.Maximize((70-25) * tu + (140-25) * tf + (70-12.5) * cu + (110-12.5) * cf)
+# c1 = solver.Add(1 * tu + 1 * tf + 0.5 * cu + 0.5 * cf  <= 900, 'Material')
+# c2 = solver.Add(2 * tu + 5 * tf + 2 * cu + 4 * cf  <= 6000, 'Labor')
+
+# ShowResults(solver, [tu, tf, cu, cf], [c1, c2])

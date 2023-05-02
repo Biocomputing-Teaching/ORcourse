@@ -63,19 +63,21 @@ Study Abroad. Operations Research\\
     \item confirming or updating problem parameters (cost and availabilities of activities and resources)
     \item if changes need to be introduced in the original parameters, assessing their impact on the optimality of the solution.
   \end{itemize}
-  \item If changes are smallre-optimization may not be needed.
-  \item {\bf Sensitivity analysis} is the study of the effect that types, ranges , and magnitude of changes in problem parameters have in the value of the objective function, {\em without the need to solving again the new linear problem}.
+  \item If changes are small, re-optimization may not be needed.
+  \item {\bf Sensitivity analysis} is the study of the effect that types, ranges, and magnitude of changes in problem parameters have in the value of the objective function, {\em without the need to solve again the new linear problem}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Two types of parameter modifications}
-  In a LP problem, I can have two situations
+  In a LP problem, 
 \begin{eqnarray*}
  \text{max }\quad\uvec{c}^t \uvec{x}\\
  \text{subject to }\quad A\uvec{x}\leq \uvec{b}, \forall x_i\geq0
 \end{eqnarray*}
 
-I may have interest in knowing what happens with modifications in the parameters $c$ or modifications in the parameters $b$.
+one can have two situations: one may have interest in knowing what happens with modifications in the parameters $c$ or modifications in the parameters $b$.
+
+In addition, one can explore what occurs when adding and extra constraint or adding a new variable.
 
 \end{frame}
 
@@ -94,7 +96,7 @@ I may have interest in knowing what happens with modifications in the parameters
     \end{tabular}
     \end{center}
 
-    Find how resilient is she to the changes in the price?
+    Find how resilient is she to the changes in the price? What happes with respect to basic vs non-basic variables in a general case?
 
   \end{Exercise}
 \note{veure  \url{https://youtu.be/o1pznRt_-y0?t=3378}}
@@ -133,21 +135,22 @@ I may have interest in knowing what happens with modifications in the parameters
   Solving the dual problem gives a lot of insight into the actual situation.
 
   \begin{Exercise}
-  In a company that manufactures two types of cans, $A$ and $B$, the owners want to maximize the production, which dependence on a restricted amount of aluminum, the time the machines can devote to the work and the manpower is given the following table:
+  In a company that manufactures two types of bikes, $A$ and $B$, the owners want to maximize the benefits, taking into account that the production depends on a restricted amount of titanium, the time the machines can devote to the work and the manpower, which are all given below:
   \begin{center}
   \begin{tabular}{c|c|c|c}
    & A & B & limit\\
    \hline
-   Aluminium & 50 & 30 & 2000\\
+   Titanium & 50 & 30 & 2000\\
     Machine time & 6 & 5 & 300\\
     Labor & 3 & 5 &200\\
    \hline
-   price & 124 & 60 & \\
+   price & 1240 & 600 & \\
   \end{tabular}
   \end{center}
 
+  Check the link https://app.wooclap.com/PDHGSS and answer the questions
 
-  Given an optimal solution of the problem, how the objective function will depend on variations in the different constraints?
+
   \end{Exercise}
 
 \end{frame}
@@ -157,6 +160,8 @@ I may have interest in knowing what happens with modifications in the parameters
   Find \href{https://github.com/JordiVillaFreixa/ORcode/blob/main/linear_programming.py}{\em here} a code with the solution using ORtools.
 
   The Senstivity analysis tool in Excel is nicely explained \href{https://www.youtube.com/watch?v=zKqU5NGE-t0&list=PLjiMsqjDUvBiArYMqCGZSDJNgEMPALdQu&index=1}{\em here}.
+
+  Notice that in a \href{https://youtu.be/v2ZuKwAaXOI}{non-linear scenario}, what we have identified here as {\em reduced costs} are in fact {\em reduced gradient} (or actual gradient of the optimal solution) while {\em shadow prices} (margin for profit to be obtained by changing 1 unit in each constraint RHS term) correspond to the {\em Lagrange multipliers}.
 
 \end{frame}
 
