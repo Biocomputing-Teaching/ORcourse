@@ -5,6 +5,10 @@
 *.toc
 *.snm
 *.idx
+*.bbl
+*.bcf
+*.blg
+*.xml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

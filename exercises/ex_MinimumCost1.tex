@@ -1,19 +1,24 @@
-\Exercise The figure shows a network on four nodes, including net demands on the vertex, $b_k$, and cost an capacity on the edges, $(c_{i,j},u_{i,j})$ . 
+\Exercise The figure shows a network on four nodes, including net demands on the vertex, $b_k$, and cost an capacity on the edges, $(c_{i,j},u_{i,j})$.(Adapted from \cite{rardin2017}) 
 
 
-\begin{tikzpicture}[
-  node distance =24mm and 12mm,
-  C/.style = {circle, draw, minimum size=1em}
-                      ] 
-  \node (v1) [C, label=10] {1};
-  \node (v2) [C, label=12, above right=of v1] {2};
-  \node (v3) [C, label=14, below right=of v2] {3};
-  \node (v4) [C, label=13, below right=of v1] {4};
+
+\begin{tikzpicture}[shorten >=1pt, auto, node distance=3cm, ultra thick,
+  node_style/.style={circle,draw=blue,fill=blue!20!,font=\sffamily\Large\bfseries},
+  edge_style/.style={draw=black, ultra thick},
+  arrow_style/.style={draw=black, ultra thick,-stealth},
+  every edge quotes/.append style = {anchor=north, sloped}],
+                      
+  \node (v1) [node_style, label=-100] {1};
+  \node (v2) [node_style, label=0, above right=of v1] {2};
+  \node (v3) [node_style, label=60, below right=of v2] {3};
+  \node (v4) [node_style, label=40, below right=of v1] {4};
   %
-  \draw (v1)--node[left,above, sloped]{C$_4$}(v2);    
-  \draw [thick,->,>=stealth, line width=1.5pt] (v2)  to[C$_4$] (v3);    
-  \draw [thick,->,>=stealth, line width=1.5pt] (v1)  to["4"] (v4);     
-  \draw [thick,->,>=stealth, line width=1.5pt] (v4)  to["55"] (v3);   
+  \draw [arrow_style] (v1) edge node[above,sloped]{$(2,90)$} (v2);
+  \draw [arrow_style] (v1) edge node[below,sloped]{$(3,75)$} (v4);
+  \draw [arrow_style,bend right] (v4) edge node[below,sloped]{$(-1,\infty)$} (v2);
+  \draw [arrow_style,bend right] (v2) edge node[above,sloped]{$(0,\infty)$} (v4); 
+  \draw [arrow_style] (v2) edge node[above,sloped]{$(5,50)$} (v3);    
+  \draw [arrow_style] (v4) edge node[below,sloped]{$(11,\infty)$} (v3); 
       \end{tikzpicture}
 
 \Answer 
