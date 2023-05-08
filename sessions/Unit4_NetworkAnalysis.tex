@@ -43,7 +43,7 @@ Study Abroad. Operations Research\\
 \medskip
 \textit{jordi.villa@uvic.cat}
 }
-\date{16-23/05, 2023}
+\date{9-16/05, 2023}
 \logo{\includegraphics[width=.1\textwidth]{FCTE}}
 \begin{document}
 
@@ -56,12 +56,12 @@ Study Abroad. Operations Research\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\section{Introduction}
 \begin{frame}
-\frametitle{Learning outcomes}
+\frametitle{Introduction: Learning outcomes}
 \begin{itemize}
   \item Getting familiar with the use of network analysis in OR
-  \item Understanding maimim flow in networks
+  \item Understanding network flow in graphs
   \item Understanding minimum cost network flow problems
   \item Applying network connectivity to LP problems
   \item Solving shortest path problems
@@ -69,7 +69,7 @@ Study Abroad. Operations Research\\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{The concept}
+\begin{frame}{Introduction: The concept}
 \begin{itemize}
   \item Network analysis provides a framework for the study of a special class of linear programming problems that can be modeled as network programs.
   \item Some of these problems correspond to a physical or geographical network of elements within a system, while others correspond more abstractly to a graphical approach to planning or grouping or arranging the elements of a system.
@@ -79,7 +79,7 @@ Study Abroad. Operations Research\\
 \end{center}
 \end{frame}
 
-\begin{frame}{Examples}
+\begin{frame}{Introduction: Examples}
 \begin{itemize}
     \item Systems of highways, railroads, shipping lanes, or aviation patterns, where some supply of a commodity is transported or distributed to satisfy a demand;
     \item pipeline systems or utility grids can be viewed as fluid flow or power flow networks;
@@ -121,10 +121,10 @@ Study Abroad. Operations Research\\
       \end{tikzpicture}}
     \end{center}
 \begin{itemize}
-    \item A graph is a structure consisting of a set of nodes (vertices, points, or junctions) and a set of connections called arcs (edges, links, or branches). 
+    \item A graph is a structure consisting of a set of nodes $V$  (vertices, points, or junctions) and a set of connections called arcs $A$ (edges, links, or branches). 
     \item Each connection is associated with a pair of nodes and is usually drawn as a line joining two points. The graph can be defined as directed or undirected. 
     \item The degree of a node is the number of arcs attached to it. An isolated node is of degree zero.
-    \item In a directed graph, the arc is often designated by the ordered pair $(A, B)$.
+    \item In a directed graph, or digraph, the arc is often designated by the ordered pair $(A, B)$. In digraphs, the direction of the flow matters.
     \item 
 \end{itemize}
 \end{frame}
@@ -277,7 +277,7 @@ Study Abroad. Operations Research\\
 
 \section{Maximum flow}
 
-\begin{frame}
+\begin{frame}{Maximum flow}
   \begin{block}{Maximum flow in networks}
     Determine the maximum possible flow that can be routed through the various network links, from source to sink, without violating the capacity constraints.
 
@@ -409,7 +409,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
 \begin{frame}{Multiple sinks and sources}
   We can generate a supersource or  a  supersink node with unlimited capacity and repeat the process of optimization as above:
   \begin{center}
-    \includegraphics[width=\linewidth]{../figures/multiplesinkssources.png}
+    \includegraphics[width=\linewidth]{multiplesinkssources.png}
   \end{center}
 \end{frame}
 
@@ -417,13 +417,9 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
 
 \begin{frame}{Transportation problem}
 \begin{itemize}
- 
   \item Useful when there are costs associated with the flow, given a link capacity. 
-  
   \item Let us assume that every node is a source (supply) and a sink (demand). Imagine a distributor with several warehouses and a group of costumers. Serving each customer from a given warehouse has an associated cost.
-  
   \item For $m$ supply nodes, each providing $s_i$ suplly,  and $n$ demand nodes, each demanding $d_j$. Assuming that the total demand eaquals the total supply: $\sum_{i=1}^m s_i = \sum_{j=1}^n d_j$ we aim at satisfying the demand using the available supply minimizing cost routes.
-
 \end{itemize}
 \end{frame}
 
@@ -440,7 +436,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
     \end{aligned}
   \end{equation*}
   \begin{center}
-    \includegraphics[width=0.6\linewidth]{../figures/transportationproblem.png}
+    \includegraphics[width=0.6\linewidth]{transportationproblem.png}
   \end{center}
 \end{frame}
 
@@ -448,7 +444,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
 \begin{Exercise}
   Find the minimum cost in this trasportation problem:
   \begin{center}
-    \includegraphics[width=\linewidth]{../figures/transportationproblem2.png}
+    \includegraphics[width=\linewidth]{transportationproblem2.png}
   \end{center}
   NOTE: The Simplex method says that we should first find any basic feasible solution and then look for a simple pivot to improve the solution. repeat until the optimal solution is found.
 \end{Exercise}
@@ -470,7 +466,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
 \begin{frame}{Transportation simplex}
   Once we have any feasible solution, we aim at finding the optimal one. Consider:
   \begin{center}
-    \includegraphics[width=\linewidth]{../figures/transportationproblem3.png}
+    \includegraphics[width=\linewidth]{transportationproblem3.png}
   \end{center}
 
 \end{frame}
@@ -516,8 +512,6 @@ In practice:
 https://www.techiedelight.com/word-break-problem/
 
 }
-\section{References}
-
 \input{../tools/Biblio.tex}
 %----------------------------------------------------------------------------------------
 
