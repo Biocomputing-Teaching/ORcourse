@@ -1,7 +1,5 @@
 \Exercise The figure shows a network on four nodes, including net demands on the vertex, $b_k$, and cost an capacity on the edges, $(c_{i,j},u_{i,j})$.(Adapted from \cite{rardin2017}) 
 
-
-
 \begin{tikzpicture}[shorten >=1pt, auto, node distance=3cm, ultra thick,
   node_style/.style={circle,draw=blue,fill=blue!20!,font=\sffamily\Large\bfseries},
   edge_style/.style={draw=black, ultra thick},
@@ -21,23 +19,36 @@
   \draw [arrow_style] (v4) edge node[below,sloped]{$(11,\infty)$} (v3); 
       \end{tikzpicture}
 
+\begin{enumerate}
+  \item Formulate the corresponding minimum cost network flow model
+  \item Classify the nodes as {\em source}, {\em sink} or {\em transshipment}
+\end{enumerate}
+
 \Answer 
 
+In this  problem, vertex and edges are:
+\begin{eqnarray*}
+  V&=&\{1,2,3,4\}\\
+  A&=&\{(1,2),(1,4),(2,3),(2,4),(4,2),(4,3)\}
+\end{eqnarray*}
 
-The Karush Kuhn Tucker (KKT) conditions  for optimality are a set of necessary conditions for a solution to be optimal in a mathematical optimization problem. They are necessary and sufficient conditions for a local minimum in nonlinear programming problems. The KKT conditions consist of the following elements:
-
-For an optimization problem in its standard form:
-
+we can use the variables $x_{i,j}$ to represent the flows in the different members of set $A$. Thus, the formulation of the problem is:
 \begin{equation*}
   \begin{aligned}
-    \text{min} f(x) \\
+    \text{min} \quad&2x_{1,2}+3x_{1,4}+5x_{2,3}-x_{4,2}+11x_{4,3} \\
     \text{subject to }\quad &
-    \begin{array}{rcl}
-      g_i(x)-b_i  & \geq & 0 \quad i=1,\ldots,k \\
-      g_i(x)-b_i  & = & 0 \quad i=k+1,\ldots,m \\
-    \end{array}
-  \end{aligned}
+    \syssubstitute{A{x_{1,2}}B{x_{1,4}}C{x_{2,3}}D{x_{2,4}}E{x_{4,3}}F{x_{4,2}}}
+\systeme[ABCDEF]{
+  -A-B=-100,
+  A+F-C-D=0,
+  C+E=60,
+  B+D-F-E=40,
+  A\leq 90,
+  B\leq 75,
+  C\leq 50} 
+\end{aligned}\\
 \end{equation*}
+and $x_{i,j}\geq 0$.
 
 There are 4 KKT conditions for optimal primal ($x4$) and dual ($\lambda$) variables. If $x^*$ denotes optimal values:
 \begin{enumerate}

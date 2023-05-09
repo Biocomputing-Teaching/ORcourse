@@ -121,11 +121,10 @@ Study Abroad. Operations Research\\
       \end{tikzpicture}}
     \end{center}
 \begin{itemize}
-    \item A graph is a structure consisting of a set of nodes $V$  (vertices, points, or junctions) and a set of connections called arcs $A$ (edges, links, or branches). 
+    \item A graph consists of a set of nodes $V$  (vertices, points, or junctions) and a set of connections called arcs $A$ (edges, links, or branches). 
     \item Each connection is associated with a pair of nodes and is usually drawn as a line joining two points. The graph can be defined as directed or undirected. 
     \item The degree of a node is the number of arcs attached to it. An isolated node is of degree zero.
     \item In a directed graph, or digraph, the arc is often designated by the ordered pair $(A, B)$. In digraphs, the direction of the flow matters.
-    \item 
 \end{itemize}
 \end{frame}
 
@@ -140,10 +139,12 @@ Study Abroad. Operations Research\\
     \node (n2) at (9,6)  {E};
     \node (n3) at (5,5)  {F};    
     \foreach \from/\to in {n6/n4,n4/n5,n5/n1,n1/n2,n2/n5,n2/n3,n3/n4}
-      \draw [-{Stealth[scale=2]}] (\from) -- (\to);      
+      \draw [-{Stealth[scale=2]}] (\from) -- (\to); 
+    \foreach \from/\to in {n5/n1,n1/n2,n2/n5}
+      \draw [red, -{Stealth[scale=2]}] (\from) -- (\to);     
   \end{tikzpicture}
 \end{center}
-\[A,(A,B),B,(B,C),\underbrace{C,(C,D),D,(D,E),E,(E,C),C}_{cyclic}\]
+\[A,(A,B),B,(B,C),\color{red}{\underbrace{C,(C,D),D,(D,E),E,(E,C),C}_{cyclic}}\]
 
 \end{frame}
 
@@ -157,11 +158,13 @@ Study Abroad. Operations Research\\
     \node (n1) at (11,8) {D};
     \node (n2) at (9,6)  {E};
     \node (n3) at (5,5)  {F};    
-    \foreach \from/\to in {n6/n4,n4/n5,n5/n1,n1/n2,n5/n2,n2/n3,n3/n4}
+    \foreach \from/\to in {n6/n4,n4/n5,n2/n3,n3/n4}
       \draw [-{Stealth[scale=2]}] (\from) -- (\to);      
+    \foreach \from/\to in {n5/n1,n1/n2,n5/n2}
+      \draw [red,-{Stealth[scale=2]}] (\from) -- (\to);      
   \end{tikzpicture}
 \end{center}
-\[A,(A,B),B,(B,C),\underbrace{C,(C,D),D,(D,E),E,(C,E),C}_{noncyclic}\]
+\[A,(A,B),B,(B,C),\color{red}{\underbrace{C,(C,D),D,(D,E),E,(C,E),C}_{noncyclic}}\]
 
 \end{frame}
 
@@ -266,26 +269,42 @@ Study Abroad. Operations Research\\
   \end{center}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[allowframebreaks]
   \begin{itemize}
     \item A {\bf tree} is a directed connected graph in which each node has at most on predecessor, and one node (the root node) has none. In an undirected graph, we have a tree if the graph is connected and contains no cycles.
+    \begin{center}
+    \begin{tikzpicture}[nodes={draw, circle}, -{Stealth[scale=2]}]
+    \node{r}
+    child { node {a} 
+        child { node {c} }
+        child { node {d} }
+        child { node {e} }
+    }
+    child [missing]
+    child [missing]
+    child {node {b} 
+        child { node {c} }
+        child { node {d} }
+        child { node {e} }
+    };
+  \end{tikzpicture}
+\end{center}
+
     \item A {\bf network} is a directed connected graph that is used to model/represent a system/process. The arcs are typically assigned weights representing cost, value or capacity corresponding to each link.
-    \item Nodes in networks can be designated as {\bf sources} or {\bf sinks}. A {\bf cut set} is any set of arcs which, if removed from the network, would disconnet the sources(s) from the sink(s).
+    \item Nodes in networks can be designated as {\bf sources}, {\bf sinks} or {\bf transshipments}. A {\bf cut set} is any set of arcs which, if removed from the network, would disconnet the sources(s) from the sink(s).
     \item {\bf Flow} can be thought of as the total amount of an entity that originates at the source, makes it through the different nodes and reaches the sink.
   \end{itemize}
 \end{frame}
 
 \section{Maximum flow}
 
-\begin{frame}{Maximum flow}
+\begin{frame}[allowframebreaks]{Maximum flow}
   \begin{block}{Maximum flow in networks}
-    Determine the maximum possible flow that can be routed through the various network links, from source to sink, without violating the capacity constraints.
+    Determine the maximum possible flow that can be routed through the various network links, from source ($s$) to sink ($t$), without violating the capacity constraints.
 
     Important!: the commodity is only generated at the source and consumed at the sink.
   \end{block}
-\end{frame}
 
-\begin{frame}
   \begin{center}
     
   
@@ -339,7 +358,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
     \end{array}
   \end{aligned}
 \end{equation*}
-\note{Constraints (1) and (2) state that all the flow is generated at the source and consumed at the sink. Constraint (1) ensures that a flow of f leaves the source, and because of conservation of flow, that flow stops only at the sink. Constraints (3) are the flow conservation equations for all the intermediate nodes; nothing is generated or consumed at these nodes. Constraints (4) enforce arc capacity restrictions. All flow amounts xij must be non-negative. Actually, constraint (2) is redundant}
+\note{Constraints (1) and (2) state that all the flow is generated at the source and consumed at the sink. Constraint (1) ensures that a flow of f leaves the source, and because of conservation of flow, that flow stops only at the sink. Constraints (3) are the flow conservation equations for all the intermediate nodes; nothing is generated or consumed at these nodes. Constraints (4) enforce arc capacity restrictions. All flow amounts xij must be non-negative. Actually, constraint (2) is redundant\cite{carter}}
 \end{frame}
 
 \begin{frame}{Maximum flow algorithm}
@@ -394,6 +413,22 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
     \end{tikzpicture}
   \end{center}
 \end{Exercise}
+\note{ Let us assume initially that the flow in all arcs is zero, x ij = 0 and f = 0. In the
+first iteration, we label nodes A, B, C, D, and G, and discover the flow augmenting path (A,
+D) and (D, G), across which we can increase the flow by 4. So now, x AD = 4, xDG = 4, and f = 4.
+In the second iteration, we label nodes A, B, C, then nodes E, D, and F, and finally node G.
+A flow augmenting path consists of links (A, B), (B, D), (D, E), and (E, G) and flow on this
+path can be increased by 4. Now x AB = 4, xBD = 4, xDE = 4, x EG = 4, and f = 8.
+In the third iteration, we see that there remains some unused capacity on link (A, B), so
+we can label nodes A, B, and E, but not G. It appears we cannot use the full capacity of link
+(A, B). However, we can also label nodes C, D, F, and G, and augment the flow along the
+links (A, D), (D, F), and (F, G) by 2, the amount of remaining capacity in (A, D). Now x AD = 6,
+xDF = 2, x FG = 2, and f = 10.
+In the fourth iteration, we can label nodes A, B, C, D, F, and G. Along the path from A,
+C, D, F, to G, we can add a flow of 4, the remaining capacity in (F, G). So x AC = 4, xCF = 4,
+x FG = 6, and f = 14.
+In the fifth iteration, we can label all nodes except G. Therefore, there is no flow aug-
+menting path, and the current flow of 14 is optimal\cite{carter}}
 \end{frame}
 
 \begin{frame}
@@ -407,7 +442,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
 \end{frame}
 
 \begin{frame}{Multiple sinks and sources}
-  We can generate a supersource or  a  supersink node with unlimited capacity and repeat the process of optimization as above:
+  We can generate a supersource or  a  supersink node with unlimited capacity and repeat the process of optimization as above:\cite{carter}
   \begin{center}
     \includegraphics[width=\linewidth]{multiplesinkssources.png}
   \end{center}
@@ -436,7 +471,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
     \end{aligned}
   \end{equation*}
   \begin{center}
-    \includegraphics[width=0.6\linewidth]{transportationproblem.png}
+    \includegraphics[width=0.55\linewidth]{transportationproblem.png}
   \end{center}
 \end{frame}
 
@@ -457,7 +492,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
   \item Northwest corner rule
   \item Minimum cost method
   \item Minimum "row" cost method
-  \item Vogel's method
+  \item Vogel's method (opportunity cost)
   \end{itemize}
   \item Transportation simplex
 \end{enumerate}

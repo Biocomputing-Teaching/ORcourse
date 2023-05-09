@@ -7,7 +7,7 @@ all: $(PDFFILES)
 	 
 %.pdf: %.tex ../tools/Biblio.tex ../tools/Refs.tex
 	lualatex $< 
-	lualatex $< 
+#	lualatex $< 
 
  .PHONY: clean 
 
