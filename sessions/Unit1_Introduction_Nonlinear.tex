@@ -306,7 +306,7 @@ Let us assume a concave function. First, establish error tolerance $\epsilon$. T
   \begin{enumerate}
     \item Set up lower and upper bounds for $x$ by finding $x_l,x_u$ such that $\frac{df}{dx_l}\geq 0$ and $\frac{df}{dx_u}\leq 0$
     \item Get new trial intermediate solution (eg, $x=\frac{x_l+x_u}{2}$)
-    \item If $x_u-x_l\leq \epsilon$, the terminate
+    \item If $x_u-x_l\leq \epsilon$, then terminate
     \item If $\frac{df}{dx}\geq 0$, set $x_l=x$; if $\frac{df}{dx}\leq 0$, set $x_u=x$
     \item Go to step 1
   \end{enumerate}
@@ -324,13 +324,13 @@ For a continuous function it guarantees to find an extremum.
 \]
 \end{block}
 
-Procedure of the Golden search method, given a function  to be minimized, $f(x)$, the interval to be searched as $x\in(x_1,x_4)$, and their functional values $f(x_1)$ and $f(x_4)$:
+Procedure of the Golden search method, given a function  to be minimized, $f(x)$, the interval to be searched as $x\in(x_1,x_4)$, and their functional values $f(x_1)$ and $f(x_2)$:
 \begin{enumerate}
-  \item Calculate an interior point and its functional value $f(x_2$). To get the value of $x_2$, ensure the interval lengths are in the ratio $c : r$ or $r : c$ where $r = \phi − 1$; and $c = 1 − r$, with $\phi$ being the golden ratio.
+  \item Calculate an interior point and its functional value $f(x_3$). Ensure the position of $x_3$ follows the golden ratio between the distances $\frac{x_2-x_1}{x_3-x_1}=\frac{x_3-x_1}{x_2-x_3}=\psi$.
   \item Using the triplet, determine if convergence criteria are fulfilled. If they are, estimate the $x$ at the minimum from that triplet and terminate/return.
-  \item From the triplet, calculate the other interior point and its functional value.
+  \item Select $x_4$ within the largest interval, following the same ratios as in Step 1.
   \item The three points for the next iteration will be the one where $f(x)$ is a minimum, and the two points closest to it in $x$.
-  \item Go to step 2
+  \item Go to step 2.
 \end{enumerate}
 
 \begin{Exercise}
