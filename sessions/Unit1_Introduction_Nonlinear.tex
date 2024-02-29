@@ -63,7 +63,8 @@ Study Abroad. Operations Research\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Nonlinear optimization}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[t]{Example}{}
 
   \begin{block}{Production cost}
@@ -76,7 +77,8 @@ Study Abroad. Operations Research\\
 \end{block}
 
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}{Example}
 
   The problem, as stated, aims at minimizing the function:
@@ -93,7 +95,8 @@ Study Abroad. Operations Research\\
   Quadratic objective function with linear constraints.
 
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}{Introduction}
 
 \begin{itemize}
@@ -113,7 +116,8 @@ Study Abroad. Operations Research\\
   \item No methods applicable to all non-linear problems
 \end{itemize}
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}
 
  \begin{block}{Feasible region}
@@ -143,6 +147,7 @@ Study Abroad. Operations Research\\
   (analogous definitions for local/global minimum)
 \end{frame}
 %--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 
 \subsection{Concavity/convexity}
 
@@ -157,7 +162,6 @@ Study Abroad. Operations Research\\
     \includegraphics[width=0.6\textwidth]{concave.pdf}
   \end{center}
 
-
 \begin{block}{Convexity}
     The term "convex" can be applied both to sets and functions. A set $S\in \mathbf{R}^n$ is a {\it convex set} if the straight line segment connecting any two points in $S$ lies entirely inside $S$.
 \end{block}
@@ -169,7 +173,8 @@ Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if f
 
 \end{frame}
 
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[t]
   \begin{itemize}
     \item If a convex nonlinear function is to be optimized without constraints, a global minimum may occur when $f'(x)=0$. Not always this is the case:
@@ -178,23 +183,41 @@ Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if f
     \end{center}
     \item If the feasible region for a nonlinear programming problem is convex, each of the constraint functions is convex and are of the form $g_i(x)\leq b_i$
   \end{itemize}
-
 \end{frame}
-
-\begin{frame}[t]{}
-
-  \begin{Exercise}
-    Is the function $f(x)=x^2$ convex? Are the regions defined by $x^2=4$ or $x^2\geq 9$ convex?
-  \end{Exercise}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
+\begin{frame}[t]
 \begin{itemize}
     \item A local minimum is guaranteed to be a global minimum for a convex objective function in a convex feasible region, and
     \item a local maximum is guaranteed to be a global maximum for a concave objective function in a convex feasible region.
   \end{itemize}
   Many functions in nonlinear programming problems are neither concave nor convex!
+  \begin{Exercise}
+    Is the function $f(x)=x^2$ convex? Are the regions defined by $x^2=4$ or $x^2\geq 9$ convex?
+  \end{Exercise}
+
+    \begin{Exercise}
+    Are the functions $f(x,y)=3x^2-2xy+y^2+3e^{-x}$ and $g(x,y)=x^4-8x^3+24x^2-32x+16$ convex? 
+  \end{Exercise}
 \end{frame}
 %--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 
+\begin{frame}[t]{}
+  \begin{Exercise}
+    Consider these two nonlinear problems\cite{carter}:
+    \begin{center}
+      \begin{tabular}{cc|cc}
+        minimize & $f(x,y)=x-2xy+2y$ & minimize & $f(x,y)=x-2xy+2y$\\
+        subject to & $\begin{cases}x^2+3y^2\leq10\\3x+2y\geq 1\\x,y\geq 0\end{cases}$ & 
+        subject to & $\begin{cases}x^3-12x-y\geq 0\\x\geq 1\end{cases}$
+      \end{tabular}
+    \end{center}
+    Are their feasible regions convex?
+   \end{Exercise}
+\end{frame}
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[allowframebreaks]{The Hessian matrix}
 
   \begin{align}
@@ -215,7 +238,8 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
 \end{itemize}
 \end{frame}
 
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}
 \begin{Exercise}
   Study the critical points of the function $f(x,y)=4x+2y-x^2-3y^2$
@@ -234,14 +258,16 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
 \end{Exercise}
 
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}{$k(x,y)=x^3+2y^3-xy$}
   \begin{center}
     \includegraphics[width=0.8\textwidth]{../figures/x3plus2y3minusxy.png}
   \end{center}
 \end{frame}
 
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}{Unconstrained optimization of continuous $f:\mathbf{R}\rightarrow\mathbf{R}$}
   For unconstrained problems with just one variable $x$, if first and second derivatives exist in $x^*$:
   \begin{description}
@@ -258,7 +284,8 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
   \end{description}
 \end{frame}
 %--- Next Frame ---%
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[allowframebreaks]{Unconstrained optimization of continuous $f:\mathbf{R}^n\rightarrow\mathbf{R}$}
   For unconstrained problems with several variables $\uvec{x}=(x_1,\ldots,x_n)$:
   \begin{description}
@@ -283,7 +310,8 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
 \end{itemize}
 
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[t]{Continuity vs derivability}
   Things are not so simple if, for example, functions are not derivable in $x^*$:
   \begin{center}
@@ -298,7 +326,7 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
 
 
 %--- Next Frame ---%
-
+%------------------------------------------------%------------------------------------------------
 \subsection{Iterative methods}
 
 \begin{frame}{One-Dimensional line search}
@@ -313,7 +341,8 @@ Let us assume a concave function. First, establish error tolerance $\epsilon$. T
 
   For an implementation, see \href{https://machinelearningmastery.com/line-search-optimization-with-python/}{this link}
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[allowframebreaks]{Golden search method}
 For a continuous function it guarantees to find an extremum.
 
@@ -341,6 +370,7 @@ Procedure of the Golden search method, given a function  to be minimized, $f(x)$
 \end{frame}
 
 %--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[t]{E1. NLO program}
 \begin{program}
   E2. Build a Python code that can run one-dimensional search algorithms for user defined functions, using or not first derivatives. Implement the one-dimensional line search and the golden search algorithms and find the optimal solution for the functions:
@@ -350,9 +380,15 @@ Procedure of the Golden search method, given a function  to be minimized, $f(x)$
   \end{itemize}
   Try both a direct implementation as well as the use of solvers in scipy.
 \end{program}
+
+\begin{Exercise}
+  Draw the {\em Rosenbruck's function}, $f(x,y)=100(y-x^2)^2+(1-x)^2$ and discuss on its convexity, the feasibility of its minimization and the most appropriate numerical method to use.
+\end{Exercise}
+
 \end{frame}
 
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 
 \begin{frame}{Algorithms for unconstrained optimization}
 %https://suzyahyah.github.io/calculus/optimization/2018/04/06/Taylor-Series-Newtons-Method.html
@@ -365,10 +401,11 @@ Procedure of the Golden search method, given a function  to be minimized, $f(x)$
   \end{itemize}
   and their many variants.
 \end{frame}
-%--- Next Frame ---%
+
 
 \subsection{Constrained optimization}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}
 In the previous section we have considered functions of several variables that are independent from each other. What happens if the variables are, however, not independent from each other? (see excellent material in \href{https://www.statslab.cam.ac.uk/~rrw1/}{Richard Weber's web site})
 
@@ -378,7 +415,8 @@ In the previous section we have considered functions of several variables that a
   \end{center}
 \end{frame}
 
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[allowframebreaks]{Lagrange multipliers}
   Let us consider optimizing a function $f(x,y)$ (the height of the hill in the previous exemple) subject to the constrain $g(x,y)=c$ (the equation describing the path, the road).
 
@@ -405,7 +443,8 @@ In the previous section we have considered functions of several variables that a
   are sufficient to find $\lambda$, $x^*$ and $y^*$.
 
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[allowframebreaks]
   \begin{center}
   \includegraphics<2>[width=0.4\textwidth]{../figures/Lagrangex2minusy.png}
@@ -414,7 +453,8 @@ In the previous section we have considered functions of several variables that a
   Find the optimal values of the function $f(x,y)=x^2-y$ constrained within the circumference $x^2+y^2=4$. (note that, interestingly, in the optimal value $x^*$ we will get a gradient for the constraint that is parallel to the gradient of the function: $\grad f(x^*)=\lambda^* \grad g(x^*)$).
 \end{Exercise}
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}
   The general problem we study takes the form
   \begin{center}
@@ -440,7 +480,8 @@ If the constraint is $g(x)\leq b$ we introduce a {\bf slack variable} $z$ and wr
 Regional and functional constraints define the {\bf feasible set} for $x$
 
 \end{frame}
-
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}[allowframebreaks]{Case when $\uvec{g}(\uvec{x})= 0$: The Lagrangian}
 
   In the Lagrange approach, the constrained maximization (minimization) problem is rewritten as a Lagrange function 
@@ -485,6 +526,19 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 
 \end{frame}
 
+\begin{frame}
+\begin{Exercise}
+  Use the Lagrange multipliers to solve this problem:
+  \begin{center}
+    \begin{tabular}{cc}
+      minimize & $f(x,y)=x^2y$ \\
+      subject to & $x^2+y^2=1$
+    \end{tabular}
+  \end{center}
+\end{Exercise}
+\end{frame}
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
 \begin{frame}{what if $\uvec{g}(\uvec{x})\geq 0$? Karush-Kuhn-Tucker theorem}
 % https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions
   \note[item]{\url{https://people.maths.bris.ac.uk/~maxmr/opt/kt1.pdf}}
@@ -498,17 +552,35 @@ Regional and functional constraints define the {\bf feasible set} for $x$
     If $\uvec{x}^*$ is a local minimum for the optimisation problem and the constraints $\uvec{g}(\uvec{x})\geq 0$ are satisfied at $\uvec{x}^*$, then $\uvec{x}^*$ must satisfy:
     \begin{eqnarray*}
       \grad f({\uvec{x}})&=&\lambda_1 \grad g_1(\uvec{x})+\cdots+\lambda_m \grad g_m(\uvec{x})\\
-      0&=&\lambda_1  g_1(\uvec{x})+\cdots+\lambda_m  g_m(\uvec{x})\\
+      0&=&\lambda_1  g_1(\uvec{x})=\cdots=\lambda_m  g_m(\uvec{x})\\
       0&\leq&\uvec{g}(\uvec{x})
     \end{eqnarray*}
   \end{theorem}
 
 \end{frame}
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
+\begin{frame}
 
 
-\begin{frame}[allowframebreaks]
+  \begin{Exercise}
+     Consider this NLO problem\cite{carter}:
+    \begin{center}
+     \begin{tabular}{cc}
+      maximize & $f(x,y)=x^2y+2y^2$ \\
+      subject to & $\begin{cases}x+3y\leq 9\\x+2y\leq 8\\3x+2y\leq 18\\0\leq x \leq 5\\0\leq y \leq 2\end{cases}$
+    \end{tabular}
+  \end{center}
+    Solve the program graphically- Begin at point $(0,0)$ and check the gradient. Check the KKT conditions. If they are not satisfied, find an improving direction in the feasible region.
+  \end{Exercise}
+
+\end{frame}
+
+%--- Next Frame ---%
+%------------------------------------------------%------------------------------------------------
+\begin{frame}
   To better understand these exercises, you can make use of \href{https://www.geogebra.org/3d?lang=en}{geogebra}.
-    \begin{Exercise}
+\begin{Exercise}
   Is it possible to maximize $f(x,y)=xy$ subject to $100 \geq x+y$ and $x\leq 40$?
   % solution: not necessarily, feasible region is not bound. In fact it is not possible
 \end{Exercise}
@@ -518,16 +590,7 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 \end{Exercise}
 %https://www.sfu.ca/~wainwrig/Econ400/lecture-notes-Kuhntucker.pdf
 \end{frame}
-%--- Next Frame ---%
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
-%------------------------------------------------%------------------------------------------------
+
 %------------------------------------------------%------------------------------------------------
 
 \input{../tools/Biblio.tex}
