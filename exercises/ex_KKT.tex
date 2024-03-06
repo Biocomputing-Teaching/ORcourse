@@ -43,6 +43,31 @@ to solve our problem, first we will put it in its standard form:
   \end{aligned}
 \end{equation*}
 
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}
+    [ xmin=-20,xmax=110,
+      ymin=-20,ymax=110,
+      grid=both,
+      grid style={line width=.1pt, draw=darkgray!10},
+      major grid style={line width=.2pt,draw=darkgray!50},
+      axis lines=middle,
+      minor tick num=4,
+      enlargelimits={abs=0.5},
+      axis line style={latex-latex},
+      samples=100,
+      domain = -20:110,
+      view={0}{90}
+    ]
+    \fill[blue, pattern=north west lines, pattern color=blue] (0,0) -- (0,100) -- (40,60) -- (40,0) -- (0,0);
+    \draw[black] (40,-10) -- (40,70);
+    \draw[black] (-10,110) -- (110,-10);
+    \addplot3 [contour lua={number=14}
+              ] {-x*y};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
 We will go through the different conditions:
 
 \begin{enumerate}
