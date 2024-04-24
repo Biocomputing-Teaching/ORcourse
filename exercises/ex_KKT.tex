@@ -8,10 +8,10 @@ For an optimization problem in its standard form:
 
 \begin{equation*}
   \begin{aligned}
-    \text{min} f(x) \\
-    \text{subject to }\quad &
+    \text{max} \, f(x) \\
+    \text{s.t.}\quad &
     \begin{array}{rcl}
-      g_i(x)-b_i  & \geq & 0 \quad i=1,\ldots,k \\
+      g_i(x)-b_i  & \leq & 0 \quad i=1,\ldots,k \\
       g_i(x)-b_i  & = & 0 \quad i=k+1,\ldots,m \\
     \end{array}
   \end{aligned}
@@ -29,16 +29,18 @@ There are 4 KKT conditions for optimal primal ($x4$) and dual ($\lambda$) variab
 
 The last two conditions (3 and 4) are only required with inequality constraints and enforce a positive Lagrange multiplier when the constraint is active (=0) and a zero Lagrange multiplier when the constraint is inactive (>0). 
 
-to solve our problem, first we will put it in its standard form:
+To solve our problem, first we will put it in its standard form:
 
 
 \begin{equation*}
   \begin{aligned}
-    \text{min } f(x,y)=-xy \\
-    \text{subject to }\quad &
+    \text{max} \, f(x,y)=xy \\
+    \text{s.t.}\quad &
     \begin{array}{rcl}
-      -x-y+100  & \geq & 0  \\
-      -x-40 & \geq & 0  \\
+      g_1(x,y)=x+y-100  & \leq & 0  \\
+      g_2(x,y)=x-40 & \leq & 0  \\
+      g_3(x,y)=-x&\leq&0\\
+      g_4(x,y)=-y&\leq&0\\
     \end{array}
   \end{aligned}
 \end{equation*}
@@ -46,8 +48,8 @@ to solve our problem, first we will put it in its standard form:
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}
-    [ xmin=-20,xmax=110,
-      ymin=-20,ymax=110,
+    [ xmin=-30,xmax=120,
+      ymin=-30,ymax=120,
       grid=both,
       grid style={line width=.1pt, draw=darkgray!10},
       major grid style={line width=.2pt,draw=darkgray!50},
@@ -60,43 +62,54 @@ to solve our problem, first we will put it in its standard form:
       view={0}{90}
     ]
     \fill[blue, pattern=north west lines, pattern color=blue] (0,0) -- (0,100) -- (40,60) -- (40,0) -- (0,0);
-    \draw[black] (40,-10) -- (40,70);
-    \draw[black] (-10,110) -- (110,-10);
-    \addplot3 [contour lua={number=14}
-              ] {-x*y};
+    \draw[black] (40,-20) -- (40,80);
+    \draw[black] (-20,120) -- (120,-20);
+    \addplot3 [contour lua={number=15}
+              ] {x*y};
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
 We will go through the different conditions:
 
-\begin{enumerate}
-  \item Primal feasibility:  $g_i(x^*)-b_i$ is feasible. 
-  \[-x^* -y^* +100 =0\]
-  \[-x^*-40=0\]
-  \item Gradient condition or No feasible descent:  
-  \[ \begin{pmatrix}\pdv{f}{x}\\\pdv{f}{y}\end{pmatrix} 
-  -\lambda_1 \begin{pmatrix}\pdv{g_1}{x}\\\pdv{g_1}{y}\end{pmatrix}
-  -\lambda_2 \begin{pmatrix}\pdv{g_2}{x}\\\pdv{g_2}{y}\end{pmatrix} =0\]
+ \begin{itemize}
+  \item on the gradient:
+  \[
+    \begin{pmatrix}\pdv{f}{x}\\\pdv{f}{y}\end{pmatrix} 
+    -\lambda_1 \begin{pmatrix}\pdv{g_1}{x}\\\pdv{g_1}{y}\end{pmatrix}
+    -\lambda_2 \begin{pmatrix}\pdv{g_2}{x}\\\pdv{g_2}{y}\end{pmatrix} 
+    -\lambda_3 \begin{pmatrix}\pdv{g_3}{x}\\\pdv{g_3}{y}\end{pmatrix}
+    -\lambda_4 \begin{pmatrix}\pdv{g_4}{x}\\\pdv{g_4}{y}\end{pmatrix}=0
+  \]
   which, in this example, resolves into:
-  \[\systeme[xy\lambda_1\lambda_2]{-y+\lambda_1+\lambda_2=0,-x-\lambda_1=0 }\]
-  \item Complementariety slackness: 
-  \[\lambda_1^* (-x^* -y^* +100)=0\]
-  \[\lambda_2^* (-x^*-40)=0\]
-  \item Dual feasibility: $\lambda_1,\lambda_2\geq 0$
-\end{enumerate}
+  \begin{equation}\label{Eq:KKT1}y-(\lambda_1+\lambda_2-\lambda_3)=0\end{equation}
+  \begin{equation}\label{Eq:KKT2}x-(\lambda_1-\lambda_4)=0\end{equation}
+  \item on the complementary slackness:
+  \begin{equation}\label{Eq:KKT3}\lambda_1 (x +y -100)=0\end{equation}
+  \begin{equation}\label{Eq:KKT4}\lambda_2 (x-40)=0\end{equation}
+  \begin{equation}\label{Eq:KKT5}\lambda_3 x =0\end{equation}
+  \begin{equation}\label{Eq:KKT6}\lambda_4 y =0\end{equation}
+  \item on the constraints:
+  \begin{equation}\label{Eq:KKT7}x+ y \leq100\end{equation}
+  \begin{equation}\label{Eq:KKT8}x\leq40\end{equation}
+  \begin{equation}\label{Eq:KKT9}-x\leq0\end{equation}
+  \begin{equation}\label{Eq:KKT10}-y\leq0\end{equation}
 
-We can put the resulting 5 expressions for conditions 1 and 2 into matrix form:
+  plus $\lambda_1,\lambda_2,\lambda_3,\lambda_4\geq 0$.
 
-\[
-  \begin{pmatrix} -1 & -1 & 0&0\\ -1&0&0&0\\ 0&-1&1&1\\ -1&0&-1&0 \end{pmatrix}
-  \begin{pmatrix} x\\y\\\lambda_1\\\lambda_2\end{pmatrix}=
-  \begin{pmatrix} -100\\ 40\\0\\0 \end{pmatrix}
-\]
+  We will start by checking Eq. \ref{Eq:KKT3}:
+  \begin{itemize}
+    \item  Let us seeg what occurs if $\lambda_1=0$. Then, from Eq. \ref{Eq:KKT2}, $x+\lambda_4=0$ which implies that $x=\lambda_4=0$\footnote{Recall that both variables and multiplieras must be positive or zero, so, the only possibility for the equation to fullfill is that both are zero.}. But, then, from Eq. \ref{Eq:KKT4} we obtain that $\lambda_2=0$ which, using Eq. \ref{Eq:KKT1} gives $y+\lambda_3=0\Rightarrow y=\lambda_3=0$. Indeed, the KKT conditions are satisfied when all variables and multipliers are zero, but it is not a maximum of the function (see figure above).
+    \item So, let us see what happens if $x+y-100=0$ and consider the two possibilities for $x$:
+    \begin{description}
+      \item[Case $x=0$:] Then, $y=100$, which would lead (Eq. \ref{Eq:KKT6}) to $\lambda_4=0$ and (Eq. \ref{Eq:KKT2}) to $x=\lambda_1=0$, that was discussed in the previous item. So, we need top explore the other possibility for $x$.
+      \item[Case $x>0$:] From Eq. \ref{Eq:KKT5} $\lambda_3=0$ and, from Eqs. \ref{Eq:KKT1} and \ref{Eq:KKT2}:
+      \[\systeme{y=\lambda_1+\lambda_2,x=\lambda_1+\lambda_4}
+      \] 
+      let us try what happens if, e.g., $\lambda_2\neq 0$ (or, said in other words, if constraint \ref{Eq:KKT8} is active): $x=40$. As we know we do not want $\lambda_1=0$, from Eq. \ref{Eq:KKT3} we obtain $x+y-100=0\Rightarrow y=60$.
+    \end{description}
 
-  % \begin{minipage}[t]{\linewidth}
-  %   \vspace{-2ex}
-  %   %\includegraphics[width=\textwidth]{../figures/Afiquadrilater.pdf}
-  %   \captionof{figure}{Transformacions afins d'un quadrilàter de vèrtex $(4,0)$, $(2,2)$, $(1,1)$ i $(2,-1)$.}
-  %   \label{fig:trafquadril}
-  % \end{minipage}
+    The point $(x,y)=(40,60)$ fullfills the KKT conditions and is a maximum in the constrained maximization problem.
+
+ \end{itemize}
+\end{itemize}
