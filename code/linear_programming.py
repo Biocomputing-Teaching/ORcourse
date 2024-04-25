@@ -49,8 +49,8 @@ x1 = solver.NumVar(0.0, infinity, 'XA')
 x2 = solver.NumVar(0.0, infinity, 'XB')
 
 solver.Maximize(1240 * x1 + 600 * x2)
-c0 = solver.Add(50 * x1 + 30 * x2  <= 3333, 'Material')
-c1 = solver.Add(6 * x1 + 5 * x2  <= 500, 'MachineTime')
+c0 = solver.Add(50 * x1 + 30 * x2  <= 2000, 'Material')
+c1 = solver.Add(6 * x1 + 5 * x2  <= 300, 'MachineTime')
 c2 = solver.Add(3 * x1 + 5 * x2  <= 200, 'Labor')
 
 ShowResults(solver, [x1, x2], [c0, c1, c2])
