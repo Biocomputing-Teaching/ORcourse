@@ -43,7 +43,7 @@ Study Abroad. Operations Research\\
 \medskip
 \textit{jordi.villa@uvic.cat}
 }
-\date{9-16/05, 2023}
+\date{2/05, 2024}
 \logo{\includegraphics[width=.1\textwidth]{FCTE}}
 \begin{document}
 
@@ -122,8 +122,8 @@ Study Abroad. Operations Research\\
     \end{center}
 \begin{itemize}
     \item A graph consists of a set of nodes $V$  (vertices, points, or junctions) and a set of connections called arcs $A$ (edges, links, or branches). 
-    \item Each connection is associated with a pair of nodes and is usually drawn as a line joining two points. The graph can be defined as directed or undirected. 
-    \item The degree of a node is the number of arcs attached to it. An isolated node is of degree zero.
+    \item Each connection is associated with a pair of nodes and is usually drawn as a line joining two points. The graph can be defined as {\em directed} or {\em undirected}. 
+    \item The {\bf degree of a node} is the number of arcs attached to it. An isolated node is of degree zero.
     \item In a directed graph, or digraph, the arc is often designated by the ordered pair $(A, B)$. In digraphs, the direction of the flow matters.
 \end{itemize}
 \end{frame}
@@ -144,7 +144,7 @@ Study Abroad. Operations Research\\
       \draw [red, -{Stealth[scale=2]}] (\from) -- (\to);     
   \end{tikzpicture}
 \end{center}
-\[A,(A,B),B,(B,C),\color{red}{\underbrace{C,(C,D),D,(D,E),E,(E,C),C}_{cyclic}}\]
+\[A,(A,B),B,(B,C),\color{red}{\underbrace{C,(C,D),D,(D,E),E,(E,C),C}_{\mathrm{cyclic\, path \, and  \, chain}}}\]
 
 \end{frame}
 
@@ -164,7 +164,7 @@ Study Abroad. Operations Research\\
       \draw [red,-{Stealth[scale=2]}] (\from) -- (\to);      
   \end{tikzpicture}
 \end{center}
-\[A,(A,B),B,(B,C),\color{red}{\underbrace{C,(C,D),D,(D,E),E,(C,E),C}_{noncyclic}}\]
+\[A,(A,B),B,(B,C),\color{red}{\underbrace{C,(C,D),D,(D,E),E,(C,E),C}_{\mathrm{cyclic \, path, \,non \, cyclic  \, chain}}}\]
 
 \end{frame}
 
@@ -302,7 +302,7 @@ Study Abroad. Operations Research\\
   \begin{block}{Maximum flow in networks}
     Determine the maximum possible flow that can be routed through the various network links, from source ($s$) to sink ($t$), without violating the capacity constraints.
 
-    Important!: the commodity is only generated at the source and consumed at the sink.
+    Important! the commodity is only generated at the source and consumed at the sink.
   \end{block}
 
   \begin{center}
@@ -388,13 +388,13 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
       myarrow/.style={-Stealth},
       node distance=0.6cm and 1.2cm
       ]
-      \node[mycircle] (c1) {$n_1$};
-      \node[mycircle,below right=of c1] (c2) {$n_2$};
-      \node[mycircle,above right=of c1] (c3) {$n_3$};
-      \node[mycircle,above right=of c2] (c4) {$n_4$};
-      \node[mycircle,above right=of c4] (c5) {$n_5$};
-      \node[mycircle,below right=of c4] (c6) {$n_6$};
-      \node[mycircle,above right=of c6] (c7) {$n_7$};
+      \node[mycircle] (c1) {A};
+      \node[mycircle,below right=of c1] (c2) {C};
+      \node[mycircle,above right=of c1] (c3) {B};
+      \node[mycircle,above right=of c2] (c4) {D};
+      \node[mycircle,above right=of c4] (c5) {E};
+      \node[mycircle,below right=of c4] (c6) {F};
+      \node[mycircle,above right=of c6] (c7) {G};
   
     \foreach \i/\j/\txt/\p in {% start node/end node/text/position
       c1/c2/8/below,
