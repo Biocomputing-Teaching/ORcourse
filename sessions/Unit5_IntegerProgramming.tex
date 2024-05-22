@@ -43,7 +43,7 @@ Study Abroad. Operations Research\\
 \medskip
 \textit{jordi.villa@uvic.cat}
 }
-\date{30/5, 2023}
+\date{22/5, 2024}
 \logo{\includegraphics[width=.1\textwidth]{FCTE}}
 \begin{document}
 
@@ -71,29 +71,41 @@ Study Abroad. Operations Research\\
   \item The feasible set is neither continuous nor feasible.
   \item NP-hard problems in general.
   \item Integer problems that have a network structure are easy to solve using the Simplex method (assignment and matching problems, transportation and transshipment problems, and network flow problems always produce integer results, provided that the problem bounds are integers).
+  \item Rounding can be effective in some problems and clearly not in others:
+  \begin{itemize}
+    \item not the same tires than aircrafts!
+    \item values 0/1 for variable: zero-one or binary integer programming (produce or not produce cars in this factory)
+    \item mixed integer programming problems
+  \end{itemize} 
 \end{itemize}
 \end{frame}
 
-That being said, there are some problems for which rounding can be effective. For example, in solving a problem for manufacturing tires, if the LP solution specifies making 1296.4 tires of a particular style, it is probably safe to round the answer down to 1,296 without drastically affecting feasibility or the objective function. In contrast, if the product being manufactured is a multi-million dollar aircraft, rounding is probably a poor solution. Rounding down a half a plane here or there could put a company right out of business.
+\begin{frame}{General integer programming problems}
+    \begin{center}
+      \includegraphics[width=0.4\linewidth]{../figures/IntegerProgramming.png}
+    \end{center}
+    Graphical representation of a typical 2 dimensional integer programming\cite{carter}.
+  \end{frame}
 
-An even more dramatic difficulty arises when using rounding for integer problems in which the variables are further constrained to have values of either zero or one. Consider a production planning problem for a large auto manufacturer such as General Motors, where it must be decided at which plants each car model should be built. A formulation for this problem might involve variables xij, each having a value of one or zero, depending on whether model i is produced at plant j, or not. Suppose there are ten plants, and each model can be assigned to only one location. An LP solution could easily recommend a small fraction of each model at each plant, yet rounding could produce a solution in which no models are produced anywhere. This situation is frequently encountered in integer programming; and in such cases, the LP solution gives virtually no insight into how to solve the integer problem.
 
-Mathematical programming problems in which all decision variables must have positive integer values are called general integer programming problems. If all the decision variables are restricted to have only the value zero or one, the problem is then called a zero–one programming (or binary integer programming) problem. In that case, the constraints on the variables are sometimes called binary or Boolean constraints, and the model is often referred to in abbreviated form as a 0–1 problem. Variations on the aforementioned problems arise if some of the variables must be integer, others must be zero or one, while still others may have real values. Any problem involving such combinations is described as a mixed integer programming (MIP) problem. This section illustrates each of these types of integer problems with typical practical examples.
+\begin{frame}
+  \frametitle{\href{https://fastercapital.com/content/Optimization--Solving-Complex-Problems-with-Zero-One-Integer-Programming.html}{Zero-One (0-1) problems}}
 
-One of the most successful practical applications of integer programming has been in the airline crew scheduling problem. The airlines first design a flight schedule composed of a large number of flight legs. A flight leg is a specific flight on a specific piece of equipment, such as a 747 from New York to Chicago departing at 6:27 a.m. A flight crew is a complete set of people, including pilots, navigator, and flight attendants who are trained for a specific airplane. A work schedule or rotation is a collection of flight legs that are feasible for a flight crew, and that normally terminate at the point of origin. Variables xij have value 1 if flight leg i is assigned to crew j. The objective is to ensure that all flight legs are covered at minimum total cost. Most of the major world airlines now use integer programming to assign crews to flight legs, and many claim to be saving millions of dollars annually in operating costs.
+  {\bf Airline crew scheduling problem}: The airlines first design a flight schedule composed of a large number of flight legs. A flight leg is a specific flight on a specific piece of equipment, such as a 747 from New York to Chicago departing at 6:27 a.m. A flight crew is a complete set of people, including pilots, navigator, and flight attendants who are trained for a specific airplane. A work schedule or rotation is a collection of flight legs that are feasible for a flight crew, and that normally terminate at the point of origin. Variables $x_{ij}$ have value 1 if flight leg $i$ is assigned to crew $j$. All flight legs should be covered at minimum total cost. 
 
-\begin{frame}{Examples}
-\begin{itemize}
-    \item Systems of highways, railroads, shipping lanes, or aviation patterns, where some supply of a commodity is transported or distributed to satisfy a demand;
-    \item pipeline systems or utility grids can be viewed as fluid flow or power flow networks;
-    \item computer communication networks represent the flow of information;
-    \item an economic system may represent the flow of wealth;
-    \item routing a vehicle or a commodity between certain specified points in the network;
-    \item assigning jobs to machines, or matching workers with jobs for maximum efficiency;
-    \item project planning and project management, where various activities must be scheduled in order to minimize the duration of a project or to meet specified completion dates, subject to the availability of resources;
-    \item and many, many others.
-\end{itemize}
 \end{frame}
+
+  \begin{frame}
+    \begin{center}
+      \includegraphics[width=0.4\linewidth]{../figures/BranchandBound.png}
+    \end{center}
+    Separation into two subproblems in the Branch-and-Bound method\cite{carter}.
+  \end{frame}
+
+
+
+
+
 
 \section{Definitions}
 
