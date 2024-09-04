@@ -1,0 +1,65 @@
+\usepackage{graphicx} % Allows including images
+\graphicspath{{../figures/}}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{amsmath, amssymb, amsthm, gensymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{epigraph}
+\usepackage{etoolbox}
+\usepackage{listings}
+\usepackage{exercise}
+\usepackage{multirow}
+\usepackage{array}
+\newcolumntype{C}{@{}c@{}}
+\newcommand{\bottombox}[1]{\makebox[2em][r]{#1}\hspace*{\tabcolsep}\hspace*{2em}}%
+\newcommand{\innerbox}[2]{%
+    \begin{tabular}[b]{c|c}
+       \rule{2em}{0pt}\rule[-2ex]{0pt}{5ex} & \makebox[2em]{#2} \\\cline{2-2}
+       \multicolumn{2}{r}{{#1}\hspace*{1.5\tabcolsep}\hspace*{2em}\rule[-2ex]{0pt}{5ex}}
+    \end{tabular}}
+\renewcommand{\arraystretch}{1.25}
+\makeatletter
+\patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{chains,fit,shapes,calc}
+\usepackage{adjustbox}
+\usepackage{physics}
+
+\newcommand{\uvec}[1]{\textbf{#1}}
+
+\newtheorem{exe}{Exercise}
+\newtheorem{program}{Programming exercise}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{exercise}
+
+\DeclareMathOperator{\Hessian}{Hess}
+
+\definecolor{myblue}{RGB}{80,80,160}
+\definecolor{mygreen}{RGB}{80,160,80}
+
+\newcommand{\colvec}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+
+
+% extracted from linalgjh.sty from https://github.com/indraniel/linear-algebra
+
+%-------------making aligned columns
+% Usage: \begin{aligncolondecimal}{2} 1.2 \\ .33 \end{aligncolondecimal}
+% (negative argument centers decimal pt in column).  Also Usage:
+% \begin{aligncolondecimal}[0em]{2} 1.2 \\ .33 \end{aligncolondecimal}
+% to make the left and right LaTeX-array padding disappear.
+\RequirePackage{array}\RequirePackage{dcolumn}
+\newenvironment{aligncolondecimal}[2][.1111em]{%
+\setlength{\arraycolsep}{#1}
+\newcolumntype{.}{D{.}{.}{#2}}\begin{array}{.}}{%
+\end{array}}
+
+
+% Usage: \dcolvec[2]{1.23 \\ 4.56} where the optional argument is the number
+% of decimal places.
+\newcommand{\dcolvec}[2][-1]{\left(\begin{array}{@{}D{.}{.}{#1}@{}} #2 \end{array}\right)}
+
+%\graphicspath{{../figures/}}
