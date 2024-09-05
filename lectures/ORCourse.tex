@@ -1,4 +1,4 @@
-\documentclass[10pt, a4paper, twoside]{article}
+\documentclass[10pt, a4paper, twoside]{book}
 \input{common.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -12,8 +12,10 @@
 
 \maketitle
 
+
 \tableofcontents
 
+\chapter{Introduction to Optimization and Operational Research}
 \section{Session 1: Introduction}
 
 \begin{itemize}
@@ -33,12 +35,14 @@
 \subsection{Operation research}
 
 
-\begin{minipage}{7cm}{Operations research (OR)...}
+
 The use of quantitative methods to assist analysis and decision-makers in designing, analysizing and improving the performance or operation of systems.
-\end{minipage}
-\begin{minipage}{7cm}{...or}
+
+\dots or\dots
+
+
 Applied math field, where mathematical tools and operators aren’t used to investigate mathematics further but rather to analyse and solve problems within the OR domain by designing innovative solution approaches.
-\end{minipage}
+
 Link to a \href{https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}{big picture view of OR}
 
 
@@ -91,7 +95,7 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
   \end{itemize}
 
 
-{Problem formulation in Operational Research}
+\subsection{Problem formulation in Operational Research}
 
       \begin{description}
         \item[Decision variables] In what are we going to base our decision?
@@ -103,12 +107,10 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
         \includegraphics[width=0.8\textwidth]{LP.png}
       \end{center}
 
+\subsection{Algorithms}
 
 
-
-  \begin{minipage}{7cm}{Algorithm}
     Sequence of operations that can be carried out in a finite amount of time
-  \end{minipage}
   \begin{itemize}
     \item It can be repeated or called recursively but it will eventually terminate.
     \item Factors influencing the execution time (unrelated to the algorthm itself):
@@ -119,26 +121,20 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
       \item the task load on the computer system during execution.
     \end{itemize}
     \item The performance of an algorithm is typically linked to the size of the problem.
+    \begin{description}
+      \item [Class P] Problems that can be solved by an algorithm within an amount of computation time proportional to some polynomial function of the problem size.
+      \item [Class NP] Problems that require computation time proportional to some exponential (or larger) function of the problem size. (The subset sum problem, for example, is $O(2^n\cdot n$))
+      %https://towardsdatascience.com/how-to-find-all-solutions-to-the-subset-sum-problem-597f77677e45, incloent python program
+    \end{description}
   \end{itemize}
 
 
-
-
-      \begin{minipage}{7cm}{Class P}
-        Problems that can be solved by an algorithm within an amount of computation time proportional to some polynomial function of the problem size.
-      \end{minipage}
-      \begin{minipage}{7cm}{Class NP}
-        Problems that require computation time proportional to some exponential (or larger) function of the problem size. (The subset sum problem, for example, is $O(2^n\cdot n$))
-        %https://towardsdatascience.com/how-to-find-all-solutions-to-the-subset-sum-problem-597f77677e45, incloent python program
-      \end{minipage}
    
       \begin{center}
         \includegraphics[scale=0.5]{nphard288.png}\\
         \footnotesize{\url{http://www.solipsys.co.uk/new/PVsNP.html}}
       \end{center}
    
-
-
 
   \includegraphics[width=\linewidth]{3colorproblem.png}
 
@@ -161,13 +157,13 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
 
 
 
-{Matrix multiplication is $O(n^3)$}
+\subsection{Matrix multiplication is $O(n^3)$}
   \begin{footnotesize}
   \lstinputlisting[language=Python]{../code/matrixmultN3.py}
 \end{footnotesize}
 
 
-{$O(n)$ notation}
+\subsection{$O(n)$ notation}
   \begin{itemize}
     \item We say $f(n)=O(g(n))$, and we read as "$f(n)$ is big-O of $g(n)$", if there is some $C$ and $N$ such that
     \[
@@ -181,16 +177,16 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
 
 
 
-{Different orders, different complexity}
+\subsection{Different orders, different complexity}
   \begin{center}
     \includegraphics[width=0.8\textwidth]{Harel1.png}
   \end{center}
-  Extracted from \cite{harel}
+  Extracted from \cite{harel_algorithmics_2004}
 
 
-[t]{Growth rate of some functions}
+\subsection{Growth rate of some functions}
  
-      For comparison: the number of protons in the known universe has 79 digits; the number of nanoseconds since the Big Bang has 27 digits.\cite{harel}
+      For comparison: the number of protons in the known universe has 79 digits; the number of nanoseconds since the Big Bang has 27 digits.\cite{harel_algorithmics_2004}
    
       \begin{center}
         \includegraphics[width=\textwidth]{Harel2.png}
@@ -198,7 +194,7 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
  
 
 
-[t]{Search space complexity: the travelling salesman problem (TSP)}
+\subsection{Search space complexity: the travelling salesman problem (TSP)}
  
       \begin{itemize}
         \item A salesman must visit $n$ cities
@@ -213,14 +209,14 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
  
 
 
-[t]{Search space complexity: the travelling salesman problem (TSP)}
+\subsection{Search space complexity: the travelling salesman problem (TSP)}
   \begin{center}
     \includegraphics[width=0.5\textwidth]{TSP.jpg}
   \end{center}
   \url{https://doi.org/10.1073/pnas.0609910104}
 
 
-{TSP practical example}
+  \subsection{TSP practical example}
   Let us assume there are 4 cities and these are the "distances"\footnote{Note that the distance is not necessarily identical in both directions} between them:
   \begin{center}
   \begin{tabular}{c|cccc}
@@ -234,14 +230,14 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
   Check \href{https://github.com/JordiVillaFreixa/ORcourse/blob/main/code/TSPnaive.ipynb}{code} at GitHub 
 
 
-{TSP practical example}
+  \subsection{TSP practical example}
   \begin{itemize}
     \item The number of combinations is $(n-1)!$. This is the search space
     \item Asssuming a computer takes a milisecond to evaluate a solution, How long would it take for the computer to find the optimal solution in our 4 nodes problem? and how long for problems with 10, 20, 50 cities?
   \end{itemize}
 
 
-{Optimality and Practicality}
+  \subsection{Optimality and Practicality}
   \begin{itemize}
     \item We have been trained in mathematics to find exact/perfect solutions. This is not always possible:
     \begin{itemize}
@@ -254,7 +250,7 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
   \end{itemize}
 
 
-{Software for Operations Research}
+  \subsection{Software for Operations Research}
  \begin{description}
    \item[Modeling environments] Spreadsheets (Excel, Numbers, Google), \href{https://ampl.com}{AMPL}, \href{http://www.maximalsoftware.com/mpl/}{MPL}, \href{https://www.lindo.com/index.php/products/lingo-and-optimization-modeling}{LINGO}, \href{https://www.ibm.com/docs/en/icos/12.9.0?topic=opl-optimization-programming-language}{OPL}, \href{https://www.aimms.com}{AIMMS}, \href{https://www.sas.com/es_es/software/or.html}{SAS/OR}, \href{https://support.sas.com/rnd/app/or/procedures/optmodel.html}{OPTMODEL},\href{https://www.gams.com}{GAMS}, \href{https://neos-guide.org}{NEOS}\footnote{check the \href{https://neos-guide.org/content/or}{TSP demo in NEOS/GAMS}}, ...
    \item[Solvers] \href{https://www.gurobi.com}{Gurobi},
@@ -281,7 +277,7 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
 
 
 
-\title[Introduction]{Unit 1. Introduction to Operational Research. Non linear optimization}
+\subsection{Introduction to Operational Research}
 
 
 
@@ -303,18 +299,16 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Session 2: Nonlinear optimization}
+\chapter{Nonlinear optimization}
 %------------------------------------------------%------------------------------------------------
 
-  \begin{minipage}{7cm}{Production cost}
+Example Production cost:
 
     A company aims at minimizing the production cost during a series of production periods of time $T_i$, characterised by the demand $D_ii$, equipment capacities and material limitations $E_i$, labor force $L_i$ (which cost depends quadratically on the difference of labor force between two periods $C_L(L_i-L_{i-1})^2$), productivity of each worker $P_i$, the number of units of inventory at the end of each production period $I_i$ and the cost to bring them to the next production period $C_I$.
 
   \begin{center}
     \includegraphics[width=0.4\textwidth]{ProductionSchedule.pdf}
   \end{center}
-\end{minipage}
-
 %------------------------------------------------%------------------------------------------------
 
   The problem, as stated, aims at minimizing the function:
@@ -349,10 +343,10 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
   \item No methods applicable to all non-linear problems
 \end{itemize}
 %------------------------------------------------%------------------------------------------------
+\subsection{Feasible region}
 
- \begin{minipage}{7cm}{Feasible region}
    Set of points satisfying all the constraints (the area between constraint boundaries).
- \end{minipage}
+
 
  \begin{center}
   \includegraphics[width=0.6\linewidth]{feasibleregion.pdf}
@@ -386,9 +380,9 @@ in a small town, Bowdsey, of the United Kingdom, in a military context (the Batt
     \includegraphics[width=0.6\textwidth]{concave.pdf}
   \end{center}
 
-\begin{minipage}{7cm}{Convexity}
+
     The term "convex" can be applied both to sets and functions. A set $S\in \mathbf{R}^n$ is a {\it convex set} if the straight line segment connecting any two points in $S$ lies entirely inside $S$.
-\end{minipage}
+
 Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if for any two points $x_1$ and $x_2$ in $S$ Eq. \ref{eq:convex} holds.
 
 \begin{Exercise}
@@ -420,7 +414,7 @@ Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if f
 %------------------------------------------------%------------------------------------------------
 
   \begin{Exercise}
-    Consider these two nonlinear problems\cite{carter}:
+    Consider these two nonlinear problems\cite{carter_operations_2019}:
     \begin{center}
       \begin{tabular}{cc|cc}
         minimize & $f(x,y)=x-2xy+2y$ & minimize & $f(x,y)=x-2xy+2y$\\
@@ -440,6 +434,8 @@ Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if f
     -\frac{2x}{y^{2}} & \frac{2x^{2}}{y^{3}}
   \end{bmatrix}
 \end{align}
+
+\section{Session 2. Unconstrained optimization}
 
 Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \leq n$. If the partial derivatives $f'_i$ and $f'_j$ of $f$ exist in an open set $S$ containing $(x_1,\ldots, x_n)$ and both of these partial derivatives are differentiable at $(x_1, \ldots, x_n)$ then $(\Hessian f)_{ij}=(\Hessian f)_{ji}$.
 
@@ -523,6 +519,7 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
 %------------------------------------------------%------------------------------------------------
 \subsection{Iterative methods}
 
+\subsubsection{Line search}
 Let us assume a concave function. First, establish error tolerance $\epsilon$. Then:
   \begin{enumerate}
     \item Set up lower and upper bounds for $x$ by finding $x_l,x_u$ such that $\frac{df}{dx_l}\geq 0$ and $\frac{df}{dx_u}\leq 0$
@@ -536,12 +533,12 @@ Let us assume a concave function. First, establish error tolerance $\epsilon$. T
 %------------------------------------------------%------------------------------------------------
 For a continuous function it guarantees to find an extremum.
 
-\begin{minipage}{7cm}{Golden ratio}
+\subsubsection{Golden search}
    Two quantities are in the golden ratio if their ratio is the same as the ratio of their sum to the larger of the two quantities:
 \[
 \frac{a+b}{a}=\frac{a}{b}=\psi \Rightarrow \psi=\frac{1+\sqrt{5}}{2}=1.616033988...
 \]
-\end{minipage}
+
 
 Procedure of the Golden search method, given a function  to be minimized, $f(x)$, the interval to be searched as $x\in(x_1,x_4)$, and their functional values $f(x_1)$ and $f(x_2)$:
 \begin{enumerate}
@@ -725,7 +722,7 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 
 
   \begin{Exercise}
-     Consider this NLO problem\cite{carter}:
+     Consider this NLO problem\cite{carter_operations_2019}:
     \begin{center}
      \begin{tabular}{cc}
       maximize & $f(x,y)=x^2y+2y^2$ \\
@@ -752,7 +749,7 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 
 %----------------------------------------------------------------------------------------
 
-
+\chapter{Linear programming}
 
 \section{Session 6: Introduction to linear programming}
 
@@ -769,12 +766,12 @@ Regional and functional constraints define the {\bf feasible set} for $x$
   \item Introducing the Simplex method
 \end{itemize}
 
-  \begin{minipage}{7cm}{Linear programming}
+
     Linear programs have a linear objective function and linear constraints, which may
     include both equalities and inequalities. The feasible set is a polytope, that is, a convex,
     connected set with ﬂat, polygonal faces. The contours of the objective function are planar.
-   \cite{nocedal}
-  \end{minipage}
+   \cite{nocedal_numerical_2006}
+
   A wide variety of applications can be modeled with linear programming.
 
 
@@ -800,7 +797,7 @@ Regional and functional constraints define the {\bf feasible set} for $x$
   \end{center}
 
   \begin{Exercise}
-    A manufacturer of computer system components assembles two models of wireless routers, model A and model B. The amounts of materials and labor required for each assembly, and the total amounts available, are shown in the following table. The profits that can be realized from the sale of each router are \$22 and \$28 for models A and B, respectively, and we assume there is a market for as many routers as can be manufactured.\cite{carter}
+    A manufacturer of computer system components assembles two models of wireless routers, model A and model B. The amounts of materials and labor required for each assembly, and the total amounts available, are shown in the following table. The profits that can be realized from the sale of each router are \$22 and \$28 for models A and B, respectively, and we assume there is a market for as many routers as can be manufactured.\cite{carter_operations_2019}
     \begin{center}
     \begin{tabular}{cccc}
       & Resources  & Resources  B & Resources  \\
@@ -826,7 +823,7 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 
 
   \begin{Exercise}
-  A company wishes to minimize its combined costs of production and inventory over a four-week time period. An item produced in a given week is available for consumption during that week, or it may be kept in inventory for use in later weeks. Initial inventory at the beginning of week 1 is 250 units. The minimum allowed inventory carried from one week to the next is 50 units. Unit production cost is \$15, and the cost of storing a unit from one week to the next is \$3. The following table shows production capacities and the demands that must be met during each week.\cite{carter}
+  A company wishes to minimize its combined costs of production and inventory over a four-week time period. An item produced in a given week is available for consumption during that week, or it may be kept in inventory for use in later weeks. Initial inventory at the beginning of week 1 is 250 units. The minimum allowed inventory carried from one week to the next is 50 units. Unit production cost is \$15, and the cost of storing a unit from one week to the next is \$3. The following table shows production capacities and the demands that must be met during each week.\cite{carter_operations_2019}
     \begin{center}
     \begin{tabular}{ccc}
       Period  & Production capacity & Demand  \\\hline
@@ -1016,12 +1013,11 @@ Regional and functional constraints define the {\bf feasible set} for $x$
       (a), (c), and (d) are both extreme points and boundary points. \\
       (b) and (e) are boundary points that are not extreme. \\
       (f) is interior because no constraint is active. \\
-      (g) is neither interior nor boundary (nor extreme) because it is infeasible.\cite{rardin}
+      (g) is neither interior nor boundary (nor extreme) because it is infeasible.\cite{rardin_optimization_2017}
 
 
+\subsubsection{Standard form}
 
-
-  \begin{minipage}{7cm}{Standard form}
     For a LP with $n$ variables and $m$ constraints, the standard form is given by:
     \begin{equation*}
       \begin{aligned}
@@ -1036,7 +1032,6 @@ Regional and functional constraints define the {\bf feasible set} for $x$
       \end{aligned}
     \end{equation*}
     where $x_1,\ldots,x_n\geq0$ and $b_1,\ldots,b_m\geq0$
-  \end{minipage}
 
 Thus:
 \begin{equation*}
@@ -1052,7 +1047,7 @@ Thus:
 \end{equation*}
 
 
-Of course, not always the system is proposed in this standard form, so\cite{carter}:
+Of course, not always the system is proposed in this standard form, so\cite{carter_operations_2019}:
 \begin{itemize}
   \item We need to leave a maximization problem. If the problem is to minimize the objective function, we simply multiply it by $(-1)$.
   \item In order to change inequality constraints into equality constraints we use {\it slack} variables for $\leq$ inequalities:
@@ -1090,7 +1085,7 @@ extreme points. A transition to an adjacent extreme point will be made only if b
 so the objective function is improved (or stays the same). It is a property of linear programming problems that this type of search will lead us to the discovery of an optimal
 solution (if one exists). The Simplex method is not only successful in this sense, but it
 is remarkably efficient because it succeeds after examining only a fraction of the basic
-feasible solutions.\cite{carter}
+feasible solutions.\cite{carter_operations_2019}
 
 The algorithm consists in:
 \begin{enumerate}
@@ -1101,7 +1096,7 @@ solution,
 \end{enumerate}
 From any basic feasible solution, we have the assurance
 that, if a better solution exists at all, then there is an adjacent solution that is better than the
-current one.\cite{carter}
+current one.\cite{carter_operations_2019}
 
 \begin{enumerate}
   \item Convert the system of inequalities to equations (using slack or surplus variables).
@@ -1232,14 +1227,14 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
   \begin{center}
     \includegraphics[width=0.4\linewidth]{simplex_example.png}
   \end{center}
-  Simplex steps for the given example (taken from \cite{carter}).
+  Simplex steps for the given example (taken from \cite{carter_operations_2019}).
 
   Solve, using the Simplex method, the Exercises 3 through 6 of the previous session.
 
 \subsection{Initial solutions for General Constraints}
 
 
-  When adding slack variables, we end up finding an initial feasible set of basic variables. But what happens when not all constraints are of the form "$\leq$"?\cite{carter}
+  When adding slack variables, we end up finding an initial feasible set of basic variables. But what happens when not all constraints are of the form "$\leq$"?\cite{carter_operations_2019}
 
   \begin{enumerate}
     \item Make all right hand sides $b_i$ of the constraint (in)equalities positive. If they are not, multiply the expression by $(-1)$.
@@ -1394,7 +1389,7 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
   \begin{center}
     \includegraphics[width=0.7\linewidth]{simplex_nonlinear.png}
   \end{center}
-  The simplex method moves the vertices of the simplex (in two dimensions, a triangle) until it contains the local minimum, and shrinks the simplex to find the local minimum (taken from \cite{beers}).
+  The simplex method moves the vertices of the simplex (in two dimensions, a triangle) until it contains the local minimum, and shrinks the simplex to find the local minimum (taken from \cite{beers_numerical_2007}).
 
 %----------------------------------------------------------------------------------------
 
@@ -1851,10 +1846,10 @@ Follow up: Verify that $c\cdot x^*=b\cdot y^*$.
 
 
 
-\title[Introduction]{Unit 3. Sensitivity Analysis}
+\chapter{Sensitivity Analysis}
 
 
-
+\section{Session 12. Sensitivity Analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1974,6 +1969,8 @@ In addition, one can explore what occurs when adding an extra constraint or addi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Network analysis}
 
 \section{Session 13: Network Analysis}
 
@@ -2200,13 +2197,12 @@ In addition, one can explore what occurs when adding an extra constraint or addi
     \item {\bf Flow} can be thought of as the total amount of an entity that originates at the source, makes it through the different nodes and reaches the sink.
   \end{itemize}
 
-subsection{Maximum flow}
+\subsection{Maximum flow}
 
-  \begin{minipage}{7cm}{Maximum flow in networks}
+
     Determine the maximum possible flow that can be routed through the various network links, from source ($s$) to sink ($t$), without violating the capacity constraints.
 
     Important! the commodity is only generated at the source and consumed at the sink.
-  \end{minipage}
 
   \begin{center}
     
@@ -2261,7 +2257,7 @@ The {\bf maximum flow problem} can be stated as a LP formulation.
     \end{array}
   \end{aligned}
 \end{equation*}
-\footnote{Constraints (1) and (2) state that all the flow is generated at the source and consumed at the sink. Constraint (1) ensures that a flow of f leaves the source, and because of conservation of flow, that flow stops only at the sink. Constraints (3) are the flow conservation equations for all the intermediate nodes; nothing is generated or consumed at these nodes. Constraints (4) enforce arc capacity restrictions. All flow amounts xij must be non-negative. Actually, constraint (2) is redundant\cite{carter}}
+\footnote{Constraints (1) and (2) state that all the flow is generated at the source and consumed at the sink. Constraint (1) ensures that a flow of f leaves the source, and because of conservation of flow, that flow stops only at the sink. Constraints (3) are the flow conservation equations for all the intermediate nodes; nothing is generated or consumed at these nodes. Constraints (4) enforce arc capacity restrictions. All flow amounts xij must be non-negative. Actually, constraint (2) is redundant\cite{carter_operations_2019}}
 
   All network problems here can be solved using the Simplex method, but the network structure can help us solving it more efficiently. In the {\bf Ford-Fulkerson labelling algorithm}:
   \begin{enumerate}
@@ -2327,7 +2323,7 @@ In the fourth iteration, we can label nodes A, B, C, D, F, and G. Along the path
 C, D, F, to G, we can add a flow of 4, the remaining capacity in (F, G). So x AC = 4, xCF = 4,
 x FG = 6, and f = 14.
 In the fifth iteration, we can label all nodes except G. Therefore, there is no flow aug-
-menting path, and the current flow of 14 is optimal\cite{carter}}
+menting path, and the current flow of 14 is optimal\cite{carter_operations_2019}}
 
   \begin{itemize}
     \item In any network, there is always a bottleneck that in some sense impedes the flow through the network. 
@@ -2337,7 +2333,7 @@ menting path, and the current flow of 14 is optimal\cite{carter}}
     \item The minimum cut (i.e., the cut set with minimum total capacity) is in fact the bottleneck that precisely determines the maximum possible flow in the network (Max-Flow Min-Cut Theorem): the capacity of the cut is precisely equal to the current flow and this flow is optimal. In other words, a saturated cut defines the maximum flow.
   \end{itemize}
 
-  We can generate a supersource or  a  supersink node with unlimited capacity and repeat the process of optimization as above:\cite{carter}
+  We can generate a supersource or  a  supersink node with unlimited capacity and repeat the process of optimization as above:\cite{carter_operations_2019}
   \begin{center}
     \includegraphics[width=\linewidth]{multiplesinkssources.png}
   \end{center}
@@ -2366,7 +2362,7 @@ menting path, and the current flow of 14 is optimal\cite{carter}}
   \end{center}
 
 \begin{Exercise}
-  Find the minimum cost in this trasportation problem:\cite{carter}
+  Find the minimum cost in this trasportation problem:\cite{carter_operations_2019}
   \begin{center}
     \includegraphics[width=\linewidth]{transportationproblem2.png}
   \end{center}
@@ -2428,25 +2424,8 @@ https://www.techiedelight.com/word-break-problem/
 %----------------------------------------------------------------------------------------
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Beamer Presentation
-% LaTeX Template
-% Version 1.0 (10/11/12)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND THEMES
-%----------------------------------------------------------------------------------------
-
-
-\title[Introduction]{Unit 4. Integer Programming}
+\chapter{Integer Programming}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2489,7 +2468,7 @@ https://www.techiedelight.com/word-break-problem/
     \begin{center}
       \includegraphics[width=0.4\linewidth]{../figures/IntegerProgramming.png}
     \end{center}
-    Graphical representation of a typical 2 dimensional integer programming\cite{carter}.
+    Graphical representation of a typical 2 dimensional integer programming\cite{carter_operations_2019}.
 
 
   
@@ -2543,7 +2522,7 @@ https://www.techiedelight.com/word-break-problem/
     \begin{center}
       \includegraphics[width=0.4\linewidth]{../figures/BranchandBound.png}
     \end{center}
-    Separation into two subproblems in the Branch-and-Bound method\cite{carter}.
+    Separation into two subproblems in the Branch-and-Bound method\cite{carter_operations_2019}.
 
 
   \begin{Exercise}
@@ -2566,7 +2545,7 @@ https://www.techiedelight.com/word-break-problem/
 
 
 
-\section{Unit 5. Stochastic processes}
+\chapter{Stochastic processes}
 
 \subsection{Markov chains}
 
@@ -2692,7 +2671,7 @@ three dollars, calculation gives this.
 
 
 \begin{Exercise}
-    A study (\cite{MacdonaldRidge}, p.~202)
+    A study (\cite{macdonald_social_1988}, p.~202)
 divided occupations in the United Kingdom into
 upper level (executives and professionals),
 middle level (supervisors and skilled manual workers),
@@ -3091,5 +3070,7 @@ We can start wth the graphical representation of the HMM
   Taken from \url{https://texample.net/tikz/examples/simulation-abstraction/}
 
 %----------------------------------------------------------------------------------------
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{refs} % Entries are in the refs.bib file
 
 \end{document}

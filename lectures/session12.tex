@@ -1,0 +1,117 @@
+
+\section{Session 12. Sensitivity Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+  \item Understanding the concept of postoptimality analysis
+  \item Understanding and solving LP problems requiring sensitvity analysis
+  \item Understanding the matrix representation of the Simplex solution
+\end{itemize}
+
+\begin{itemize}
+  \item After an optimal solution is found, the analyst needs to review the problem parameters and the solution.
+  \item This process is called {\bf postoptimality analysis}:
+  \begin{itemize}
+    \item confirming or updating problem parameters (cost and availabilities of activities and resources)
+    \item if changes need to be introduced in the original parameters, assessing their impact on the optimality of the solution.
+  \end{itemize}
+  \item If changes are small, re-optimization may not be needed.
+  \item {\bf Sensitivity analysis} is the study of the effect that types, ranges, and magnitude of changes in problem parameters have in the value of the objective function, {\em without the need to solve again the new linear problem}.
+\end{itemize}
+
+  In a LP problem, 
+\begin{eqnarray*}
+ \text{max }\quad\uvec{c}^t \uvec{x}\\
+ \text{subject to }\quad A\uvec{x}\leq \uvec{b}, \forall x_i\geq0
+\end{eqnarray*}
+
+one can have two situations: one may have interest in knowing what happens with modifications in the parameters $c$ or modifications in the parameters $b$.
+
+In addition, one can explore what occurs when adding an extra constraint or adding a new variable.
+
+
+
+  \begin{Exercise}
+    A farmer wants to minimize the cost of the food given to her lifestock. Two different types of nutrients $A$ and $B$ are needed by the animals, and she needs a minimum nutrition to be achieved.
+    \begin{center}
+    \begin{tabular}{c|c|c|c}
+     & A & B & price\\
+     \hline
+     Feed 1 & 10 & 3 & 16\\
+     Feed 2 & 4 & 5 & 14\\
+     \hline
+     requirements & 124 & 60 & \\
+    \end{tabular}
+    \end{center}
+
+    Find how resilient is she to the changes in the price? What happens with respect to basic vs non-basic variables in a general case?
+
+  \end{Exercise}
+\footnote{veure  \url{https://youtu.be/o1pznRt_-y0?t=3378} minut 50 i següent capítol}
+
+
+  In such cases we will explore the coeficients of the objective function in the dual problem, instead.
+
+  \begin{Exercise}
+    Given the LP problem
+    \begin{equation*}
+      \begin{aligned}
+        \text{minimize } \quad & z = 16x_1+14x_2 \\
+        \text{subject to }\quad &
+        \begin{array}{rcl}
+          10x_1 + 4x_2 &\geq &124 \\
+          3x_1 + 5x_2 &\geq &60 \\
+          x_1,x_2 &\geq& 0
+        \end{array}
+      \end{aligned}
+    \end{equation*}
+
+    Explore the sensitivity of the minimum value of $z$ with respect to the parameters in the RHS of the contraints. Hint: consider the dual problem.
+
+  \end{Exercise}
+
+
+
+
+\footnote{venim de \url{https://youtu.be/o1pznRt_-y0?t=1603} i \url{https://www.youtube.com/watch?v=yU8updOR87c}}
+
+
+  Solving the dual problem gives a lot of insight into the actual situation.
+
+  \begin{Exercise}*
+  In a company that manufactures two types of bikes, $A$ and $B$, the owners want to maximize the benefits, taking into account that the production depends on a restricted amount of titanium, the time the machines can devote to the work and the manpower, which are all given below:
+  \begin{center}
+  \begin{tabular}{c|c|c|c}
+   & A & B & limit\\
+   \hline
+   Titanium & 50 & 30 & 2000\\
+    Machine time & 6 & 5 & 300\\
+    Labor & 3 & 5 &200\\
+   \hline
+   price & 50 & 60 & \\
+  \end{tabular}
+  \end{center}
+
+  %Check the link https://app.wooclap.com/PDHGSS and answer the questions
+
+
+  \end{Exercise}
+
+
+
+  Find \href{https://github.com/Biocomputing-Teaching/ORcourse/blob/main/code/linear_programming.ipynb}{\em here} a code with the solution using ORtools.
+  \\[10pt]
+  The Sensitivity analysis tool in Excel is nicely explained \href{https://www.youtube.com/watch?v=zKqU5NGE-t0&list=PLjiMsqjDUvBiArYMqCGZSDJNgEMPALdQu&index=1}{\em here}.
+\\[10pt]
+  Notice that in a \href{https://youtu.be/v2ZuKwAaXOI}{non-linear scenario}, what we have identified here as {\em reduced costs} are in fact {\em reduced gradient} (or actual gradient of the optimal solution) while {\em shadow prices} (margin for profit to be obtained by changing 1 unit in each constraint RHS term) correspond to the {\em Lagrange multipliers}.
+
+
+
+%----------------------------------------------------------------------------------------
+
+
+
+
+

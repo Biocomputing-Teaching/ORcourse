@@ -1,0 +1,447 @@
+\section{Session 10: Duality}
+
+material: 
+\begin{itemize}
+    \item duality.pdf
+    \item dualtab.pdf
+\end{itemize}
+
+
+
+\begin{itemize}
+  \item Understanding Dual and Primal problems in LP
+  \item Economic interpretation
+  \item Conditions of optimality
+  \item Resolution of the dual by the primal and penalty method
+\end{itemize}
+
+\footnote{\url{https://www.youtube.com/watch?v=yU8updOR87c}}
+
+  Linear programming problems come in pairs!
+
+  \begin{equation*}
+    \begin{aligned}
+      \text{maximize  } \quad & 4x_1 + x_2 +5x_3 +3x_4 \\
+      \text{subject to }\quad &
+      \left\{
+      \begin{array}{rcl}
+        x_1 - x_2 -x_3 +3x_4 &\leq &1 \\
+        5x_1 + x_2 +3x_3 +8x_4 &\leq &55 \\
+        -x_1 + x_2 +3x_3 -5x_4 &\leq &3 \\
+        x_1,x_2,x_3 &\geq& 0
+      \end{array}
+      \right.
+    \end{aligned}
+  \end{equation*}
+
+note that
+\begin{eqnarray*}
+  y_1(x_1 - x_2 -x_3 +3x_4)&+&\\y_2(5x_1 + x_2 +3x_3 +8x_4)&+&\\y_3(-x_1 + x_2 +3x_3 -5x_4) &\leq& y_1+55y_2+3y_3
+\end{eqnarray*}
+
+
+We see that maximizing the {\bf Primal objective function} $4x_1 + x_2 +5x_3 +3x_4$ is
+  equivalent to minimize the {\bf Dual objective function} $y_1+55y_2+3y_3$:
+
+    \begin{equation*}
+    \begin{aligned}
+      \text{minimize } \quad & y_1+55y_2+3y_3 \\
+      \text{subject to }\quad &
+      \left\{
+      \begin{array}{rcl}
+        y_1 + 5y_2 -y_3 &\geq &4 \\
+        -y_1 +y_2 +y_3 &\geq &1 \\
+        -y_1 +3y_2 +3y_3 &\geq &5 \\
+        3y_1 +8y_2 -5y_3 &\geq &3 \\
+        y_1,y_2,y_3,y_4 &\geq& 0
+      \end{array}
+      \right.
+    \end{aligned}
+  \end{equation*}
+
+
+
+In general, if we can write the LP problem in its {\bf normal formulation}:
+\[
+\begin{rcases}
+\text{min }\quad\uvec{c}^t \uvec{x}\\
+\text{subject to }\quad A\uvec{x}\geq \uvec{b}, \forall x_i\geq0
+\end{rcases} \text{PRIMAL}
+\]
+
+\[
+\begin{rcases}
+\text{max }\quad\uvec{b}^t \uvec{y}\\
+\text{subject to }\quad A^t\uvec{y}\leq \uvec{c}, \forall y_i\geq0
+\end{rcases} \text{DUAL}
+\]
+The dual problem is a transposition of the primal problem. Since any LP can be written in the standard form
+above, any LP has a dual.
+
+  \begin{enumerate}
+    \item if you are asked to minimize $f(x)$, this is equivalent to maximize $-f(x)$;
+    \item add slack/surplus variables if you want to transform an inequality into an equality contraint;
+    \item $a\cdot x=b$ is equivalent to having, simultaneously, $a \cdot x \leq b$ and $a \cdot x \geq b$;
+    \item replace an unconstrained variable $x_i$ by $u_i-v_i$ and impose that $u_i,v_i \geq 0$
+  \end{enumerate}
+  Trick: Leave equality constraints to use the simplex algorithm. Use the inequality constraints for the duality theorem to be used.
+
+\begin{Exercise}
+  Find the dual problem of
+  \begin{equation*}
+  \begin{aligned}
+    \text{maximize } \quad & 3x_1 +2x_2 \\
+    \text{subject to }\quad &
+    \left\{
+    \begin{array}{rcl}
+      2x_1+x_2 &\leq &4 \\
+      2x_1+3x_2 &\leq &6 \\
+      x_1,x_2 &\geq& 0
+    \end{array}
+    \right.
+  \end{aligned}
+\end{equation*}
+Solve it graphically and using Simplex. 
+\end{Exercise}
+
+\footnote{\begin{center}\includegraphics[width=0.8\linewidth]{answer1.png}\end{center}}
+\footnote{\begin{center}\includegraphics[width=0.8\linewidth]{answer3.png}\end{center}}
+\footnote{\begin{center}\includegraphics[width=0.8\linewidth]{answer2.png}\end{center}}
+\footnote{\begin{center}\includegraphics[width=0.8\linewidth]{answer4.png}\end{center}}
+
+\begin{Exercise}
+  Find the dual problem of
+  \begin{equation*}
+  \begin{aligned}
+    \text{minimize } \quad & 4x_1 +4x_2+x_3 \\
+    \text{subject to }\quad &
+    \left\{
+    \begin{array}{rcl}
+      x_1+x_2+x_3 &\leq &2 \\
+      2x_1+x_2 &= &3 \\
+      2x_1+x_2+3x_3 &\geq &3 \\
+      x_1,x_2,x_3 &\geq& 0
+    \end{array}
+    \right.
+  \end{aligned}
+\end{equation*}
+Trick: normalize the problem first: eg $2x_1+x_2=3 \rightarrow \begin{cases}2x_1+x_2 \geq 3\\2x_1+x_2\leq 3\end{cases}$.
+\end{Exercise}
+\footnote{
+\url{https://www.youtube.com/watch?v=wVnr1HhUCT0}
+}
+
+\subsection{Some theory}
+
+\begin{theorem}
+  In the case of linear programming, the dual of the dual is the primal.
+\end{theorem}
+\begin{proof}
+ \[
+\begin{rcases}
+\text{max }\quad\uvec{b}^t \uvec{y}\\
+\text{subject to }\quad A^t\uvec{y}\leq \uvec{c}, \forall y_i\geq0
+\end{rcases} \text{DUAL}
+\]
+is equivalent to
+\[
+\begin{rcases}
+\text{min }\quad-\uvec{b}^t \uvec{y}\\
+\text{subject to }\quad -A^t\uvec{y}\geq -\uvec{c}, \forall y_i\geq0
+\end{rcases} \text{DUAL}
+\]
+where, by taking again the Dual, leads to the original Primal.
+\end{proof}
+
+  Let us retake the example we saw in the last session:
+
+  \begin{equation*}
+    \begin{aligned}
+      \text{maximize } \quad & z = 8x_1+5x_2 \\
+      \text{subject to }\quad &
+      \begin{array}{rcl}
+        x_1 &\leq &150 \\
+        x_2 &\leq &250 \\
+        2x_1+x_2 &\leq &500 \\
+        x_1,x_2 &\geq& 0
+      \end{array}
+    \end{aligned}
+  \end{equation*}
+
+  We found out that, from the initial tableau:
+
+\begin{equation*}
+\begin{array}{cc}
+&\\
+&z \\
+\rightarrow &s \\
+&t \\
+&u\\
+\mathrm{basic}
+\end{array}
+%
+\begin{array}{c|ccccc|c}
+  z & x_1 & x_2 & s & t & u & b \\ \hline
+  1 & -8 & -5 & 0 & 0 & 0 & 0 \\ \hline
+  0 & 1 & 0 & 1 & 0 & 0 & 150  \\
+  0 & 0 & 1 & 0 & 1 & 0 & 250 \\
+  0 & 2 & 1 & 0 & 0 & 1 & 500 \\
+    & \uparrow & & & & &
+\end{array}
+%\end{matrix}
+\end{equation*}
+
+and after applying the different steps of the Simplex method we ended up with the final tableau:
+
+  \begin{equation*}
+  \begin{array}{cc}
+  &\\
+  R_1+5R_4&z \\
+  &x_1 \\
+  \rightarrow R_3-R_4&s \\
+  &x_2\\
+  &\mathrm{basic} \\
+  \end{array}
+  \begin{array}{c|ccccc|c}
+    z & x_1 & x_2 & s & t & u & b \\ \hline
+    1 & 0 & 0 & 0 & 1 & 4 & 2250 \\ \hline
+    0 & 1 & 0 & 0 & -1/2 & 1/2 & 125  \\
+    0 & 0 & 0 & 1 & 1/2 & -1/2 & 25 \\
+    0 & 1 & 0 & 1 & 0 & 0 & 250 \\
+      &  & & \uparrow& & &
+  \end{array}
+  \end{equation*}
+
+Now, if we multiply the original availability of each resource (shown in the original tableau) by its marginal worth (taken from the final tableau) and get the sum, we obtain the optimal objective function value:
+
+\[
+z* = 2250 = 0(150)+1(250)+4(500)
+\]
+
+
+
+
+\begin{theorem}[Weak Duality]
+  In a max LP, the value of primal objective function for any feasible solution is bounded from above by any feasible solution to its dual:
+  \[\bar{z} \leq \bar{w} \]
+  \label{the:weak}
+\end{theorem}
+The statement is analogous to a minimization problem.
+\begin{theorem}[Unboundness property]
+  If primal (dual) problem has an unbounded solution, then the dual (primal) is unfeasible.
+  \[\bar{z} \leq \infty \]
+\end{theorem}
+
+
+
+\begin{theorem}[Strong Duality]
+  If the primal problem has an optimal solution,
+  \[
+  x^* = (x_1^*, \ldots, x_n^*)
+  \]
+  then the dual also has an optimal solution,
+  \[
+  y^* = (y_1^*, \ldots, y_m^*)
+  \]
+and
+\[
+z^* := \sum_j c_j x_j^* = \sum_i b_i y_i^* := w^*
+\]
+\label{the:strong}
+\end{theorem}
+Thus: if feasible objective function values are found for a primal and dual pair of problems, and if these values are equal to each other, then both of the solutions are optimal solutions.
+
+The Shadow prices that appear at the top of the optimal tableau of the primal problem are precisely the optimal values of the dual variables!
+
+  For any two given LP problems:
+\begin{table}
+  \begin{tabular}{c|c|c|c}
+    Primal / Dual & not feasible & unbounded  & has a solution \\\hline
+    not feasible & possible & possible & no \\\hline
+    unbounded & possible & no & no \\\hline
+    has a solution & no & no & same values\\
+  \end{tabular}
+\end{table}
+The simplex algorithm solves the primal and dual problems simultaneously.
+
+  Exactly one of the following mutually exclusive cases always occurs:
+  \begin{itemize}
+    \item Both primal and dual problems are feasible, and both have optimal (and equal) solutions.
+    \item Both primal and dual problems are infeasible (have no feasible solution).
+    \item The primal problem is feasible but unbounded, and the dual problem is infeasible.
+    \item The dual problem is feasible but unbounded, and the primal problem is infeasible.
+  \end{itemize}
+
+\subsection{Complementary slackness}
+
+  Because each decision variable in a primal problem is associated with a constraint in the dual problem, each such variable is also associated with a slack or surplus variable in the dual.
+
+  {\bf Variables in one problem are complementary to constraints in the other.}
+
+  In any solution, if the primal variable is basic (with value $\geq0$, hence having slack, hence being non-binding), then the associated dual variable is non-basic ($=0$, hence having no slack, hence being binding), and viceversa.
+
+
+  \begin{theorem}[Complementary slackness]
+    If in an optimal solution to a LP problem an inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem. 
+    \label{the:CST}
+  \end{theorem}
+
+
+  Let us see how this can be better understood. Let us take a general primal/dual case
+  \[
+\begin{rcases}
+\text{max }\quad\uvec{c}^t \uvec{x}\\
+\text{subject to }\quad A\uvec{x}\leq \uvec{b}, \forall x_i\geq0
+\end{rcases} \text{PRIMAL}
+\]
+
+\[
+\begin{rcases}
+\text{min }\quad\uvec{b}^t \uvec{y}\\
+\text{subject to }\quad A^t\uvec{y}\geq \uvec{c}, \forall y_i\geq0
+\end{rcases} \text{DUAL}
+\]
+
+
+  Let vectors $x_0,y_0$ be feasible solutions for the $(max)$ and the $(min)$ problems, respectively. The weak duality theorem \ref{the:weak} states that (we remove the transpose where it is obvious, for simplicity)
+  \[\text{max} \quad c\cdot x_0 \leq \text{min}\quad b\cdot y_0\]
+
+  Then we can say that (we will not demonstrate it here)
+  \[b\cdot y_0 - c\cdot x_0 = \underbrace{(b-Ax_0)}_u\cdot y_0+\underbrace{(A^ty_0-c)}_v\cdot x_0\]
+  
+  where $u$ is the vector of slack variables in the primal problem and $v$ is the vector of the slack variables in the dual.
+
+
+  Accordin to Theorem \ref{the:strong}, when $x_0,y_0=x^*,y^*$ are optimal solutions, \[b\cdot y^* - c\cdot x^* =0\]
+  This means that in such optimal solutions
+  \[\underbrace{(b-Ax^*)}_{u\geq 0}\cdot y^*+\underbrace{(A^ty^*-c)}_{v\geq 0}\cdot x^*=0\]
+  The fact that all terms are nonnegative implies that 
+  \begin{equation}(b-Ax^*)\cdot y^*=(A^ty^*-c)\cdot x^*=0\label{eq:dual}\end{equation}
+
+  Now let us haver a look at one of these terms:
+  \[(b-Ax^*)\cdot y^*\equiv u\cdot y^*=0\]
+  As the components of the two vectors are nonnegative aswell: $u_1,\ldots,u_m\geq0$ and $y^*_1,\ldots,y^*_m\geq0$, 
+  \[\underbrace{u_1 y_1^*}_{\geq0}+\cdots \underbrace{u_m y_m^*}_{\geq0}=0\]
+  So, each term should be zero!. Now, for each $i=1,\ldots,m$ wemust have at least one of $u_i,y_i^*=0$. So, if $u_i\neq 0 \Rightarrow y_i^*=0$ and the other way around. The same occurs to the other term in Eq.\ref{eq:dual}.
+  
+
+  Thus, Theorem \ref{the:CST} can be reformulated as:
+  \begin{theorem}[Complementary slackness (rewritten)]
+    Suppose we have a primal and dual problems with variables $x_0,y_0$ for the $(max)$ and $(min)$, respectively. Then, $x_0\equiv x^*$ and $y_0\equiv y^*$ if and only if 
+    \begin{equation}(b-Ax^*)\cdot y^*=0\label{eq:CST1}\end{equation}
+    and 
+    \begin{equation}(A^ty^*-c)\cdot x^*=0\label{eq:CST2}\end{equation}
+    \label{the:CST2}
+  \end{theorem}
+
+
+
+  In other words: 
+  \begin{itemize}
+    \item if a variable is positive, then the associated dual constraint must be binding; or
+    \item if a constraint fails to bind, than the associated variable must be zero; but recall that
+    \item it is possible for a primal constraint to be binding while the associated dual variable is equal to zero (no slack in both primal and dual).
+  \end{itemize}
+  {\bf There cannot be slack in both a constraint and the associated dual variable.}
+ 
+ 
+  
+\footnote{Veure exemple pràctic a \url{https://youtu.be/o1pznRt_-y0?t=1603}}
+
+
+  Let us show an example. Imagine that we have the primal problem
+
+  \begin{equation*}
+    \begin{aligned}
+      \text{min } \quad & 12x_1+5x_2+10x_3 \\
+      \text{subject to }\quad &
+      \begin{array}{rcl}
+        x_1-x_2+2x_3 &\geq &10 \\
+        -3x_1+x_2+4x_3 &\geq &-9 \\
+        -x_1+2x_2+3x_3 &\geq &1 \\
+        2x_1-3x_2 &\geq &-2 \\
+        7x_1-x_2-5x_3 &\geq &34 \\
+        x_1,x_2,x_3 &\geq& 0
+      \end{array}
+    \end{aligned}
+  \end{equation*}
+  and we are said that the optimal solution is $x^*=(7,0,3)$. Find the optimal solution to the dual $y^*$.
+
+
+  We build first the dual problem:
+  \begin{equation}
+    \begin{aligned}
+      \text{max } \quad & 10y_1+9y_2+y_3-2y_4+34y_5 \\
+      \text{subject to }\quad &
+      \begin{array}{rcl}
+        y_1-3y_2-y_3+2y_4+7y_5 &\leq &12 \\
+        -y_1+y_2+2y_3-3y_4-y_5&\leq&5\\
+        2y_1+4y_2+3y_3-5y_5&\leq&10\\
+        y_1,y_2,y_3,y_4,y_5 &\geq& 0
+      \end{array}
+    \end{aligned}
+    \label{eq:dual}
+  \end{equation}
+
+
+  \begin{enumerate}
+    \item Find the slack of $(min)$ by replacing the values in the primal problem constraints:
+    \[\begin{array}{rcl}
+      (7-0+2\cdot 3)-10&=&3 \\
+      (-3\cdot 7+0+4\cdot 3)+9&=&0 \\
+      (-7+2\cdot 0+3\cdot 3)-1&=&1\\
+      (2\cdot 7-3\cdot 0)+2&=&16\\
+      (7\cdot 7-0-5\cdot 3)-34&=&0
+    \end{array}\]
+  \item From Eq.\ref{eq:CST1}, $\begin{pmatrix}3\\0\\1\\16\\0\end{pmatrix}\cdot y^*=0$, which gives $y^*_1=y^*_3=y^*_4=0$ and
+  \item from Eq.\ref{eq:CST2}, since $x^*=(7,0,3)$ I know that the slack of the dual should be zero for its first and  third constraints. So, the constraints in the dual (EQ.\ref{eq:dual}) end up being:
+  \[
+  \begin{array}{rcl}
+    -3y_2^*+7y_5^*&=&12\\
+    4y_2^*-5y_5^*&=&10
+  \end{array}\]
+  leading to $y^*=(0,10,0,0,6)$.
+\end{enumerate}
+Follow up: Verify that $c\cdot x^*=b\cdot y^*$.
+
+
+\footnote{veure un exemple ben maco addicional de l'ús de CST a \href{https://youtu.be/o1pznRt_-y0?si=TT3smkbBkT-ED1Sx&t=2086}{text} }
+
+
+  \begin{Exercise}
+    You are feeding animals in a farm.Your animals have some basic requirements for nutrients, and you want to minimize the cost fulfilling those requirements. You need to know:
+    \begin{enumerate}
+      \item What foods do I have avaliable and which is each ones cost?
+      \item What nutrients are needed and which is the nutrients content per food?
+    \end{enumerate}
+    Formulate the problem in an abstract way.
+  \end{Exercise}
+  \begin{Exercise}
+    Come back to the previous problem, but now, there is a seller that tells you she has the pills you need to ensure the nutrients, forgetting about specific food. Reformulate the problem in terms of the maximum revenue the seller company wants. What is the price per pill to maximize her benefits, subject to the constraint that the pills are cheaper than the actual food.
+  \end{Exercise}
+  \begin{Exercise}
+    Rationalize the complementarity slackness theorem within the context of the previous exercise. What does it mean to buy a positive quantity of the first food (primal LP problem) in terms of the constraint related to the first pill (dual problem)?
+  \end{Exercise}
+  \footnote{Problema formulat a les notes I que tinc a material}
+  \begin{Exercise}
+    Just by checking the feasibility of the primal and dual problem for
+    \begin{equation*}
+      \begin{aligned}
+        \text{maximize } \quad & z = x_1-x_2 \\
+        \text{subject to }\quad &
+        \begin{array}{rcl}
+          -2x_1 +x_2 &\leq &2 \\
+          x_1-2x_2 &\leq &2 \\
+          x_1+x_2 &\leq &5 \\
+          x_1,x_2 &\geq& 0
+        \end{array}
+      \end{aligned}
+    \end{equation*}
+    find what is the solution.
+  \end{Exercise}
+
+\footnote{extret les notes duality. Comença per trobar els punts de creuament de les restriccions del p`rimal. Aleshores aplica CS per avaluar què passa al problema dual}
+
+%----------------------------------------------------------------------------------------
+
+
