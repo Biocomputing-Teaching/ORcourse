@@ -12,6 +12,9 @@ scratch
 *.blg
 *.xml
 *.swp
+*.fdb_latexmk
+*.fls
+*.dvi
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
