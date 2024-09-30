@@ -1,0 +1,128 @@
+\mode<presentation> {
+%\mode<handouts> {
+%\mode<article> {
+
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\graphicspath{{../figures}}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{amsmath, amssymb, amsthm, gensymb,mathrsfs}%,eufrak}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{multicol}
+\usepackage{physics}
+\usepackage{tikz}
+
+\newcommand{\uvec}[1]{\ensuremath{\textbf{#1}}}
+%\newcommand{\r1}{\ensuremath{\mathbb{R}}}
+\newcommand{\rn}[1]{\ensuremath{\mathbb{R}^{#1}}}
+
+\newcounter{excounter}
+%\renewcommand{\thefpcounter}{\thechapter.\arabic{fpcounter}}
+%\renewcommand{\thefpcounter}{\thesection.\arabic{fpcounter}}
+\renewcommand{\theexcounter}{\arabic{excounter}}
+
+%\newtheorem{exercici}{Exercici}
+% \newenvironment{exercici}[1]{%
+% \refstepcounter{excounter}%
+% \label{#1}%
+% \noindent\textbf{Exercixi~\theexcounter}%
+% \setbeamercolor{block title example}{fg=blue,bg=red!75!black}%
+% \begin{example}#2[#1]}{\end{example}
+% \vspace{\baselineskip}
+% }%
+% {}%
+
+\newenvironment{exercici}[1]{%
+\refstepcounter{excounter}%
+\label{#1}%
+\noindent\textbf{Exercici~\theexcounter}%
+}%
+{}%
+
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{definicio}{Definició}[section]
+
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+%\usepackage{lmodern}
+
+
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{language=python,
+    basicstyle=\ttfamily,
+    commentstyle=\color{red},
+    keywordstyle=\color{blue},
+    captionpos=b,
+    backgroundcolor=\color{lightgray},
+    showstringspaces=false
+}
+
+\renewcommand{\lstlistingname}{Code}
+
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+\setbeamertemplate{caption}[numbered]%   
