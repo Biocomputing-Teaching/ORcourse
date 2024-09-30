@@ -1,0 +1,81 @@
+\Exercise Optimization of $f(x, y) = x^2 - y$ subject to $x^2 + y^2 = 4$
+
+\Answer 
+
+We will use the method of Lagrange multipliers.
+
+{\bf Step 1: Define the Lagrange Function}
+Define the constraint as $g(x, y) = x^2 + y^2 - 4 = 0$. The Lagrange function is then:
+\[
+\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda \cdot g(x, y) = x^2 - y + \lambda(x^2 + y^2 - 4).
+\]
+
+{\bf Step 2: Compute the Partial Derivatives}
+We now compute the partial derivatives of $\mathcal{L}(x, y, \lambda)$ with respect to $x$, $y$, and $\lambda$:
+
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial x} &= 2x + \lambda \cdot 2x = 2x(1 + \lambda) = 0, \\
+\frac{\partial \mathcal{L}}{\partial y} &= -1 + \lambda \cdot 2y = 0 \quad \Rightarrow \quad \lambda = \frac{1}{2y}, \\
+\frac{\partial \mathcal{L}}{\partial \lambda} &= x^2 + y^2 - 4 = 0.
+\end{align*}
+
+{\bf Step 3: Solve the Equations}
+
+\subparagraph{From $\frac{\partial \mathcal{L}}{\partial x} = 0$:}
+\[
+2x(1 + \lambda) = 0.
+\]
+This gives two possibilities:
+\begin{itemize}
+  \item $x = 0$, or
+  \item $1 + \lambda = 0 \quad \Rightarrow \quad \lambda = -1$.
+\end{itemize}
+
+
+\subparagraph{Case 1: $x = 0$}
+Substitute $x = 0$ into the constraint equation $x^2 + y^2 = 4$:
+\[
+0^2 + y^2 = 4 \quad \Rightarrow \quad y^2 = 4 \quad \Rightarrow \quad y = \pm 2.
+\]
+For $y = 2$, substitute into $f(x, y) = x^2 - y$:
+\[
+f(0, 2) = 0^2 - 2 = -2.
+\]
+For $y = -2$, substitute into $f(x, y)$:
+\[
+f(0, -2) = 0^2 - (-2) = 2.
+\]
+
+\subparagraph{Case 2: $\lambda = -1$}
+Substitute $\lambda = -1$ into $\lambda = \frac{1}{2y}$:
+\[
+-1 = \frac{1}{2y} \quad \Rightarrow \quad y = -\frac{1}{2}.
+\]
+Now, substitute $y = -\frac{1}{2}$ into the constraint equation $x^2 + y^2 = 4$:
+\[
+x^2 + \left(-\frac{1}{2}\right)^2 = 4 \quad \Rightarrow \quad x^2 + \frac{1}{4} = 4 \quad \Rightarrow \quad x^2 = \frac{15}{4} \quad \Rightarrow \quad x = \pm \frac{\sqrt{15}}{2}.
+\]
+Now, calculate $f(x, y) = x^2 - y$ for $y = -\frac{1}{2}$ and $x = \pm \frac{\sqrt{15}}{2}$:
+
+For $x = \frac{\sqrt{15}}{2}$:
+\[
+f\left(\frac{\sqrt{15}}{2}, -\frac{1}{2}\right) = \left(\frac{\sqrt{15}}{2}\right)^2 - \left(-\frac{1}{2}\right) = \frac{15}{4} + \frac{1}{2} = \frac{17}{4}.
+\]
+For $x = -\frac{\sqrt{15}}{2}$:
+\[
+f\left(-\frac{\sqrt{15}}{2}, -\frac{1}{2}\right) = \left(-\frac{\sqrt{15}}{2}\right)^2 - \left(-\frac{1}{2}\right) = \frac{15}{4} + \frac{1}{2} = \frac{17}{4}.
+\]
+
+{\bf Step 4: Compare the Results}
+We now compare the function values:
+\begin{itemize}
+    \item For $(0, 2)$: $f(0, 2) = -2$.
+    \item For $(0, -2)$: $f(0, -2) = 2$.
+    \item For $\left(\frac{\sqrt{15}}{2}, -\frac{1}{2}\right)$ and $\left(-\frac{\sqrt{15}}{2}, -\frac{1}{2}\right)$: $f = \frac{17}{4} \approx 4.25$.
+\end{itemize}
+
+{\bf Conclusion}
+\begin{itemize}
+    \item The maximum value is $f = \frac{17}{4} \approx 4.25$ at $\left(\frac{\sqrt{15}}{2}, -\frac{1}{2}\right)$ and $\left(-\frac{\sqrt{15}}{2}, -\frac{1}{2}\right)$.
+    \item The minimum value is $f = -2$ at $(0, 2)$.
+\end{itemize}

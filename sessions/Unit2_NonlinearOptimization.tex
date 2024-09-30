@@ -32,7 +32,7 @@ Study Abroad. Operations Research\\
 \medskip
 \textit{jordi.villa@uvic.cat}
 }
-\date{16-17/09, 2024}
+\date{16-30/09, 2024}
 \logo{\includegraphics[width=.1\textwidth]{FCTE}}
 \begin{document}
 
@@ -49,12 +49,10 @@ Study Abroad. Operations Research\\
 \begin{frame}
 \frametitle{Learning outcomes}
 \begin{itemize}
-  \item Learn about the origins and applications of Operations Research
-  \item Understand system modelling principles
-  \item Understand algorithm efficiency and problem complexity
-  \item Contrast between the optimality and practicality
-  \item Learn about software for operations Research
-  \item Introduction to the Python/Colab environment
+  \item To understand the difference between linear and non-linear problems and the practical mathematical consequences to work in each of them.
+  \item To get familiar with main analytical and computational techniques for both unconstrained and constrained non-linear optimization problems.
+  \item To identify the effect of constrains in an optimization problem, setting up standard forms to describe it.
+  \item To grasp the effect of equalities and inequalities in non-linear constrained problems.
 \end{itemize}
 \end{frame}
 
@@ -149,7 +147,7 @@ Study Abroad. Operations Research\\
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
 
-\subsection{Concavity/convexity}
+\section{Concavity/convexity}
 
 \begin{frame}[allowframebreaks]
   For a continuous convex function, given any two points $x_1$ and $x_2$:
@@ -327,7 +325,7 @@ Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \
 
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
-\subsection{Iterative methods}
+\section{Iterative methods}
 
 \begin{frame}{One-Dimensional line search}
 Let us assume a concave function. First, establish error tolerance $\epsilon$. Then:
@@ -403,7 +401,7 @@ Procedure of the Golden search method, given a function  to be minimized, $f(x)$
 \end{frame}
 
 
-\subsection{Constrained optimization}
+\section{Constrained optimization}
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
 \begin{frame}
@@ -430,9 +428,9 @@ In the previous section we have considered functions of several variables that a
   \[
     dg=\frac{\partial g}{\partial x} dx +\frac{\partial g}{\partial y}dy=0
   \]
-  Let us consider a parameter $\lambda$ (the {\it Lagrange multiplier}) and obtain an expression for which $dx$ and $dy$ are independent:
+  Let us consider a parameter $\lambda$ (the {\it Lagrange multiplier}) and obtain an expression for which $dx$ and $dy$ {\em are indeed} independent:
   \[
-    d(f+\lambda g)=(\frac{\partial f}{\partial x}+\lambda \frac{\partial g}{\partial x}) dx +(\frac{\partial f}{\partial y}+\lambda \frac{\partial g}{\partial y})dy=0
+    d(f+\lambda g)=\left(\frac{\partial f}{\partial x}+\lambda \frac{\partial g}{\partial x}\right) dx +\left(\frac{\partial f}{\partial y}+\lambda \frac{\partial g}{\partial y}\right)dy=0
   \]
   Now:
   \begin{eqnarray*}
