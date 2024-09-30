@@ -1,4 +1,4 @@
-\Exercise Maximize $f(x,y)=xy$ subject to $100 \geq x+y$ and $x\leq 40$
+\Exercise Maximize $f(x,y)=xy$ subject to $100 \geq x+y$ and $x\leq 40$ and $(x,y)\geq0$.
 
 \Answer 
 
@@ -8,22 +8,22 @@ For an optimization problem in its standard form:
 
 \begin{equation*}
   \begin{aligned}
-    \text{max} \, f(x) \\
+    \text{max} \, f(\uvec{x}) \\
     \text{s.t.}\quad &
     \begin{array}{rcl}
-      g_i(x)-b_i  & \leq & 0 \quad i=1,\ldots,k \\
-      g_i(x)-b_i  & = & 0 \quad i=k+1,\ldots,m \\
+      g_i(\uvec{x})-b_i  & \leq & 0 \quad i=1,\ldots,k \\
+      g_i(\uvec{x})-b_i  & = & 0 \quad i=k+1,\ldots,m \\
     \end{array}
   \end{aligned}
 \end{equation*}
 
-There are 4 KKT conditions for optimal primal ($x4$) and dual ($\lambda$) variables. If $x^*$ denotes optimal values:
+There are 4 KKT conditions for optimal primal ($\uvec{x}$) and dual ($\lambda$) variables. If $\uvec{x}^*$ denotes optimal values:
 \begin{enumerate}
-  \item Primal feasibility: all constraints must be satisfied: $g_i(x^*)-b_i$ is feasible. Applies to both equality and non-equality constraints.
+  \item Primal feasibility: all constraints must be satisfied: $g_i(\uvec{x}^*)-b_i$ is feasible. Applies to both equality and non-equality constraints.
   \item Gradient condition or No feasible descent: No possible improvement at the solution: 
-  \[ \nabla f(x^*)-\sum_{i=1}^m \lambda_i^* \nabla g_i (x^*)=0\]
+  \[ \nabla f(\uvec{x}^*)-\sum_{i=1}^m \lambda_i^* \nabla g_i (\uvec{x}^*)=0\]
   \item Complementariety slackness: 
-  \[\lambda_i^* (g_i(x^*)-b_i)=0\]
+  \[\lambda_i^* (g_i(\uvec{x}^*)-b_i)=0\]
   \item Dual feasibility: $\lambda_i^*\geq 0$
 \end{enumerate}
 
@@ -99,7 +99,7 @@ We will go through the different conditions:
 
   We will start by checking Eq. \ref{Eq:KKT3}:
   \begin{itemize}
-    \item  Let us seeg what occurs if $\lambda_1=0$. Then, from Eq. \ref{Eq:KKT2}, $x+\lambda_4=0$ which implies that $x=\lambda_4=0$\footnote{Recall that both variables and multiplieras must be positive or zero, so, the only possibility for the equation to fullfill is that both are zero.}. But, then, from Eq. \ref{Eq:KKT4} we obtain that $\lambda_2=0$ which, using Eq. \ref{Eq:KKT1} gives $y+\lambda_3=0\Rightarrow y=\lambda_3=0$. Indeed, the KKT conditions are satisfied when all variables and multipliers are zero, but it is not a maximum of the function (see figure above).
+    \item  Let us see what occurs if $\lambda_1=0$. Then, from Eq. \ref{Eq:KKT2}, $x+\lambda_4=0$ which implies that $x=\lambda_4=0$\footnote{Recall that both variables and multiplieras must be positive or zero, so, the only possibility for the equation to fullfill is that both are zero.}. But, then, from Eq. \ref{Eq:KKT4} we obtain that $\lambda_2=0$ which, using Eq. \ref{Eq:KKT1} gives $y+\lambda_3=0\Rightarrow y=\lambda_3=0$. Indeed, the KKT conditions are satisfied when all variables and multipliers are zero, but it is not a maximum of the function (see figure above).
     \item So, let us see what happens if $x+y-100=0$ and consider the two possibilities for $x$:
     \begin{description}
       \item[Case $x=0$:] Then, $y=100$, which would lead (Eq. \ref{Eq:KKT6}) to $\lambda_4=0$ and (Eq. \ref{Eq:KKT2}) to $x=\lambda_1=0$, that was discussed in the previous item. So, we need top explore the other possibility for $x$.
