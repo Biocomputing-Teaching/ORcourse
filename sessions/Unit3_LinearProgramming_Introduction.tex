@@ -32,7 +32,7 @@ Study Abroad. Operations Research\\
 \medskip
 \textit{jordi.villa@uvic.cat}
 }
-\date{14/10, 2024}
+\date{October 14th, 2024}
 \logo{\includegraphics[width=.1\textwidth]{FCTE}}
 \begin{document}
 
@@ -50,7 +50,7 @@ Study Abroad. Operations Research\\
 \frametitle{Learning outcomes}
 \begin{itemize}
   \item Learn how to formulate a linear programming model
-  \item Get familiar with the terms feasible region, feasiblke solutions and optimal feasible solutions
+  \item Get familiar with the terms feasible region, feasible solutions and optimal feasible solutions
   \item Managing graphical solution of the linear programming model
   \item Identify models with unique, multiple or no optimal feasible solutions
   \item Introducing the Simplex method
@@ -62,9 +62,7 @@ Study Abroad. Operations Research\\
 \begin{frame}{The linear programming model}
 
   \begin{block}{Linear programming}
-    Linear programs have a linear objective function and linear constraints, which may
-    include both equalities and inequalities. The feasible set is a polytope, that is, a convex,
-    connected set with ﬂat, polygonal faces. The contours of the objective function are planar.
+    Linear programs consist of a linear objective function and linear constraints, which can include both equalities and inequalities. The feasible region forms a polytope —a convex, connected set with flat, polygonal faces. The contours of the objective function are flat planes.
    \cite{nocedal}
   \end{block}
   A wide variety of applications can be modeled with linear programming.
@@ -94,6 +92,11 @@ Study Abroad. Operations Research\\
 
   \href{https://es.mathworks.com/help/slcontrol/ug/linearizing-nonlinear-models.html}{Matlab example}
   \end{center}
+\[
+f(x) = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n
+\]
+
+Linearization of \( f(x) = x^2 \) around \( x = 1 \): $f(x) \approx 1 + 2(x - 1) $
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Problem formulation}
@@ -289,15 +292,9 @@ Study Abroad. Operations Research\\
 
 \end{frame}
 
-\begin{frame}[t]{E4. LP program}
-\begin{program}
-  E4. Build a Python code using Google OR tools' MPSolver interface to solve an arbitrary LP problem. Test it with the different exercises in this presentation.
-\end{program}
-\end{frame}
-
 \section{General solution method}
 
-\begin{frame}
+\begin{frame}{General solution method of an LP problem}
   \begin{itemize}
     \item If an optimal solution exists, it occurs at an extreme point of the feasible region.
     \item Only the finitely many extreme points need be examined (rather than all the points in the feasible region).
