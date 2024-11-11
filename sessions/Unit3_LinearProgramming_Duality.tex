@@ -196,7 +196,7 @@ Trick: normalize the problem first: eg $2x_1+x_2=3 \rightarrow \begin{cases}2x_1
 \begin{rcases}
 \text{max }\quad\uvec{b}^t \uvec{y}\\
 \text{subject to }\quad A^t\uvec{y}\leq \uvec{c}, \forall y_i\geq0
-\end{rcases} \text{DUAL}
+\end{rcases} \text{PRIMAL}
 \]
 is equivalent to
 \[
@@ -264,8 +264,7 @@ and after applying the different steps of the Simplex method we ended up with th
     1 & 0 & 0 & 0 & 1 & 4 & 2250 \\ \hline
     0 & 1 & 0 & 0 & -1/2 & 1/2 & 125  \\
     0 & 0 & 0 & 1 & 1/2 & -1/2 & 25 \\
-    0 & 1 & 0 & 1 & 0 & 0 & 250 \\
-      &  & & \uparrow& & &
+    0 & 1 & 1 & 0 & 0 & 0 & 250 
   \end{array}
   \end{equation*}
 
@@ -382,7 +381,7 @@ The simplex algorithm solves the primal and dual problems simultaneously.
 
   \framebreak
 
-  Accordin to Theorem \ref{the:strong}, when $x_0,y_0=x^*,y^*$ are optimal solutions, \[b\cdot y^* - c\cdot x^* =0\]
+  According to Theorem \ref{the:strong}, when $x_0,y_0=x^*,y^*$ are optimal solutions, \[b\cdot y^* - c\cdot x^* =0\]
   This means that in such optimal solutions
   \[\underbrace{(b-Ax^*)}_{u\geq 0}\cdot y^*+\underbrace{(A^ty^*-c)}_{v\geq 0}\cdot x^*=0\]
   The fact that all terms are nonnegative implies that 
@@ -393,7 +392,7 @@ The simplex algorithm solves the primal and dual problems simultaneously.
   \[(b-Ax^*)\cdot y^*\equiv u\cdot y^*=0\]
   As the components of the two vectors are nonnegative aswell: $u_1,\ldots,u_m\geq0$ and $y^*_1,\ldots,y^*_m\geq0$, 
   \[\underbrace{u_1 y_1^*}_{\geq0}+\cdots \underbrace{u_m y_m^*}_{\geq0}=0\]
-  So, each term should be zero!. Now, for each $i=1,\ldots,m$ wemust have at least one of $u_i,y_i^*=0$. So, if $u_i\neq 0 \Rightarrow y_i^*=0$ and the other way around. The same occurs to the other term in Eq.\ref{eq:dual}.
+  So, each term should be zero!. Now, for each $i=1,\ldots,m$ we must have at least one of $u_i,y_i^*=0$. So, if $u_i\neq 0 \Rightarrow y_i^*=0$ and the other way around. The same occurs to the other term in Eq.\ref{eq:dual}.
   
   \framebreak 
 
