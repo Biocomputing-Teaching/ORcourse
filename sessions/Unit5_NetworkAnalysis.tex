@@ -80,6 +80,8 @@ Study Abroad. Operations Research\\
 \end{center}
 \end{frame}
 
+
+
 \begin{frame}{Introduction: Examples}
 \begin{itemize}
     \item Systems of highways, railroads, shipping lanes, or aviation patterns, where some supply of a commodity is transported or distributed to satisfy a demand;
@@ -450,6 +452,111 @@ menting path, and the current flow of 14 is optimal\cite{carter}}
 \end{frame}
 
 \section{Minimum Cost Network Flow}
+
+\subsection{{General formulation}}
+
+\begin{frame}[allowframebreaks]{General formulation of the MCF Problem}
+    \textbf{Problem Statement:}
+    \begin{itemize}
+        \item Given a directed graph \( G = (N, A) \), where \( N \) is the set of nodes and \( A \) is the set of arcs.
+        \item Each arc \( (i, j) \in A \) has:
+        \begin{itemize}
+            \item A cost \( c_{ij} \): cost per unit flow.
+            \item A capacity \( u_{ij} \): maximum flow allowed.
+        \end{itemize}
+        \item Each node \( i \in N \) has a supply/demand value \( b_i \), where:
+        \begin{align*}
+            b_i > 0 & \quad \text{(supply)} \\
+            b_i < 0 & \quad \text{(demand)} \\
+            b_i = 0 & \quad \text{(transshipment node).}
+        \end{align*}
+    \end{itemize}
+
+    \textbf{Objective:} Minimize the total cost of flow:
+    \[
+    \min \sum_{(i,j) \in A} c_{ij} x_{ij}
+    \]
+    Subject to:
+    \begin{itemize}
+        \item Capacity constraints: \( 0 \leq x_{ij} \leq u_{ij} \) for all \( (i, j) \in A \).
+        \item Flow balance equations: \( \sum_{j \in N} x_{ij} - \sum_{j \in N} x_{ji} = b_i \) for all \( i \in N \).
+    \end{itemize}
+\end{frame}
+
+% Slide 2: Example with TikZ Schema
+\begin{frame}{Example}
+    \begin{center}
+        \begin{tikzpicture}[node distance=3.3cm, auto]
+            % Nodes
+            \node[circle, draw](A) {1};
+            \node[circle, draw, right of=A](B) {2};
+            \node[circle, draw, below of=A](C) {3};
+            \node[circle, draw, right of=C](D) {4};
+            \node[circle, draw, below of=D](E) {5};
+            % Edges
+            \draw[->] (A) -- (B) node[midway, above] {$c_{12}=3, u_{12}=5$};
+            \draw[->] (A) -- (C) node[midway, left] {$c_{13}=1, u_{13}=8$};
+            \draw[->] (B) -- (D) node[midway, right] {$c_{24}=4, u_{24}=6$};
+            \draw[->] (C) -- (D) node[midway, above] {$c_{34}=2, u_{34}=\infty$};
+            \draw[->] (C) -- (E) node[midway, left] {$c_{35}=3, u_{35}=9$};
+            \draw[->] (D) -- (E) node[midway, right] {$c_{45}=1, u_{45}=10$};
+        \end{tikzpicture}
+    \end{center}
+
+  \end{frame}
+
+  % Slide 2: Example with TikZ Schema
+  \begin{frame}{Formulation}
+   
+
+    \textbf{Formulation:}
+    \[
+    \min 3x_{12} + 1x_{13} + 4x_{24} + 2x_{34} + 3x_{35} + 1x_{45}
+    \]
+    Subject to:
+    \begin{align*}
+        x_{12} + x_{13} &= b_1 = 5 \quad \text{(supply at node 1)} \\
+        x_{12} - x_{24} &= b_2 = 0 \quad \text{(transshipment at node 2)} \\
+        x_{13} - x_{34} - x_{35} &= b_3 = 0 \quad \text{(transshipment at node 3)} \\
+        x_{24} + x_{34} - x_{45} &= b_4 = 0 \quad \text{(transshipment at node 4)} \\
+        x_{35} + x_{45} &= b_5 = -5 \quad \text{(demand at node 5)}
+    \end{align*}
+    Capacity constraints:
+    \[
+    0 \leq x_{ij} \leq u_{ij} \quad \forall (i,j) \in A
+    \]
+\end{frame}
+
+% Slide 3: Node-Arc Incidence Matrix as a Table
+\begin{frame}[allowframebreaks]{Node-Arc Incidence Matrix}
+    \textbf{Node-Arc Matrix:}
+    \[
+    \begin{array}{c|cccccc|c}
+        \text{Node} & (1,2) & (1,3) & (2,4) & (3,4) & (3,5) & (4,5) & \text{RHS (b)} \\ \hline
+        1 & 1 & 1 & 0 & 0 & 0 & 0 & 5 \\
+        2 & -1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+        3 & 0 & -1 & 0 & 1 & 1 & 0 & 0 \\
+        4 & 0 & 0 & -1 & -1 & 0 & 1 & 0 \\
+        5 & 0 & 0 & 0 & 0 & -1 & -1 & -5 \\ \hline
+        \text{Capacities (u)} & 5 & 8 & 6 & 7 & 9 & 10 & - \\
+        \text{Costs (c)} & 3 & 1 & 4 & 2 & 3 & 1 & - \\
+    \end{array}
+    \]
+
+    \framebreak
+
+    \textbf{Flow Balance Equations:}
+    \[
+    A \cdot \mathbf{x} = \mathbf{b}, \quad 0 \leq \mathbf{x} \leq \mathbf{u}
+    \]
+    where:
+    \begin{itemize}
+        \item \( \mathbf{x} = [x_{12}, x_{13}, x_{24}, x_{34}, x_{35}, x_{45}]^T \) (flows).
+        \item \( \mathbf{b} = [5, 0, 0, 0, -5]^T \) (supplies/demands).
+    \end{itemize}
+\end{frame}
+
+\subsection{Transportation problem}
 
 \begin{frame}{Transportation problem}
 \begin{itemize}
