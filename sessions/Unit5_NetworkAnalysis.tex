@@ -434,6 +434,86 @@ In the fifth iteration, we can label all nodes except G. Therefore, there is no 
 menting path, and the current flow of 14 is optimal\cite{carter}}
 \end{frame}
 
+\begin{frame}[allowframebreaks]
+
+
+We aim to find the \textbf{maximum flow} from \( A \) (source) to \( G \) (sink) in the given network.
+
+\textbf{Step-by-Step Ford-Fulkerson Algorithm}
+The capacities of each edge are shown in the graph. We start with an initial flow of 0 and iteratively find augmenting paths until no more can be found.
+
+\subsubsection*{Step 1: Augmenting Path 1}
+An augmenting path is \( A \to C \to F \to G \) with a bottleneck capacity of:
+\[
+\min(8, 8, 6) = 6.
+\]
+We augment this flow along the path and update the residual capacities:
+
+\begin{itemize}
+    \item \( A \to C: 8 - 6 = 2 \) (residual capacity).
+    \item \( C \to F: 8 - 6 = 2 \).
+    \item \( F \to G: 6 - 6 = 0 \).
+\end{itemize}
+
+The current total flow is now:
+\[
+\text{Total flow} = 6.
+\]
+
+\textbf{Step 2: Augmenting Path 2}
+Next, we find the augmenting path \( A \to B \to E \to G \) with a bottleneck capacity of:
+\[
+\min(5, 10, 4) = 4.
+\]
+Augmenting this flow and updating residual capacities:
+\begin{itemize}
+    \item \( A \to B: 5 - 4 = 1 \).
+    \item \( B \to E: 10 - 4 = 6 \).
+    \item \( E \to G: 4 - 4 = 0 \).
+\end{itemize}
+
+The current total flow is now:
+\[
+\text{Total flow} = 6 + 4 = 10.
+\]
+
+\textbf{Step 3: Augmenting Path 3}
+We find another augmenting path \( A \to C \to D \to E \to G \) with a bottleneck capacity of:
+\[
+\min(2, 4, 6, 4) = 2.
+\]
+Augmenting this flow and updating residual capacities:
+\begin{itemize}
+    \item \( A \to C: 2 - 2 = 0 \).
+    \item \( C \to D: 4 - 2 = 2 \).
+    \item \( D \to E: 6 - 2 = 4 \).
+    \item \( E \to G: 4 - 2 = 2 \).
+\end{itemize}
+
+The current total flow is now:
+\[
+\text{Total flow} = 10 + 2 = 12.
+\]
+
+\textbf{Step 4: No More Augmenting Paths}
+At this point, no more augmenting paths exist in the residual network. The algorithm terminates.
+
+\textbf{Maximum Flow}
+The maximum flow from \( A \) to \( G \) is:
+\[
+\boxed{12}.
+\]
+
+\textbf{Verification: Flow Conservation and Saturation}
+We verify that:
+\begin{itemize}
+    \item \textbf{Flow conservation} holds at all intermediate nodes (\( B, C, D, E, F \)).
+    \item The flows on edges do not exceed their capacities.
+\end{itemize}
+
+
+\end{frame}
+
 \begin{frame}
   \begin{itemize}
     \item In any network, there is always a bottleneck that in some sense impedes the flow through the network. 
