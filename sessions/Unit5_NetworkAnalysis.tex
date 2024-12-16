@@ -641,8 +641,8 @@ We verify that:
 \begin{frame}{Transportation problem}
 \begin{itemize}
   \item Useful when there are costs associated with the flow, given a link capacity. 
-  \item Let us assume that every node is a source (supply) and a sink (demand). Imagine a distributor with several warehouses and a group of costumers. Serving each customer from a given warehouse has an associated cost.
-  \item For $m$ supply nodes, each providing $s_i$ suplly,  and $n$ demand nodes, each demanding $d_j$. Assuming that the total demand eaquals the total supply: $\sum_{i=1}^m s_i = \sum_{j=1}^n d_j$ we aim at satisfying the demand using the available supply minimizing cost routes.
+  \item Let us assume that every node is a source (supply) and a sink (demand). Imagine a distributor with several warehouses and a group of costumers. Serving each customer from a given warehouse has an associated cost. \textbf{Bipartite graph}.
+  \item For $m$ supply nodes, each providing $s_i$ suplly,  and $n$ demand nodes, each demanding $d_j$. Assuming that the total demand equals the total supply: $\sum_{i=1}^m s_i = \sum_{j=1}^n d_j$ we aim at satisfying the demand using the available supply minimizing cost routes.
 \end{itemize}
 \end{frame}
 
@@ -675,11 +675,11 @@ We verify that:
 
 \begin{frame}{Optimizing}
 \begin{enumerate}
-  \item Finding initial solution.
+  \item Finding initial solution. Note that the network structure simplifies the solution by Simplex, as we do not need artificial variables nor, thus, a two-phase solution.
   \begin{itemize}
-  \item Northwest corner rule
-  \item Minimum cost method
-  \item Minimum "row" cost method
+  \item Northwest corner rule. Do not pay atention to cost. Always check $m+n-1$ cells (independent variables $\equiv$ non basic variables) for a FS.
+  \item Minimum cost method. Start by minimum cost cell at every step.
+  \item Minimum "row" cost method. Start in the minimal cost cell in the first row.
   \item Vogel's method (opportunity cost)
   \end{itemize}
   \item Transportation simplex
@@ -702,6 +702,7 @@ We verify that:
     \item $\sum_i \sum_j x_{ij} c'_{ij}=0$
     \item Check how some costs are now negative in non-basic cells. 
     \item If we increase the number of units in those non-basic cells from 0 to some value, reducing at the same time the number of units in the basic cells, we can reduce the overall cost $\sum_i \sum_j x_{ij} c_{ij}$
+    \item Reduced costs are now zero in all basic variables in the reduced system.
   \end{itemize} 
 
 \end{frame}
