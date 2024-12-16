@@ -65,10 +65,11 @@ Study Abroad. Operations Research\\
 \end{itemize}
 \end{frame}
 
+\section{The concept}
 \begin{frame}{The concept}
 \begin{itemize}
   \item Problems in which the feasible set is composed of only integer values.
-  \item The feasible set is neither continuous nor feasible.
+  \item The feasible set is neither continuous nor convex.
   \item NP-hard problems in general.
   \item Integer problems that have a network structure are easy to solve using the Simplex method (assignment and matching problems, transportation and transshipment problems, and network flow problems always produce integer results, provided that the problem bounds are integers).
   \item Rounding can be effective in some problems and clearly not in others:
@@ -105,6 +106,7 @@ Study Abroad. Operations Research\\
     Graphical representation of a typical 2 dimensional integer programming\cite{carter}.
   \end{frame}
 
+\section{IP examples}
 
   \begin{frame}
     \frametitle{Integer problem examples}
@@ -117,7 +119,7 @@ Study Abroad. Operations Research\\
   
   \end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}
   \frametitle{\href{https://fastercapital.com/content/Optimization--Solving-Complex-Problems-with-Zero-One-Integer-Programming.html}{Zero-One (0-1) scheduling problem}}
 
   {\bf Airline crew scheduling problem}: The airlines first design a flight schedule composed of a large number of {\em flight legs} (specific flight on a specific piece of equipment, such as a 747 from New York to Chicago departing at 6:27 a.m.). A flight crew is a complete set of people, including pilots, navigator, and flight attendants who are trained for a specific airplane. A work schedule or rotation is a collection of flight legs that are feasible for a flight crew, and that normally terminate at the point of origin. Variables $x_{ij}$ have value 1 if flight leg $i$ is assigned to crew $j$. All flight legs should be covered at minimum total cost. 
@@ -148,6 +150,20 @@ Study Abroad. Operations Research\\
   \end{Exercise}
 
 \end{frame}
+
+
+\begin{frame}{Applications of the Traveling Salesman Problem (TSP)}
+  \begin{itemize}
+      \item \textbf{Logistics and Supply Chain:} Delivery route optimization for couriers (e.g., FedEx, UPS), and minimizing travel distances for food delivery services (e.g., Glovo).
+      \item \textbf{Manufacturing:} Efficient routing of robotic arms in assembly lines, and optimal sequencing of drilling or cutting operations in circuit board manufacturing.
+      \item \textbf{Telecommunications:} Designing optimal fiber optic or cable routing networks, and planning routes for signal maintenance teams.
+      \item \textbf{Travel and Tourism:} Planning shortest tour routes for sightseeing in cities, and organizing efficient itineraries for travel agencies.
+      \item \textbf{Biology and Genetics:} DNA sequencing, where TSP helps align fragments of genetic material.
+      \item \textbf{Other Examples:} School bus routing, and urban planning and traffic management.
+  \end{itemize}
+\end{frame}
+
+\section{Solving integer problems}
 
 \begin{frame}
   \frametitle{Solving Integer problems}
@@ -192,10 +208,6 @@ Study Abroad. Operations Research\\
 
 \end{frame}
 
-
-
-
-\section{References}
 
 \input{Biblio.tex}
 %----------------------------------------------------------------------------------------
