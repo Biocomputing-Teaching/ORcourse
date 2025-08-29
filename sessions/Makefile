@@ -1,18 +1,23 @@
-TEXFILES := $(wildcard *.tex)
-PDFFILES := $(TEXFILES:.tex=.pdf)
+TEXFILES := $(wildcard Unit*.tex)
+PDFFILES := $(patsubst %.tex,../pdfs/%.pdf,$(TEXFILES))
 
 all: $(PDFFILES)
 	@echo "Done!"
-	@echo "Compiled PDFs:" $(PDFFILES) 
-	 
-%.pdf: %.tex ../tools/Biblio.tex ../tools/Refs.tex
-	lualatex $< 
-#	lualatex $< 
+	@echo "Compiled PDFs:" $(PDFFILES)
 
- .PHONY: clean 
+# regla genèrica
+../pdfs/%.pdf: %.tex Biblio.tex Refs.tex OR_Common.tex
+	@echo "Compilant $< → $@"
+	latexmk -silent -pdf -output-directory=../pdfs $<
 
- clean: 
-	rm -f *.aux *.log *.out *.nav *.snm *.toc
+%: ../pdfs/%.pdf
+	@true
 
- cleanpdf: 
-	rm -f *.pdf
+.PHONY: clean cleanpdf
+
+clean:
+	latexmk -C
+	rm -f ../pdfs/*.aux ../pdfs/*.log ../pdfs/*.bbl ../pdfs/*.blg ../pdfs/*.out ../pdfs/*.nav ../pdfs/*.snm ../pdfs/*.toc ../pdfs/*.fls ../pdfs/*.fdb_latexmk 
+
+cleanpdf:
+	rm -f ../pdfs/Unit*.pdf

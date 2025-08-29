@@ -1,0 +1,1468 @@
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Aug 29 15:25:53 2025
+
+# Variables
+
+# default
+PREPROCESS.S = $(CC) -E $(CPPFLAGS)
+# default
+COMPILE.m = $(OBJC) $(OBJCFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# environment
+MEMORY_PRESSURE_WRITE = c29tZSAyMDAwMDAgMjAwMDAwMAA=
+# environment
+SLURM_CONF = /home/jordivilla/slurm.conf
+# default
+ARFLAGS = rv
+# default
+AS = as
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+FONTCONFIG_PATH = /etc/fonts
+# default
+AR = ar
+# environment
+HOMEBREW_PREFIX = /home/linuxbrew/.linuxbrew
+# environment
+GNUSTEP_MAKEFILES = /usr/GNUstep/System/Library/Makefiles
+# default
+OBJC = cc
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+QTOOLS_HOME = /home/jordivilla/GitHub/others/qtools
+# default
+LINK.S = $(CC) $(ASFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_MACH)
+# environment
+SCHRODINGER = /opt/schrodinger2023-4
+# environment
+XML_CATALOG_FILES = file:///home/jordivilla/miniconda3/etc/xml/catalog file:///etc/xml/catalog
+# default
+LINK.s = $(CC) $(ASFLAGS) $(LDFLAGS) $(TARGET_MACH)
+# default
+MAKE_COMMAND := make
+# environment
+BACKUPFOLDER = /home/jordivilla/Backup
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+VSCODE_GIT_ASKPASS_EXTRA_ARGS = 
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# default
+COFLAGS = 
+# default
+COMPILE.mod = $(M2C) $(M2FLAGS) $(MODFLAGS) $(TARGET_ARCH)
+# default
+.VARIABLES := 
+# environment
+PWD = /home/jordivilla/GitHub/Classes/ORcourse/sessions
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# default
+LINK.o = $(CC) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+OLDPWD = /home/jordivilla/GitHub/Classes/ORcourse/lectures
+# default
+TEXI2DVI = texi2dvi
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+CONDA_PROMPT_MODIFIER = (base) 
+# default
+LEX.l = $(LEX) $(LFLAGS) -t
+# environment
+LANG = ca_ES.UTF-8
+# environment
+XAUTHORITY = /run/user/1001/.mutter-Xwaylandauth.ZIP6B3
+# default
+.LOADED := 
+# environment
+HOMEBREW_REPOSITORY = /home/linuxbrew/.linuxbrew/Homebrew
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# environment
+MEMORY_PRESSURE_WATCH = /sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure
+# default
+COMPILE.c = $(CC) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# makefile
+MAKEFLAGS = np
+# default
+LINK.f = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+PKG_CONFIG_PATH = /home/jordivilla/GNUstep/Library/Libraries/pkgconfig:/usr/GNUstep/Local/Library/Libraries/pkgconfig:/usr/GNUstep/System/Library/Libraries/pkgconfig
+# default
+TANGLE = tangle
+# makefile
+CURDIR := /home/jordivilla/GitHub/Classes/ORcourse/sessions
+# default
+PREPROCESS.F = $(FC) $(FFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -F
+# environment
+PERL5LIB = /home/jordivilla/Software/amber24/lib/perl
+# environment
+QUICK_BASIS = /home/jordivilla/Software/amber24/AmberTools/src/quick/basis
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -np
+# environment
+SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# default
+M2C = m2c
+# default
+COMPILE.p = $(PC) $(PFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# default
+COMPILE.cpp = $(COMPILE.cc)
+# default
+TEX = tex
+# environment
+WAYLAND_DISPLAY = wayland-0
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GIT_ASKPASS = /snap/code/205/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# default
+F77FLAGS = $(FFLAGS)
+# environment
+CONDA_SHLVL = 1
+# automatic
+@F = $(notdir $@)
+# environment
+XDG_SESSION_TYPE = wayland
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# default
+COMPILE.def = $(M2C) $(M2FLAGS) $(DEFFLAGS) $(TARGET_ARCH)
+# default
+CTANGLE = ctangle
+# environment
+BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+CONDA_PYTHON_EXE = /home/jordivilla/miniconda3/bin/python
+# environment
+SESSION_MANAGER = local/P-0515:@/tmp/.ICE-unix/3769,unix/P-0515:/tmp/.ICE-unix/3769
+# automatic
+*F = $(notdir $*)
+# environment
+MANPATH = /usr/local/texlive/2025/texmf-dist/doc/man:
+# environment
+CHROME_DESKTOP = code.desktop
+# environment
+AMBERHOME = /home/jordivilla/Software/amber24
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# default
+COMPILE.C = $(COMPILE.cc)
+# default
+YACC.m = $(YACC) $(YFLAGS)
+# default
+LINK.C = $(LINK.cc)
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# default
+LINK.c = $(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# environment
+CONDA_PREFIX = /home/jordivilla/miniconda3
+# makefile
+SHELL = /bin/sh
+# environment
+INFOPATH = /usr/local/texlive/2025/texmf-dist/doc/info:/home/linuxbrew/.linuxbrew/share/info::/usr/GNUstep/System/Library/Documentation/info::/usr/GNUstep/Local/Library/Documentation/info::/home/jordivilla/GNUstep/Library/Documentation/info:
+# environment
+CLASSPATH = /home/jordivilla/GNUstep/Library/Libraries/Java:/usr/GNUstep/Local/Library/Libraries/Java:/usr/GNUstep/System/Library/Libraries/Java
+# environment
+XMODIFIERS = @im=ibus
+# environment
+LD_LIBRARY_PATH = /home/jordivilla/GNUstep/Library/Libraries:/usr/GNUstep/Local/Library/Libraries:/usr/GNUstep/System/Library/Libraries:/home/jordivilla/Software/amber24/lib
+# default
+LINK.F = $(FC) $(FFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SHLVL = 1
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+FC = f77
+# environment
+PATH = /usr/local/texlive/2025/bin/x86_64-linux:/home/jordivilla/GNUstep/Tools:/usr/GNUstep/Local/Tools:/usr/GNUstep/System/Tools:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/jordivilla/gems/bin:/home/jordivilla/Software/amber24/bin:/home/jordivilla/GitHub/others/qtools/qscripts-cli:/home/jordivilla/GitHub/Treball/Q6/bin:/home/jordivilla/miniconda3/bin:/home/jordivilla/miniconda3/condabin:/home/jordivilla/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jordivilla/.config/Code/User/globalStorage/github.copilot-chat/debugCommand
+# default
+LINT = lint
+# default
+PC = pc
+# default
+MAKEFILES := 
+# environment
+VSCODE_GIT_IPC_HANDLE = /run/user/1001/vscode-git-356a830b3e.sock
+# environment
+VSCODE_GIT_ASKPASS_NODE = /snap/code/205/usr/share/code/code
+# automatic
+^F = $(notdir $^)
+# default
+LEX.m = $(LEX) $(LFLAGS) -t
+# environment
+VSCODE_GIT_ASKPASS_MAIN = /snap/code/205/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
+# default
+.LIBPATTERNS = lib%.so lib%.a
+# environment
+CLUTTER_DISABLE_MIPMAPPED_TEXT = 1
+# environment
+INVOCATION_ID = 2e8c3ade32aa417f9621ab29b1ca42f6
+# default
+CPP = $(CC) -E
+# default
+LINK.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+FONTCONFIG_FILE = /etc/fonts/fonts.conf
+# makefile (from 'Makefile', line 2)
+PDFFILES := Unit1_Introduction.pdf Unit2_NonlinearOptimization.pdf Unit3_LinearProgramming_Duality.pdf Unit3_LinearProgramming_Introduction.pdf Unit3_LinearProgramming_Simplex.pdf Unit4_Sensitivity_Analysis.pdf Unit5_NetworkAnalysis.pdf Unit6_IntegerProgramming.pdf Unit7_StochasticitySimulation.pdf
+# environment
+USERNAME = jordivilla
+# environment
+TERM_PROGRAM = vscode
+# default
+CHECKOUT,v = +$(if $(wildcard $@),,$(CO) $(COFLAGS) $< $@)
+# default
+COMPILE.f = $(FC) $(FFLAGS) $(TARGET_ARCH) -c
+# default
+COMPILE.r = $(FC) $(FFLAGS) $(RFLAGS) $(TARGET_ARCH) -c
+# environment
+GNOME_SETUP_DISPLAY = :1
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# default
+COMPILE.S = $(CC) $(ASFLAGS) $(CPPFLAGS) $(TARGET_MACH) -c
+# automatic
+?F = $(notdir $?)
+# default
+GET = get
+# default
+LINK.r = $(FC) $(FFLAGS) $(RFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+# automatic
++F = $(notdir $+)
+# environment
+DESKTOP_SESSION = ubuntu
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# default
+MAKEINFO = makeinfo
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+CONDA_DEFAULT_ENV = base
+# default
+PREPROCESS.r = $(FC) $(FFLAGS) $(RFLAGS) $(TARGET_ARCH) -F
+# environment
+XDG_DATA_DIRS_VSCODE_SNAP_ORIG = /usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# default
+LINK.m = $(OBJC) $(OBJCFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# environment
+LOGNAME = jordivilla
+# default
+LINK.p = $(PC) $(PFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# default
+YACC = yacc
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+# makefile
+.DEFAULT_GOAL := all
+# environment
+SYSTEMD_EXEC_PID = 3810
+# default
+RM = rm -f
+# default
+WEAVE = weave
+# environment
+DISPLAY = :0
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+USER = jordivilla
+# default
+MAKE_VERSION := 4.3
+# environment
+GSETTINGS_SCHEMA_DIR_CONDA_BACKUP = 
+# default
+F77 = $(FC)
+# environment
+MANAGERPID = 3518
+# environment
+_CONDA_ROOT = /home/jordivilla/miniconda3
+# environment
+HOMEBREW_CELLAR = /home/linuxbrew/.linuxbrew/Cellar
+# environment
+DEBUGINFOD_URLS = https://debuginfod.ubuntu.com 
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 8501
+# environment
+PYTHONPATH = /home/jordivilla/Software/amber24/lib/python3.12/site-packages:/home/jordivilla/GitHub/others/qtools/packages:
+# default
+CWEAVE = cweave
+# environment
+_ = /usr/bin/make
+# default
+YACC.y = $(YACC) $(YFLAGS)
+# default
+LINK.cpp = $(LINK.cc)
+# default
+CO = co
+# environment
+GEM_HOME = /home/jordivilla/gems
+# environment
+XDG_RUNTIME_DIR = /run/user/1001
+# makefile (from 'Makefile', line 1)
+TEXFILES := Unit1_Introduction.tex Unit2_NonlinearOptimization.tex Unit3_LinearProgramming_Duality.tex Unit3_LinearProgramming_Introduction.tex Unit3_LinearProgramming_Simplex.tex Unit4_Sensitivity_Analysis.tex Unit5_NetworkAnalysis.tex Unit6_IntegerProgramming.tex Unit7_StochasticitySimulation.tex 
+# environment
+_CONDA_EXE = /home/jordivilla/miniconda3/bin/conda
+# environment
+QDIR = /home/jordivilla/GitHub/Treball/Q6
+# environment
+COLORTERM = truecolor
+# environment
+XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG = /etc/xdg/xdg-ubuntu:/etc/xdg
+# environment
+_CE_M = 
+# default
+OUTPUT_OPTION = -o $@
+# default
+COMPILE.s = $(AS) $(ASFLAGS) $(TARGET_MACH)
+# environment
+JOURNAL_STREAM = 8:28871
+# environment
+GUILE_LOAD_PATH = /home/jordivilla/GNUstep/Library/Libraries/Guile:/usr/GNUstep/Local/Library/Libraries/Guile:/usr/GNUstep/System/Library/Libraries/Guile
+# default
+MAKE_TERMERR := /dev/pts/2
+# environment
+XDG_SESSION_CLASS = user
+# environment
+PONDERFULPATH = /home/jordivilla/OneDrive/Treball-Onedrive/00-PRISTIN/DadesPonderful
+# environment
+GSM_SKIP_SSH_AGENT_WORKAROUND = true
+# environment
+HOME = /home/jordivilla
+# environment
+QT_IM_MODULE = ibus
+# default
+LEX = lex
+# environment
+TERM = xterm-256color
+# environment
+GSETTINGS_SCHEMA_DIR = /home/jordivilla/miniconda3/share/glib-2.0/schemas
+# default
+LINT.c = $(LINT) $(LINTFLAGS) $(CPPFLAGS) $(TARGET_ARCH)
+# default
+COMPILE.F = $(FC) $(FFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# environment
+IM_CONFIG_PHASE = 1
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := .out .a .ln .o .c .cc .C .cpp .p .f .F .m .r .y .l .ym .yl .s .S .mod .sym .def .h .info .dvi .tex .texinfo .texi .txinfo .w .ch .web .sh .elc .el
+# default
+LD = ld
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# default
+CXX = g++
+# default
+CC = cc
+# environment
+QTWEBENGINE_DICTIONARIES_PATH = /usr/share/hunspell-bdic/
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+TERM_PROGRAM_VERSION = 1.103.2
+# environment
+CONDA_EXE = /home/jordivilla/miniconda3/bin/conda
+# default
+COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# environment
+_CE_CONDA = 
+# environment
+GDMSESSION = ubuntu
+# variable set hash-table stats:
+# Load=201/1024=20%, Rehash=0, Collisions=36/234=15%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# ../tools/SCCS: could not be stat'd.
+# RCS: could not be stat'd.
+# SCCS: could not be stat'd.
+# ../tools/RCS: could not be stat'd.
+# . (device 66306, inode 9748507): 24 files, 19 impossibilities.
+# ../tools (device 0, inode 0): No files, 3 impossibilities.
+
+# 24 files, 22 impossibilities in 6 directories.
+
+# Implicit Rules
+
+%.pdf: %.tex ../tools/Biblio.tex ../tools/Refs.tex
+#  recipe to execute (from 'Makefile', line 9):
+	latexmk $<
+
+%.out:
+
+%.a:
+
+%.ln:
+
+%.o:
+
+%: %.o
+#  recipe to execute (built-in):
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.c:
+
+%: %.c
+#  recipe to execute (built-in):
+	$(LINK.c) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.ln: %.c
+#  recipe to execute (built-in):
+	$(LINT.c) -C$* $<
+
+%.o: %.c
+#  recipe to execute (built-in):
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+%.cc:
+
+%: %.cc
+#  recipe to execute (built-in):
+	$(LINK.cc) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.cc
+#  recipe to execute (built-in):
+	$(COMPILE.cc) $(OUTPUT_OPTION) $<
+
+%.C:
+
+%: %.C
+#  recipe to execute (built-in):
+	$(LINK.C) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.C
+#  recipe to execute (built-in):
+	$(COMPILE.C) $(OUTPUT_OPTION) $<
+
+%.cpp:
+
+%: %.cpp
+#  recipe to execute (built-in):
+	$(LINK.cpp) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.cpp
+#  recipe to execute (built-in):
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
+
+%.p:
+
+%: %.p
+#  recipe to execute (built-in):
+	$(LINK.p) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.p
+#  recipe to execute (built-in):
+	$(COMPILE.p) $(OUTPUT_OPTION) $<
+
+%.f:
+
+%: %.f
+#  recipe to execute (built-in):
+	$(LINK.f) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.f
+#  recipe to execute (built-in):
+	$(COMPILE.f) $(OUTPUT_OPTION) $<
+
+%.F:
+
+%: %.F
+#  recipe to execute (built-in):
+	$(LINK.F) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.F
+#  recipe to execute (built-in):
+	$(COMPILE.F) $(OUTPUT_OPTION) $<
+
+%.f: %.F
+#  recipe to execute (built-in):
+	$(PREPROCESS.F) $(OUTPUT_OPTION) $<
+
+%.m:
+
+%: %.m
+#  recipe to execute (built-in):
+	$(LINK.m) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.m
+#  recipe to execute (built-in):
+	$(COMPILE.m) $(OUTPUT_OPTION) $<
+
+%.r:
+
+%: %.r
+#  recipe to execute (built-in):
+	$(LINK.r) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.r
+#  recipe to execute (built-in):
+	$(COMPILE.r) $(OUTPUT_OPTION) $<
+
+%.f: %.r
+#  recipe to execute (built-in):
+	$(PREPROCESS.r) $(OUTPUT_OPTION) $<
+
+%.y:
+
+%.ln: %.y
+#  recipe to execute (built-in):
+	$(YACC.y) $< 
+	 $(LINT.c) -C$* y.tab.c 
+	 $(RM) y.tab.c
+
+%.c: %.y
+#  recipe to execute (built-in):
+	$(YACC.y) $< 
+	 mv -f y.tab.c $@
+
+%.l:
+
+%.ln: %.l
+#  recipe to execute (built-in):
+	@$(RM) $*.c
+	 $(LEX.l) $< > $*.c
+	$(LINT.c) -i $*.c -o $@
+	 $(RM) $*.c
+
+%.c: %.l
+#  recipe to execute (built-in):
+	@$(RM) $@ 
+	 $(LEX.l) $< > $@
+
+%.r: %.l
+#  recipe to execute (built-in):
+	$(LEX.l) $< > $@ 
+	 mv -f lex.yy.r $@
+
+%.ym:
+
+%.m: %.ym
+#  recipe to execute (built-in):
+	$(YACC.m) $< 
+	 mv -f y.tab.c $@
+
+%.yl:
+
+%.s:
+
+%: %.s
+#  recipe to execute (built-in):
+	$(LINK.s) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.s
+#  recipe to execute (built-in):
+	$(COMPILE.s) -o $@ $<
+
+%.S:
+
+%: %.S
+#  recipe to execute (built-in):
+	$(LINK.S) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.S
+#  recipe to execute (built-in):
+	$(COMPILE.S) -o $@ $<
+
+%.s: %.S
+#  recipe to execute (built-in):
+	$(PREPROCESS.S) $< > $@
+
+%.mod:
+
+%: %.mod
+#  recipe to execute (built-in):
+	$(COMPILE.mod) -o $@ -e $@ $^
+
+%.o: %.mod
+#  recipe to execute (built-in):
+	$(COMPILE.mod) -o $@ $<
+
+%.sym:
+
+%.def:
+
+%.sym: %.def
+#  recipe to execute (built-in):
+	$(COMPILE.def) -o $@ $<
+
+%.h:
+
+%.info:
+
+%.dvi:
+
+%.tex:
+
+%.dvi: %.tex
+#  recipe to execute (built-in):
+	$(TEX) $<
+
+%.texinfo:
+
+%.info: %.texinfo
+#  recipe to execute (built-in):
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+%.dvi: %.texinfo
+#  recipe to execute (built-in):
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+%.texi:
+
+%.info: %.texi
+#  recipe to execute (built-in):
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+%.dvi: %.texi
+#  recipe to execute (built-in):
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+%.txinfo:
+
+%.info: %.txinfo
+#  recipe to execute (built-in):
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+%.dvi: %.txinfo
+#  recipe to execute (built-in):
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+%.w:
+
+%.c: %.w
+#  recipe to execute (built-in):
+	$(CTANGLE) $< - $@
+
+%.tex: %.w
+#  recipe to execute (built-in):
+	$(CWEAVE) $< - $@
+
+%.ch:
+
+%.web:
+
+%.p: %.web
+#  recipe to execute (built-in):
+	$(TANGLE) $<
+
+%.tex: %.web
+#  recipe to execute (built-in):
+	$(WEAVE) $<
+
+%.sh:
+
+%: %.sh
+#  recipe to execute (built-in):
+	cat $< >$@ 
+	 chmod a+x $@
+
+%.elc:
+
+%.el:
+
+(%): %
+#  recipe to execute (built-in):
+	$(AR) $(ARFLAGS) $@ $<
+
+%.out: %
+#  recipe to execute (built-in):
+	@rm -f $@ 
+	 cp $< $@
+
+%.c: %.w %.ch
+#  recipe to execute (built-in):
+	$(CTANGLE) $^ $@
+
+%.tex: %.w %.ch
+#  recipe to execute (built-in):
+	$(CWEAVE) $^ $@
+
+%:: %,v
+#  recipe to execute (built-in):
+	$(CHECKOUT,v)
+
+%:: RCS/%,v
+#  recipe to execute (built-in):
+	$(CHECKOUT,v)
+
+%:: RCS/%
+#  recipe to execute (built-in):
+	$(CHECKOUT,v)
+
+%:: s.%
+#  recipe to execute (built-in):
+	$(GET) $(GFLAGS) $(SCCS_OUTPUT_OPTION) $<
+
+%:: SCCS/s.%
+#  recipe to execute (built-in):
+	$(GET) $(GFLAGS) $(SCCS_OUTPUT_OPTION) $<
+
+# 93 implicit rules, 5 (5,4%) terminal.
+# Files
+
+# No és un objectiu:
+.cpp:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.cpp) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.c.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.h:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+Unit3_LinearProgramming_Introduction.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.sh:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	cat $< >$@ 
+	 chmod a+x $@
+
+# No és un objectiu:
+.ch:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.r.f:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(PREPROCESS.r) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.dvi:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.def.sym:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.def) -o $@ $<
+
+# No és un objectiu:
+.m.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.m) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+Unit7_StochasticitySimulation.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.lm.m:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	@$(RM) $@ 
+	 $(LEX.m) $< > $@
+
+# No és un objectiu:
+.p.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.p) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+Unit4_Sensitivity_Analysis.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.texinfo:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.ln:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.C:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.C) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.web:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+Unit3_LinearProgramming_Duality.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+Unit2_NonlinearOptimization.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.elc:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.y.ln:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(YACC.y) $< 
+	 $(LINT.c) -C$* y.tab.c 
+	 $(RM) y.tab.c
+
+# No és un objectiu:
+.l.c:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	@$(RM) $@ 
+	 $(LEX.l) $< > $@
+
+# No és un objectiu:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2025-08-29 15:21:49.054826829
+# L'arxiu ha estat actualitzat.
+# Actualitzat correctament.
+
+# No és un objectiu:
+.sym:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.r.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.r) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.mod:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.mod) -o $@ -e $@ $^
+
+# No és un objectiu:
+.def:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.S:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.S) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.texi.dvi:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+# No és un objectiu:
+.txinfo.dvi:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+# No és un objectiu:
+.y.c:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(YACC.y) $< 
+	 mv -f y.tab.c $@
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+# L'arxiu no existeix.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (from 'Makefile', line 14):
+	latexmk -C
+	rm -f *.aux *.log *.out *.nav *.snm *.toc
+
+# No és un objectiu:
+.cpp.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.el:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.cc:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.cc) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.tex:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.m:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.m) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.F:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.F) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.web.tex:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(WEAVE) $<
+
+# No és un objectiu:
+.texinfo.info:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+# No és un objectiu:
+.ym.m:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(YACC.m) $< 
+	 mv -f y.tab.c $@
+
+# No és un objectiu:
+Unit1_Introduction.pdf:
+#  Implicit rule search has been done.
+# L'arxiu no existeix.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.l:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.f:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.f) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.texi:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+Unit6_IntegerProgramming.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.r:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.r) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.a:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+all: Unit1_Introduction.pdf Unit2_NonlinearOptimization.pdf Unit3_LinearProgramming_Duality.pdf Unit3_LinearProgramming_Introduction.pdf Unit3_LinearProgramming_Simplex.pdf Unit4_Sensitivity_Analysis.pdf Unit5_NetworkAnalysis.pdf Unit6_IntegerProgramming.pdf Unit7_StochasticitySimulation.pdf
+#  Implicit rule search has not been done.
+# L'arxiu no existeix.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (from 'Makefile', line 5):
+	@echo "Done!"
+	@echo "Compiled PDFs:" $(PDFFILES)
+
+# No és un objectiu:
+.w.tex:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(CWEAVE) $< - $@
+
+# No és un objectiu:
+.s.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.s) -o $@ $<
+
+# No és un objectiu:
+.txinfo:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.c.ln:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINT.c) -C$* $<
+
+# No és un objectiu:
+.tex.dvi:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(TEX) $<
+
+# No és un objectiu:
+.info:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.out:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.texinfo.dvi:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+# No és un objectiu:
+.F.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.F) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.yl:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.s:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.s) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.S.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.S) -o $@ $<
+
+# No és un objectiu:
+.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.C.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.C) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.c:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.c) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.txinfo.info:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+# No és un objectiu:
+.texi.info:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+# No és un objectiu:
+Unit3_LinearProgramming_Simplex.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.y:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.l.r:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LEX.l) $< > $@ 
+	 mv -f lex.yy.r $@
+
+# No és un objectiu:
+.p:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(LINK.p) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# No és un objectiu:
+.l.ln:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	@$(RM) $*.c
+	 $(LEX.l) $< > $*.c
+	$(LINT.c) -i $*.c -o $@
+	 $(RM) $*.c
+
+# No és un objectiu:
+.w:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.SUFFIXES: .out .a .ln .o .c .cc .C .cpp .p .f .F .m .r .y .l .ym .yl .s .S .mod .sym .def .h .info .dvi .tex .texinfo .texi .txinfo .w .ch .web .sh .elc .el
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+cleanpdf:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+# L'arxiu no existeix.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (from 'Makefile', line 18):
+	rm -f Unit*.pdf
+
+.PHONY: clean cleanpdf
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.mod.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.mod) -o $@ $<
+
+# No és un objectiu:
+.web.p:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(TANGLE) $<
+
+# No és un objectiu:
+.S.s:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(PREPROCESS.S) $< > $@
+
+# No és un objectiu:
+.f.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.f) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.ym:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# No és un objectiu:
+.cc.o:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(COMPILE.cc) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.F.f:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(PREPROCESS.F) $(OUTPUT_OPTION) $<
+
+# No és un objectiu:
+.w.c:
+#  Builtin rule
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+#  recipe to execute (built-in):
+	$(CTANGLE) $< - $@
+
+# No és un objectiu:
+Unit5_NetworkAnalysis.pdf:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+# L'arxiu no ha estat actualitzat.
+
+# files hash-table stats:
+# Load=86/1024=8%, Rehash=0, Collisions=133/1532=9%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 303 / storage = 3880 B / avg = 12 B
+# current buf: size = 8162 B / used = 3880 B / count = 303 / avg = 12 B
+
+# strcache performance: lookups = 508 / hit rate = 40%
+# hash-table stats:
+# Load=303/8192=4%, Rehash=0, Collisions=9/508=2%
+# Finished Make data base on Fri Aug 29 15:25:53 2025
+

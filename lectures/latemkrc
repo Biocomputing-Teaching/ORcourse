@@ -1,0 +1,5 @@
+# latexmkrc for LuaLaTeX
+$pdflatex = 'lualatex %O %S';
+$pdf_mode = 1;
+$latex = 'lualatex %O %S';
+$preview_continuous_mode = 1;

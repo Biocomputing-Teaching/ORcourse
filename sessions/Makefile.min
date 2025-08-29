@@ -1,0 +1,7 @@
+TEXFILES := $(wildcard Unit*.tex)
+PDFFILES := $(TEXFILES:.tex=.pdf)
+
+all: $(PDFFILES)
+
+%.pdf: %.tex
+	@echo "Compilant $< → $@"

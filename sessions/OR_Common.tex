@@ -90,11 +90,9 @@
 %\newtheorem{theorem}{Theorem}[currentsection]
 
 \usepackage{exercise}
-
-\AtBeginSection[]
-{
+\AtBeginSection[]{
   \begin{frame}
-    \frametitle{Summary}
+    \frametitle{\insertsection: Summary}
     \tableofcontents[currentsection]
   \end{frame}
 }
