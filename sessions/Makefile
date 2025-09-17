@@ -21,3 +21,7 @@ clean:
 
 cleanpdf:
 	rm -f ../pdfs/Unit*.pdf
+	
+copy:
+		@echo "Copying PDFs to ../../../Web/ORweb/sessions"
+		cp ../pdfs/Unit*.pdf ../../../Web/ORweb/docs/sessions/
