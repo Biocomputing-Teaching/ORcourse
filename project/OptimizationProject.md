@@ -1,3 +1,12 @@
+---
+title: "OR Programming Project"
+date: 2025-10-01
+author: "Jordi Villà-Freixa"
+description: "Instructions for the completion of the Programming project"
+tags: [markdown, exemple, pdf]
+draft: false
+---
+
 # Operations Research Final Project Information
 
 One of the main goals of this course is to prepare you to apply operations research (OR) methods to real-world tasks, or to leave you well-qualified to start research or work in optimization and decision sciences. The final project is intended to start you in these directions.
