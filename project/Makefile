@@ -12,6 +12,7 @@ pdf:
 # Copia el markdown al repo de la web
 copy:
 	cp $(MD_FILE) $(WEB_REPO)
+	cp $(PDF_FILE) $(WEB_REPO)
 
 # Workflow complet: compilar i copiar
 all: pdf copy
