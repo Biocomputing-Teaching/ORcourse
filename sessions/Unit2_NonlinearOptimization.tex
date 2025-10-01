@@ -218,14 +218,14 @@ Note that $f(x)$ is a convex function if its domain $S$ is a convex set and if f
 %------------------------------------------------%------------------------------------------------
 \begin{frame}[allowframebreaks]{The Hessian matrix}
 
-  \begin{align}
-  (\Hessian f)_{ij} &\equiv \frac{\partial^{2} f}{\partial x_{i} \partial x_{j} } \\
-  \Hessian\left( \frac{x^{2}}{y} \right) &=
+  \[
+  (\Hessian f)_{ij} \equiv \frac{\partial^{2} f}{\partial x_{i} \partial x_{j} } \Rightarrow
+  \Hessian\left( \frac{x^{2}}{y} \right) =
   \begin{bmatrix}
     \frac{2}{y} & - \frac{2x}{y^{2}} \\
     -\frac{2x}{y^{2}} & \frac{2x^{2}}{y^{3}}
   \end{bmatrix}
-\end{align}
+\]
 
 Let $f$ be a function of $n$ variables and let $1 \leq i \leq n$ and $1 \leq j \leq n$. If the partial derivatives $f'_i$ and $f'_j$ of $f$ exist in an open set $S$ containing $(x_1,\ldots, x_n)$ and both of these partial derivatives are differentiable at $(x_1, \ldots, x_n)$ then $(\Hessian f)_{ij}=(\Hessian f)_{ji}$.
 
