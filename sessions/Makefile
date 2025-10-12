@@ -8,7 +8,7 @@ all: $(PDFFILES)
 # regla genèrica
 ../pdfs/%.pdf: %.tex Biblio.tex Refs.tex OR_Common.tex
 	@echo "Compilant $< → $@"
-	latexmk -silent -pdf -output-directory=../pdfs $<
+	latexmk -pdf -output-directory=../pdfs $<
 
 %: ../pdfs/%.pdf
 	@true

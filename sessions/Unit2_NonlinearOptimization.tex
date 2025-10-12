@@ -16,9 +16,9 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[c]{beamer}
-%\documentclass[notes]{beamer}
+%\documentclass[notes]{beamer} 
 \setbeamertemplate{note page}[show only notes]
-\input{OR_common.tex}
+\input{OR_common.tex} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -411,10 +411,12 @@ In the previous section we have considered functions of several variables that a
     \includegraphics[width=0.7\textwidth]{../figures/mallorca.jpg}\newline
     What is the maximum height we can attain constrained to the trajectory of the road?
   \end{center}
+
 \end{frame}
 
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
+\subsection{Lagrange multipliers}
 \begin{frame}[allowframebreaks]{Lagrange multipliers}
   Let us consider optimizing a function $f(x,y)$ (the height of the hill in the previous exemple) subject to the constrain $g(x,y)=c$ (the equation describing the path, the road).
 
@@ -443,12 +445,13 @@ In the previous section we have considered functions of several variables that a
 \end{frame}
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
-\begin{frame}[allowframebreaks]
+
+\begin{frame}
   \begin{center}
-  \includegraphics<2>[width=0.4\textwidth]{../figures/Lagrangex2minusy.png}
+  \includegraphics[width=0.4\textwidth]{../figures/Lagrangex2minusy.png}
   \end{center}
   \begin{Exercise}
-  Find the optimal values of the function $f(x,y)=x^2-y$ constrained within the circumference $x^2+y^2=4$. (note that, interestingly, in the optimal value $x^*$ we will get a gradient for the constraint that is parallel to the gradient of the function: $\grad f(x^*)=\lambda^* \grad g(x^*)$).
+  Find the optimal values of the function $f(x,y)=x^2-y$ constrained within the circumference $x^2+y^2=4$. (note that in the optimal value $x^*$ we will get a gradient for the constraint that is parallel to the gradient of the function: $\grad f(x^*)=\lambda^* \grad g(x^*)$).
 \end{Exercise}
 \end{frame}
 %--- Next Frame ---%
@@ -458,7 +461,7 @@ In the previous section we have considered functions of several variables that a
   \begin{center}
   \begin{tabular}{cc}
     maximize & $f(x)$ \\
-    subject to & $\begin{cases}x\in X\\g(x)=b\end{cases}$
+    subject to & g(x)=b
   \end{tabular}
 \end{center}
 where
@@ -473,8 +476,6 @@ where
     \end{rcases}$ & ($m$ functional constraints)\\
   \end{tabular}
 \end{center}
-If the constraint is $g(x)\leq b$ we introduce a {\bf slack variable} $z$ and write:
-\[g(x)+z=b, \, z\geq0\]
 Regional and functional constraints define the {\bf feasible set} for $x$
 
 \end{frame}
@@ -523,43 +524,136 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 \end{enumerate}
 
 \end{frame}
+\begin{frame}{Lagrange multipliers}
+  \begin{center}
+  \href{https://www.youtube.com/watch?v=5A39Ht9Wcu0}{\includegraphics[width=0.6\textwidth]{../figures/Lagrange.png}}
+  \end{center}
+  Click on this image to access a video explaining the details of the Lagrange multipliers method.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{Lagrange multipliers with two constraints (three variables)}
+  Consider optimizing $f(x, y, z)$ subject to two constraints $g_1(x, y, z) = c_1$ and $g_2(x, y, z) = c_2$.
+
+  The Lagrangian is:
+  \[
+    \mathcal{L}(x, y, z, \lambda_1, \lambda_2) = f(x, y, z) - \lambda_1 (g_1(x, y, z) - c_1) - \lambda_2 (g_2(x, y, z) - c_2)
+  \]
+
+  The necessary conditions for optimality are:
+  \[
+  \begin{cases}
+    \frac{\partial \mathcal{L}}{\partial x} = 0 \\
+    \frac{\partial \mathcal{L}}{\partial y} = 0 \\
+    \frac{\partial \mathcal{L}}{\partial z} = 0 \\
+    g_1(x, y, z) = c_1 \\
+    g_2(x, y, z) = c_2
+  \end{cases}
+  \]
+
+
+\end{frame}
 
 \begin{frame}
-  Check the video in \url{https://www.youtube.com/watch?v=5A39Ht9Wcu0} for a gorgeous visual interpretation of the Lagrange multipliers.
 \begin{Exercise}
   Use the Lagrange multipliers to solve this problem:
   \begin{center}
     \begin{tabular}{cc}
-      minimize & $f(x,y)=x^2y$ \\
+      minimize & $f(x,y)=xy+1$ \\
       subject to & $x^2+y^2=1$
     \end{tabular}
   \end{center}
+    \note{Gran video explicatiu dels Lagrange multipliers: \url{https://www.youtube.com/watch?v=8mjcnxGMwFo}}
 \end{Exercise}
+  \begin{Exercise}
+    Find the extrema of $f(x, y, z) = x^2 + y^2 + z^2$ subject to $x + y + z = 1$ and $x - y = 0$.
+  \end{Exercise}
 \end{frame}
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
-\begin{frame}{what if $\uvec{g}(\uvec{x})\geq 0$? Karush-Kuhn-Tucker theorem}
-% https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions
-  \note[item]{\url{https://people.maths.bris.ac.uk/~maxmr/opt/kt1.pdf}}
-  \note[item]{\url{https://www.cmi.ac.in/~madhavan/courses/dmml2018/literature/Lagrangian_Methods_for_Constrained_Optimization.pdf}}
+\subsection{Karush-Kuhn-Tucker conditions}
 
-  Let us consider a general optimization problem with constraints: let $f:\mathbf{R}^n \rightarrow \mathbf{R}$ be the objective function and $\uvec{g}:\mathbf{R}^n \rightarrow \mathbf{R}^m$ a set of constraint functions ($\uvec{g}(\uvec{x})=(g_1(\uvec{x}),\ldots,g_m(\uvec{x}))$ with $\uvec{x}=(x_1,\ldots,x_n)$. We want to obtain
-  \begin{center}
-  Min $f(\uvec{x})$ such that $\uvec{g}(\uvec{x})\geq 0$
-\end{center}
-  \begin{theorem}
-    If $\uvec{x}^*$ is a local minimum for the optimisation problem and the constraints $\uvec{g}(\uvec{x})\geq 0$ are satisfied at $\uvec{x}^*$, then $\uvec{x}^*$ must satisfy:
-    \begin{eqnarray*}
-      \grad f({\uvec{x}})&=&\lambda_1 \grad g_1(\uvec{x})+\cdots+\lambda_m \grad g_m(\uvec{x})\\
-      0&=&\lambda_1  g_1(\uvec{x})=\cdots=\lambda_m  g_m(\uvec{x})\\
-      0&\leq&\uvec{g}(\uvec{x})
-    \end{eqnarray*}
-  \end{theorem}
+\begin{frame}[allowframebreaks]{First Order Karush-Kuhn-Tucker Conditions}
+The first order conditions for constrained optimization unify the treatment of equality and inequality constraints. They include:
+\begin{itemize}
+  \item Allow for inequality constraints
+  \item Allow for any number of constraints
+  \item Constraints may be binding or not at the solution
+  \item Allow for non-negative constraints (e.g., $x\geq 0$)
+  \item Allow for boundary solutions (i.e., $x=0$)
+  \item Dual variables (Lagrange multipliers) and shadow values (marginal values) are included
+\end{itemize}
 
+Consider the problem:
+Maximize \( f(x) \) subject to
+\[
+x_1, x_2, \ldots, x_n \ge 0
+\]
+\[
+G^i(x) \le b_i, \quad (i = 1, \ldots, m)
+\]
+\framebreak
+
+The Karush-Kuhn-Tucker (KKT) Conditions:
+\[
+\exists \lambda_1, \ldots, \lambda_m \in \mathbb{R}_+ \text{ such that (at } \bar{x}):
+\]
+for \( j = 1, \ldots, n \):
+\[
+\frac{\partial f}{\partial x_j} \le \sum_{i=1}^m \lambda_i \frac{\partial G^i}{\partial x_j}
+\quad \text{(and = if } \bar{x}_j > 0)
+\]
+for \( i = 1, \ldots, m \):
+\[
+G^i(\bar{x}) \le b_i
+\quad \text{(and = if } \lambda_i > 0)
+\]
+\framebreak
+
+The Karush-Kuhn-Tucker (KKT) Conditions (vector form):
+\[
+\exists \lambda \in \mathbb{R}_+^m \text{ such that (at } \bar{x}):
+\]
+\[
+\nabla f \le \sum_{i=1}^m \lambda_i \nabla G^i
+\]
+and
+\[
+\bar{x} \cdot \left( \nabla f - \sum_{i=1}^m \lambda_i \nabla G^i \right) = 0
+\]
+\[
+G(\bar{x}) \le b
+\]
+and
+\[
+\lambda \cdot (G(\bar{x}) - b) = 0
+\]
+These conditions generalize the method of Lagrange multipliers to include inequality constraints.
 \end{frame}
+
+% \begin{frame}{what if $\uvec{g}(\uvec{x})\geq 0$? Karush-Kuhn-Tucker theorem}
+% % https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions
+%   \note[item]{\url{https://people.maths.bris.ac.uk/~maxmr/opt/kt1.pdf}}
+%   \note[item]{\url{https://www.cmi.ac.in/~madhavan/courses/dmml2018/literature/Lagrangian_Methods_for_Constrained_Optimization.pdf}}
+
+%   Let us consider a general optimization problem with constraints: let $f:\mathbf{R}^n \rightarrow \mathbf{R}$ be the objective function and $\uvec{g}:\mathbf{R}^n \rightarrow \mathbf{R}^m$ a set of constraint functions ($\uvec{g}(\uvec{x})=(g_1(\uvec{x}),\ldots,g_m(\uvec{x}))$ with $\uvec{x}=(x_1,\ldots,x_n)$. We want to obtain
+%   \begin{center}
+%   Min $f(\uvec{x})$ such that $\uvec{g}(\uvec{x})\geq 0$
+% \end{center}
+%   \begin{theorem}
+%     If $\uvec{x}^*$ is a local minimum for the optimisation problem and the constraints $\uvec{g}(\uvec{x})\geq 0$ are satisfied at $\uvec{x}^*$, then $\uvec{x}^*$ must satisfy:
+%     \begin{eqnarray*}
+%       \grad f({\uvec{x}})&=&\lambda_1 \grad g_1(\uvec{x})+\cdots+\lambda_m \grad g_m(\uvec{x})\\
+%       0&=&\lambda_1  g_1(\uvec{x})=\cdots=\lambda_m  g_m(\uvec{x})\\
+%       0&\leq&\uvec{g}(\uvec{x})
+%     \end{eqnarray*}
+%   \end{theorem}
+
+% \end{frame}
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
-\begin{frame}
+
+  \begin{frame}
 
 
   \begin{Exercise}
@@ -575,10 +669,53 @@ Regional and functional constraints define the {\bf feasible set} for $x$
 
 \end{frame}
 
+\begin{frame}[allowframebreaks]{The KKT conditions in practice}
+  In practice, if there exists a point $\mathbf{x}^* \in \Omega$ that solves the optimization problem, then $\mathbf{x}^*$ satisfies the following Karush-Kuhn-Tucker (KKT) conditions:
+
+  \begin{enumerate}
+    \item \textbf{Stationarity:}
+    \[
+      \lambda_0 \nabla f(\mathbf{x}^*) + \sum_{i=1}^p \lambda_i \nabla g_i(\mathbf{x}^*) + \sum_{j=1}^q \mu_j \nabla h_j(\mathbf{x}^*) = 0
+    \]
+    \item \textbf{Primal feasibility:}
+    \[
+      g_i(\mathbf{x}^*) = 0 \quad \text{for } i = 1, \ldots, p
+    \]
+    \[
+      h_j(\mathbf{x}^*) \leq 0 \quad \text{for } j = 1, \ldots, q
+    \]
+\framebreak
+
+    \item \textbf{Complementary slackness:}
+    \[
+      \mu_j h_j(\mathbf{x}^*) = 0 \quad \text{for } j = 1, \ldots, q
+    \]
+    Either the constraint is active ($h_j(\mathbf{x}^*) = 0$) or its multiplier is zero ($\mu_j = 0$).
+    \item \textbf{Dual feasibility:}
+    \[
+      \lambda_0 \geq 0, \quad \mu_j \geq 0 \quad \text{for all } j = 1, \ldots, q \quad \text{(for minimization)}
+    \]
+    \[
+      \mu_j \leq 0 \quad \text{for all } j = 1, \ldots, q \quad \text{(for maximization)}
+    \]
+  \end{enumerate}
+
+  \textbf{Summary:}  
+  The KKT conditions are necessary (and under convexity, sufficient) for optimality in constrained optimization. They combine stationarity, feasibility, complementary slackness, and dual feasibility.
+
+\end{frame}
 %--- Next Frame ---%
 %------------------------------------------------%------------------------------------------------
 \begin{frame}
-  To better understand these exercises, you can make use of \href{https://www.geogebra.org/3d?lang=en}{geogebra}.
+\begin{Exercise}
+  Consider the problem of maximizing $f(x, y, z) = x + y + z$ subject to the constraints:
+  \[
+    h_1(x, y, z) = (y - 1)^2 + z^2 \leq 1,
+    \quad
+    h_2(x, y, z) = x^2 + (y - 1)^2 + z^2 \leq 3.
+  \]
+  Use the Karush-Kuhn-Tucker (KKT) conditions to determine the optimal solution.
+\end{Exercise}
 \begin{Exercise}
   Is it possible to maximize $f(x,y)=xy$ subject to $100 \geq x+y$ and $x\leq 40$?
   % solution: not necessarily, feasible region is not bound. In fact it is not possible
