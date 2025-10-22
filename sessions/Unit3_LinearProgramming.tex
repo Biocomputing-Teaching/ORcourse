@@ -442,13 +442,13 @@ current one.\cite{carter}
 \begin{frame}{The algorithm}
 \begin{enumerate}
   \item Convert the system of inequalities to equations (using slack or surplus variables).
-  \item Set the objective function to zero.
+  \item Set the objective function $z$ to zero.
   \item Create the Simplex tableau and label active and basic variables.
   \item Select the pivot column (the one with the most negative coefficient in the zeroed objective function). Linked to the {\bf entering variable}.
   \item Select the pivot row (once divided the entry in the constant column by the ceffient in that row in the pivot column, we choose the smallest ratio). Linked to the {\bf leaving variable}.
   \item The pivot is the intersection between the pivot row and pivot column.
   \item Use the pivot value to make zeros in the rest of elements in the column.
-  \item Repeat the process from step 4, until the last row is all non-negative.
+  \item Repeat the process from step 4, until the $z$ row is all non-negative.
 \end{enumerate}
 
 \end{frame}
@@ -585,7 +585,7 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
 \end{frame}
 
 \begin{frame}{Exercises}
-  Solve, using the Simplex method, the Exercises 3 through 6 of the previous session. Check also \href{different flavours}{https://realpython.com/linear-programming-python/} for optimizing LP problems in python.
+  Solve, using the Simplex method, the Exercises 3 through 7 of the previous session. Check also \href{https://realpython.com/linear-programming-python/}{different methods} for optimizing LP problems in python.
 \end{frame}
 
 \subsection{Initial solutions for General Constraints}
@@ -744,7 +744,7 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
 \subsection{Application of SIMPLEX to non-linear problems}
 
 
-\begin{frame}
+\begin{frame}{Application of SIMPLEX to non-linear problems}
   Algorithm (see example in the next page):
 \begin{enumerate}
 \item In $\mathbf{R}^2$, we form a triangle with vertices at $x^{[0]}$ and the two points $x^{[1]} = x^{[0]} + l_1e^{[1]}$ and  $x^{[2]} = x^{[0]} + l_2e^{[2]}$. In $\mathbf{R}^N$ the triangle becomes a simplex with $N + 1$ vertices.
