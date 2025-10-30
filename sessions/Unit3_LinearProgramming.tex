@@ -840,6 +840,9 @@ In general, if we can write the LP problem in its {\bf normal formulation}:
 \]
 The dual problem is a transposition of the primal problem. Since any LP can be written in the standard form
 above, any LP has a dual.
+\begin{theorem}
+  In the case of linear programming, the dual of the dual is the primal.
+\end{theorem}
 \end{frame}
 
 \begin{frame}{Problem transformations}
@@ -901,29 +904,30 @@ Trick: normalize the problem first: eg $2x_1+x_2=3 \rightarrow \begin{cases}2x_1
 \url{https://www.youtube.com/watch?v=wVnr1HhUCT0}
 }
 
-\subsection{Some theory}
+% \subsection{Some theory}
+% aquesta part no la tinc del tot clara encara
 
-\begin{frame}{Dual of the dual}
-\begin{theorem}
-  In the case of linear programming, the dual of the dual is the primal.
-\end{theorem}
-\begin{proof}
- \[
-\begin{rcases}
-\text{max }\quad\uvec{b}^t \uvec{y}\\
-\text{subject to }\quad A^t\uvec{y}\leq \uvec{c}, \forall y_i\geq0
-\end{rcases} \text{PRIMAL}
-\]
-is equivalent to
-\[
-\begin{rcases}
-\text{min }\quad-\uvec{b}^t \uvec{y}\\
-\text{subject to }\quad -A^t\uvec{y}\geq -\uvec{c}, \forall y_i\geq0
-\end{rcases} \text{DUAL}
-\]
-where, by taking again the Dual, leads to the original Primal.
-\end{proof}
-\end{frame}
+% \begin{frame}{Dual of the dual}
+% \begin{theorem}
+%   In the case of linear programming, the dual of the dual is the primal.
+% \end{theorem}
+% \begin{proof}
+%  \[
+% \begin{rcases}
+% \text{max }\quad\uvec{b}^t \uvec{y}\\
+% \text{subject to }\quad A^t\uvec{y}\leq \uvec{c}, \forall y_i\geq0
+% \end{rcases} \text{PRIMAL}
+% \]
+% is equivalent to
+% \[
+% \begin{rcases}
+% \text{min }\quad-\uvec{b}^t \uvec{y}\\
+% \text{subject to }\quad -A^t\uvec{y}\geq -\uvec{c}, \forall y_i\geq0
+% \end{rcases} \text{DUAL}
+% \]
+% where, by taking again the Dual, leads to the original Primal.
+% \end{proof}
+% \end{frame}
 
 \begin{frame}[allowframebreaks]{Meaning of Duality}
   Let us retake the example we saw in the last session:
