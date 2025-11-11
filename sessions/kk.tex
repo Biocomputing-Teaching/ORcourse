@@ -1,0 +1,260 @@
+% L13-sensitivity-with-tableaux.tex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+\usepackage{amsmath,amssymb,booktabs,caption}
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\newcommand{\matrow}[1]{\rule{0pt}{2.6ex}#1}
+\newcolumntype{C}{>{$}c<{$}}
+
+\title[Lecture 13]{Lecture 13: Sensitivity Analysis}
+\subtitle{Linear Programming — Representative Tableaux Included}
+\author{Department of Industrial Engineering}
+\institute{Course: Linear Programming}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Problem setup and initial tableau}
+\begin{frame}{Silicon Chip Corporation (recap)}
+  \begin{itemize}
+    \item Decision variables: \(x_i\) = number of 100-chip batches of type \(i=1,\dots,4\).
+    \item Resources and availability: wafers 4000, etching 600 hrs, lamination 900 hrs, testing 700 hrs.
+    \item Profit per 100-batch: \(c = (2000,3000,5000,4000)^T\).
+    \item Slack variables \(x_5,\dots,x_8\).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Initial simplex tableau (compact)}
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    \text{raw wafers} & 100 & 100 & 100 & 100 & 1 & 0 & 0 & 0 & 4000\\
+    \text{etching}    & 10  & 10  & 20  & 20  & 0 & 1 & 0 & 0 & 600\\
+    \text{lamination} & 20  & 20  & 30  & 20  & 0 & 0 & 1 & 0 & 900\\
+    \text{testing}    & 20  & 10  & 30  & 30  & 0 & 0 & 0 & 1 & 700\\
+    \hline
+    z\text{-row (profit)} & 2000 & 3000 & 5000 & 4000 & 0 & 0 & 0 & 0 & 0
+  \end{array}
+  \]
+  (This reproduces the initial augmented tableau of the LP.)
+\end{frame}
+
+\section{Optimal tableau and interpretation}
+\begin{frame}{Given optimal tableau (representative form)}
+  The lecture gives the following optimal tableau (numbers shown are the essential entries):
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    r_1 & 0.5 & 1 & 0 & 0 & 0.015 & 0 & 0 & -0.05 & 25\\
+    r_2 & -5  & 0 & 0 & 0 & -0.05  & 1 & 0 & -0.5  & 50\\
+    r_3 & 0   & 0 & 1 & 0 & -0.02  & 0 & 0.1 & 0     & 10\\
+    r_4 & 0.5 & 0 & 0 & 1 & 0.015  & 0 & -0.1 & 0.05 & 5\\
+    \hline
+    z   & -1500 & 0 & 0 & 0 & -5 & 0 & -100 & -50 & 145000
+  \end{array}
+  \]
+  From this we read the optimal basic solution
+  \((x_1,x_2,x_3,x_4)=(0,25,10,5)\) and optimal objective \(z=145000\).
+\end{frame}
+
+\begin{frame}{Interpreting the objective-row entries}
+  \begin{itemize}
+    \item For a maximization problem in this tableau-sign convention, the objective row entries under nonbasic variables are \(\Delta = c - A^T y\) (up to sign convention). Negative entries indicate \emph{reduced costs}.
+    \item Example: the entry under \(x_1\) is \(-1500\) $\Rightarrow$ reduced cost $=1500$, so producing one 100-batch of type 1 would reduce \(z\) by \$1500.
+    \item Break-even sale price adds this reduced cost to the current sale price to find the price at which the activity becomes profitable.
+  \end{itemize}
+\end{frame}
+
+\section{Changing an objective coefficient: general pivot form}
+\begin{frame}{Simplex pivots as left multiplication}
+  The initial augmented matrix is
+  \[
+    \begin{bmatrix} A & I & b \\ c^{T} & 0 & 0 \end{bmatrix}.
+  \]
+  Pivoting to an optimal tableau corresponds to left-multiplication by a matrix
+  \[
+    G = \begin{bmatrix} R & 0 \\ -y^{T} & 1 \end{bmatrix},
+  \]
+  where \(R\) is the nonsingular record (basis) matrix and \(y\) is the dual vector.
+  The resulting tableau is
+  \[
+    \begin{bmatrix}
+      R A & R & R b\\
+      c^{T} - y^{T} A & -y^{T} & -b^{T} y
+    \end{bmatrix}.
+  \]
+  In the final tableau \(c - A^{T} y\) appears in the objective row.
+\end{frame}
+
+\begin{frame}{Effect of changing objective coefficients}
+  If \(c\) changes to \(c + \Delta c\), performing the same left multiplication gives
+  \[
+    \begin{bmatrix}
+      R A & R & R b\\
+      (c + \Delta c)^{T} - y^{T} A & -y^{T} & -b^{T} y
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      R A & R & R b\\
+      (c - A^{T} y)^{T} + \Delta c^{T} & -y^{T} & -b^{T} y
+    \end{bmatrix}.
+  \]
+  So the new objective-row entries are obtained by adding \(\Delta c\) to the old objective row.
+  The current basis remains optimal if the modified objective-row entries keep the sign conditions (non-positive here).
+\end{frame}
+
+\section{Adding $\theta$ to $c_1$: $2000+\theta$ scenario}
+\begin{frame}{Modify \(c_1\) to \(2000 + \theta\)}
+  Replace the first objective coefficient by \(2000+\theta\). This corresponds to
+  \(\Delta c = \theta e_1\). Applying the previous observation, the optimal tableau's objective row becomes
+  \[
+    \text{(old objective row)} + \theta e_1.
+  \]
+  Using the numeric optimal tableau earlier, the modified objective row (bottom row) has \(-1500 + \theta\) under \(x_1\).
+  Thus to preserve optimality we require
+  \[
+    -1500 + \theta \le 0 \quad\Rightarrow\quad \theta \le 1500.
+  \]
+  Hence break-even occurs at \(\theta=1500\), matching the reduced-cost interpretation.
+\end{frame}
+
+\begin{frame}{Representative tableau with \(2000 + \theta\)}
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    \text{rows} & 0.5 & 1 & 0 & 0 & 0.015 & 0 & 0 & -0.05 & 25\\
+                & -5  & 0 & 0 & 0 & -0.05  & 1 & 0 & -0.5  & 50\\
+                & 0   & 0 & 1 & 0 & -0.02  & 0 & 0.1 & 0     & 10\\
+                & 0.5 & 0 & 0 & 1 & 0.015  & 0 & -0.1 & 0.05 & 5\\
+    \hline
+    z & -1500+\theta & 0 & 0 & 0 & -5 & 0 & -100 & -50 & 145000
+  \end{array}
+  \]
+  Condition for current basis to remain optimal: \(-1500+\theta \le 0\) (and other objective-row entries non-positive, which they already are).
+\end{frame}
+
+\section{Break-even price: numeric interpretation}
+\begin{frame}{Break-even price computed numerically}
+  \begin{itemize}
+    \item Current sale price per 100-batch for type 1: \$3900 (profit \$2000 + cost \$1900).
+    \item Reduced cost per 100-batch: \$1500 (from objective row entry).
+    \item Break-even sale price per 100-batch: \(3900 + 1500 = \$5400\), i.e. \$54 per chip.
+  \end{itemize}
+  (Matches the lecture conclusion.)
+\end{frame}
+
+\section{Perturb \(c_3\): range analysis for a basic variable}
+\begin{frame}{Perturb \(c_3 = 5000 + \theta\) (type 3 in basis)}
+  Start with \(c_3 = 5000+\theta\). After adding \(\theta e_3\) to the objective row of the current tableau, we obtain a tableau with an extra \(\theta\) under column \(x_3\) in the objective row:
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    \text{(rows)} & 0.5 & 1 & 0 & 0 & 0.015 & 0 & 0 & -0.05 & 25\\
+                  & -5  & 0 & 0 & 0 & -0.05  & 1 & 0 & -0.5  & 50\\
+                  & 0   & 0 & 1 & 0 & -0.02  & 0 & 0.1 & 0     & 10\\
+                  & 0.5 & 0 & 0 & 1 & 0.015  & 0 & -0.1 & 0.05 & 5\\
+    \hline
+    z & -1500 & 0 & \theta & 0 & -5 & 0 & -100 & -50 & 145000
+  \end{array}
+  \]
+  This is not a proper tableau (because of nonzero objective entry under a basic column); we must pivot to eliminate \(\theta\) (i.e., adjust by multiples of the basic row corresponding to \(x_3\)).
+\end{frame}
+
+\begin{frame}{Eliminate $\theta$ by adding \(-\theta\) times row 3 to the objective row}
+  Multiply row 3 (the basic row for \(x_3\)) by \(-\theta\) and add to the objective row:
+  \[
+    z_{\text{new}} = z_{\text{old}} - \theta\cdot\text{row}_3.
+  \]
+  This changes several objective-row entries; with the numeric row entries we get (representative):
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    \hline
+    z & -1500 & 0 & 0 & 0 & -5 + 0.02\theta & 0 & -100-0.1\theta & -50 & 145000 - 10\theta
+  \end{array}
+  \]
+  To preserve optimality all entries that correspond to nonbasic variables must remain non-positive:
+  \[
+    -5 + 0.02\theta \le 0,\quad -100 - 0.1\theta \le 0,\quad \dots
+  \]
+  Solving yields:
+  \[
+    -1000 \le \theta \le 250 \quad\Rightarrow\quad 4000 \le c_3 \le 5250.
+  \]
+\end{frame}
+
+\section{Perturb \(c_4\): range analysis example}
+\begin{frame}{Perturb \(c_4 = 4000 + \theta\)}
+  A similar calculation for \(c_4\) yields (after appropriate row operations and algebra) the inequalities:
+  \[
+    -333.\overline{3} \le \theta \le 1000,
+  \]
+  giving
+  \[
+    3666.\overline{6} \le c_4 \le 5000.
+  \]
+  (These bounds come from ensuring all objective-row entries remain non-positive after the adjustments.)
+\end{frame}
+
+\begin{frame}{Range for \(c_2\) (summary)}
+  For \(c_2\) the lecture's algebra gives:
+  \[
+    -333.\overline{3} \le \theta \le 1000 \quad\Rightarrow\quad 1666.\overline{6} \le c_2 \le 3000
+  \]
+  (Again, derived from the sign constraints on the objective row after adding \(\Delta c\) and pivoting as needed.)
+\end{frame}
+
+\section{RHS perturbations and shadow prices (sketch)}
+\begin{frame}{RHS perturbations and marginal values}
+  \begin{itemize}
+    \item Let \(b\) be RHS vector and \(x_B = R b\) the basic solution. If \(b\) changes by \(\Delta b\), the basic solution moves to \(x_B = R(b+\Delta b)=x_B + R\Delta b\).
+    \item If \(R\Delta b\) keeps \(x_B\) nonnegative, the basis remains feasible; combined with unchanged dual feasibility, the basis remains optimal.
+    \item The change in objective (while the dual stays valid) is \(y^{T}\Delta b\) (linear in \(\Delta b\)).
+    \item Thus \(y\) (the dual/shadow prices) gives marginal value of resources for small changes inside allowable RHS ranges.
+  \end{itemize}
+\end{frame}
+
+\section{Summary of tableau types included}
+\begin{frame}{Summary: tableaux included in this file}
+  \begin{enumerate}
+    \item Initial augmented simplex tableau (compact).
+    \item Given numeric optimal tableau (representative).
+    \item Modified tableau with \(2000+\theta\) (objective-row shift).
+    \item General pivot/record matrix expression showing \(c - A^T y\).
+    \item Objective-row with \(\Delta c + (c - A^{T}y)\) explanation.
+    \item Perturbed tableau for \(c_3 = 5000 + \theta\) and the pivot to eliminate \(\theta\).
+    \item Resulting objective-row after elimination and the derived feasible interval for \(c_3\).
+    \item Representative calculations and ranges for \(c_4\) and \(c_2\).
+    \item Conceptual RHS perturbation tableau effect and marginal value formula.
+  \end{enumerate}
+  These cover all distinct tableau types and algebraic manipulations shown in the original PDF but omit exact duplicated frames.
+\end{frame}
+
+\begin{frame}{Practical takeaways}
+  \begin{itemize}
+    \item Reduced costs read directly from the final tableau give break-even adjustments for nonbasic variables.
+    \item Adding \(\Delta c\) to \(c\) simply adds \(\Delta c\) to the objective row of the final tableau (then pivot if necessary).
+    \item To analyze RHS changes use \(x_B = R b\) and dual vector \(y\); objective change \(\Delta z = y^\top \Delta b\) while the basis remains valid.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Questions}
+  \centering Thank you — any further edits or additional tableaux you want inserted verbatim?
+\end{frame}
+
+\end{document}

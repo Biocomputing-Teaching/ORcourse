@@ -155,6 +155,407 @@ In addition, one can explore what occurs when adding an extra constraint or addi
 
 \end{frame}
 
+
+\section{Sensitivity Analysis}
+\begin{frame}{Sensitivity Analysis: Overview}
+  \begin{itemize}
+    \item Study how optimal solutions to LPs change when input data change.
+    \item Changes considered: objective coefficients, right-hand sides (resources), constraints.
+    \item LP solutions can be \emph{very} sensitive — practical importance: decisions may change drastically.
+    \item We will use a concrete example (Silicon Chip Corporation) to illustrate basic concepts:
+      break-even prices, reduced costs, range analysis, marginal values, and the fundamental theorem of sensitivity analysis.
+  \end{itemize}
+\end{frame}
+
+\section{Silicon Chip Corporation}
+
+\begin{frame}
+  \frametitle{Silicon Chip Corporation: Problem description}
+
+  A Silicon Valley firm specializes in making four types of silicon chips for personal computers.
+Each chip must go through four stages of processing before completion. First the basic silicon
+wafers (100 chips each) are manufactured, second the wafers are laser etched with a micro circuit, next the circuit
+is laminated onto the chip, and finally the chip is tested and packaged for shipping. The
+production manager desires to maximize profits during the next month. During the next 30 days
+she has enough raw material to produce 4000 silicon wafers. Moreover, she has 600 hours of
+etching time, 900 hours of lamination time, and 700 hours of testing time. Taking into account
+depreciated capital investment, maintenance costs, and the cost of labor, each raw silicon wafer
+is worth \$1, each hour of etching time costs \$40, each hour of lamination time costs \$60, and
+each hour of inspection time costs \$10.
+The production manager has formulated her problem as a profit maximization
+
+\end{frame}
+
+\begin{frame}{Silicon Chip Corporation: Problem conceptualization}
+  \begin{itemize}
+    \item Four types of chips (types 1--4). Each batch is 100 chips.
+    \item Four processing stages: raw wafers, etching, lamination, testing.
+    \item Next 30 days availability:
+      \begin{itemize}
+        \item Raw wafers: 4000 units
+        \item Etching: 600 hours
+        \item Lamination: 900 hours
+        \item Testing: 700 hours
+      \end{itemize}
+    \item Costs per resource (depreciated etc.): wafer \$1 each, etching \$40/hr, lamination \$60/hr, testing \$10/hr.
+    \item Objective: maximize profit.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Decision variables and initial tableau}
+  Let \(x_i\) = number of 100-chip batches of type \(i\) (for \(i=1,\dots,4\)). The initial tableau (coefficients per 100-chip batch):
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    \text{raw wafers} & 100 & 100 & 100 & 100 & 1 & 0 & 0 & 0 & 4000\\
+    \text{etching} & 10 & 10 & 20 & 20 & 0 & 1 & 0 & 0 & 600\\
+    \text{lamination} & 20 & 20 & 30 & 20 & 0 & 0 & 1 & 0 & 900\\
+    \text{testing} & 20 & 10 & 30 & 30 & 0 & 0 & 0 & 1 & 700\\
+    \hline
+    \text{profit (per 100)} & -2000 & -3000 & -5000 & -4000 & 0 & 0 & 0 & 0 & 0
+  \end{array}
+  \]
+  (Here \(x_5,\dots,x_8\) are slack variables.)
+\end{frame}
+
+\begin{frame}{Optimal solution (given)}
+  The (given) optimal tableau after simplex pivots is:
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    & 0.5 & 1 & 0 & 0 & 0.015 & 0 & 0 & -0.05 & 25\\
+    & -5 & 0 & 0 & 0 & -0.05 & 1 & 0 & -0.5 & 50\\
+    & 0 & 0 & 1 & 0 & -0.02 & 0 & 0.1 & 0 & 10\\
+    & 0.5 & 0 & 0 & 1 & 0.015 & 0 & -0.1 & 0.05 & 5\\
+    \hline
+    z & 1500 & 0 & 0 & 0 & 5 & 0 & 100 & 50 & 145000
+  \end{array}
+  \]
+  \vspace{4pt}
+  So the optimal production schedule in batches (100-chip units) is
+  \[
+    (x_1,x_2,x_3,x_4) = (0,25,10,5),
+  \]
+  with optimal profit \$145,000.
+\end{frame}
+
+\begin{frame}{Interpreting the objective-row entries}
+  \begin{itemize}
+    \item For a maximization problem in this tableau-sign convention, the objective row entries under nonbasic variables are \(\Delta = c - A^T y\) (up to sign convention). Negative entries indicate \emph{reduced costs}.
+    \item Example: the entry under \(x_1\) is \(1500\) $\Rightarrow$ reduced cost $=1500$, so producing one 100-batch of type 1 would reduce \(z\) by \$1500.
+    \item Break-even sale price adds this reduced cost to the current sale price to find the price at which the activity becomes profitable.
+  \end{itemize}
+\end{frame}
+
+
+\section{Changing an objective coefficient: general pivot form}
+\begin{frame}{Simplex pivots as left multiplication}
+  The initial augmented matrix is
+  \[
+    \begin{bmatrix} A & I & b \\ c^{T} & 0 & 0 \end{bmatrix}.
+  \]
+  Pivoting to an optimal tableau corresponds to left-multiplication by a matrix
+  \[
+    G = \begin{bmatrix} R & 0 \\ -y^{T} & 1 \end{bmatrix},
+  \]
+  where \(R\) is the nonsingular record (basis) matrix and \(y\) is the dual vector.
+  The resulting tableau is
+  \[
+    \begin{bmatrix}
+      R A & R & R b\\
+      c^{T} - y^{T} A & -y^{T} & -b^{T} y
+    \end{bmatrix}.
+  \]
+  In the final tableau \(c - A^{T} y\) appears in the objective row.
+\end{frame}
+
+
+\begin{frame}{Effect of changing objective coefficients}
+  If \(c\) changes to \(c + \Delta c\), performing the same left multiplication gives
+  \[
+    \begin{bmatrix}
+      R A & R & R b\\
+      (c + \Delta c)^{T} - y^{T} A & -y^{T} & -b^{T} y
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      R A & R & R b\\
+      (c - A^{T} y)^{T} + \Delta c^{T} & -y^{T} & -b^{T} y
+    \end{bmatrix}.
+  \]
+  So the new objective-row entries are obtained by adding \(\Delta c\) to the old objective row.
+  The current basis remains optimal if the modified objective-row entries keep the sign conditions (non-positive here).
+\end{frame}
+
+\section{Adding $\theta$ to $c_1$: $2000+\theta$ scenario}
+\begin{frame}{Modify \(c_1\) to \(2000 + \theta\)}
+  Replace the first objective coefficient by \(2000+\theta\). This corresponds to
+  \(\Delta c = \theta e_1\). Applying the previous observation, the optimal tableau's objective row becomes
+  \[
+    \text{(old objective row)} + \theta e_1.
+  \]
+  Using the numeric optimal tableau earlier, the modified objective row (bottom row) has \(-1500 + \theta\) under \(x_1\).
+  Thus to preserve optimality we require
+  \[
+    -1500 + \theta \le 0 \quad\Rightarrow\quad \theta \le 1500.
+  \]
+  Hence break-even occurs at \(\theta=1500\), matching the reduced-cost interpretation.
+\end{frame}
+
+\begin{frame}{Representative tableau with \(2000 + \theta\)}
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    \text{rows} & 0.5 & 1 & 0 & 0 & 0.015 & 0 & 0 & -0.05 & 25\\
+                & -5  & 0 & 0 & 0 & -0.05  & 1 & 0 & -0.5  & 50\\
+                & 0   & 0 & 1 & 0 & -0.02  & 0 & 0.1 & 0     & 10\\
+                & 0.5 & 0 & 0 & 1 & 0.015  & 0 & -0.1 & 0.05 & 5\\
+    \hline
+    z & -1500+\theta & 0 & 0 & 0 & -5 & 0 & -100 & -50 & 145000
+  \end{array}
+  \]
+  Condition for current basis to remain optimal: \(-1500+\theta \le 0\) (and other objective-row entries non-positive, which they already are).
+\end{frame}
+
+
+\section{Break-even Prices and Reduced Costs}
+\begin{frame}{Break-even price — intuition}
+  \begin{itemize}
+    \item A decision variable not in the basis (nonbasic) has an \textbf{objective row coefficient} in the final tableau.
+    \item The \textbf{reduced cost} of a nonbasic variable equals the negative of that objective-row coefficient (when objective expressed as \(z - (\cdots)=0\)).
+    \item Reduced cost = how much the objective coefficient must increase before the variable enters the basis.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Type 1 chip break-even price}
+  Current per-batch profit shown in original LP: \$2000 per 100-unit batch for type 1.
+  Compute production cost per 100-batch:
+  \[
+  \begin{aligned}
+    \text{chip cost} &= 100\times 1 = 100\\
+    \text{etching cost} &= 10\times 40 = 400\\
+    \text{lamination cost} &= 20\times 60 = 1200\\
+    \text{inspection cost} &= 20\times 10 = 200\\
+    \text{total cost per batch} &= 1900
+  \end{aligned}
+  \]
+  So current sale price per batch = profit + cost = \(2000 + 1900 = \$3900\), i.e. \$39 per chip.
+\end{frame}
+
+\begin{frame}{Type 1 reduced cost and break-even}
+  The reduced cost of a decision variable is the needed increase in its objective row coefficient in
+order for it to be included in the optimal solution.
+For non-basic variables the break-even sale price can be read off from the reduced costs in the
+optimal tableau.
+
+  In the optimal tableau the objective row entry under \(x_1\) equals \(-1500\) (objective row entry is \(-1500\) in the printed tableau).
+  That means producing one batch of type 1 reduces optimal \(z\) by \$1500.
+  To make \(x_1\) profitable, the sale price must increase by \$1500 per 100-batch, i.e. \$15 per chip.
+  So break-even sale price per chip \(= 39 + 15 = \$54\).
+\end{frame}
+
+\begin{frame}
+  \frametitle{More intuitive explanation}
+
+  Now consider a more intuitive and simpler explanation of break-even sale prices.
+One way to determine these prices, is to determine by how much our profit is reduced if
+we produce one batch of these chips.
+Recall that the objective row coefficients in the optimal tableau correspond to the
+following expression for the objective variable z:
+z = 145000 − 1500x1 − 5x5 − 100x7 − 50x8 .
+Hence, if we make one batch of type 1 chip, we reduce our optimal value by \$1500.
+Thus, to recoup this loss we must charge \$1500 more for these chips yielding a
+break-even sale price of \$39 + \$15 = \$54 per chip.
+
+\end{frame}
+
+\section{Range Analysis for Objective Coefficients}
+\begin{frame}{Range analysis: goal}
+  Range analysis is a tool for understanding the effects of both objective coefficient
+variations as well as resource availability variations.
+  \begin{itemize}
+    \item For a basic variable, find interval of objective coefficient values for which the current basis stays optimal.
+    \item For a nonbasic variable, find how much objective coefficient can change before it becomes profitable to enter the basis.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Range analysis: method (summary)}
+  \begin{itemize}
+    \item Changing \(c\) (objective coefficients) to \(c+\Delta c\) results in adding \(\Delta c\) to the objective row of the current tableau after applying the same pivot record matrix.
+    \item If the modified objective row (for nonbasic columns) remains non-positive (for a maximization LP in this tableau convention), the current basis remains optimal.
+    \item Solve inequalities on the modified objective row entries to get allowable ranges.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Range for \(c_3\) (type 3 chips)}
+  Let \(c_3 = 5000 + \theta\). The objective row after adjusting gives (reduced) modifications that must satisfy:
+  \[
+    \begin{aligned}
+      -5 + 0.02\theta &\le 0 \quad\Rightarrow\quad \theta \le 250,\\
+      -100 - 0.1\theta &\le 0 \quad\Rightarrow\quad \theta \ge -1000.
+    \end{aligned}
+  \]
+  Thus
+  \[
+    -1000 \le \theta \le 250 \quad\Rightarrow\quad 4000 \le c_3 \le 5250.
+  \]
+  So the basis \(\{x_2,x_3,x_4,x_6\}\) remains optimal while \(c_3\) stays in this interval.
+\end{frame}
+
+\begin{frame}{Perturb \(c_3 = 5000 + \theta\) (type 3 in basis)}
+  Start with \(c_3 = 5000+\theta\). After adding \(\theta e_3\) to the objective row of the current tableau, we obtain a tableau with an extra \(\theta\) under column \(x_3\) in the objective row:
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & b\\
+    \hline
+    \text{(rows)} & 0.5 & 1 & 0 & 0 & 0.015 & 0 & 0 & -0.05 & 25\\
+                  & -5  & 0 & 0 & 0 & -0.05  & 1 & 0 & -0.5  & 50\\
+                  & 0   & 0 & 1 & 0 & -0.02  & 0 & 0.1 & 0     & 10\\
+                  & 0.5 & 0 & 0 & 1 & 0.015  & 0 & -0.1 & 0.05 & 5\\
+    \hline
+    z & -1500 & 0 & \theta & 0 & -5 & 0 & -100 & -50 & 145000
+  \end{array}
+  \]
+  This is not a proper tableau (because of nonzero objective entry under a basic column); we must pivot to eliminate \(\theta\) (i.e., adjust by multiples of the basic row corresponding to \(x_3\)).
+\end{frame}
+
+\begin{frame}{Eliminate $\theta$ by adding \(-\theta\) times row 3 to the objective row}
+  Multiply row 3 (the basic row for \(x_3\)) by \(-\theta\) and add to the objective row:
+  \[
+    z_{\text{new}} = z_{\text{old}} - \theta\cdot\text{row}_3.
+  \]
+  This changes several objective-row entries; with the numeric row entries we get (representative):
+  \[
+  \begin{array}{c|cccc|cccc|c}
+    \hline
+    z & -1500 & 0 & 0 & 0 & -5 + 0.02\theta & 0 & -100-0.1\theta & -50 & 145000 - 10\theta
+  \end{array}
+  \]
+  To preserve optimality all entries that correspond to nonbasic variables must remain non-positive:
+  \[
+    -5 + 0.02\theta \le 0,\quad -100 - 0.1\theta \le 0,\quad \dots
+  \]
+  Solving yields:
+  \[
+    -1000 \le \theta \le 250 \quad\Rightarrow\quad 4000 \le c_3 \le 5250.
+  \]
+\end{frame}
+
+
+\begin{frame}{Range for \(c_4\) (type 4 chips) and \(c_2\)}
+  A similar perturbation for \(c_4=4000+\theta\) yields inequalities (from objective row entries) which give:
+  \[
+    -333.\overline{3} \le \theta \le 1000,
+  \]
+  so
+  \[
+    3666.\overline{6} \le c_4 \le 5000.
+  \]
+  For \(c_2\) (originally 3000) the derived range is
+  \[
+    1666.\overline{6} \le c_2 \le 3000.
+  \]
+  (These follow from ensuring all objective-row entries remain non-positive.)
+\end{frame}
+
+\begin{frame}{Perturb \(c_4 = 4000 + \theta\)}
+  A similar calculation for \(c_4\) yields (after appropriate row operations and algebra) the inequalities:
+  \[
+    -333.\overline{3} \le \theta \le 1000,
+  \]
+  giving
+  \[
+    3666.\overline{6} \le c_4 \le 5000.
+  \]
+  (These bounds come from ensuring all objective-row entries remain non-positive after the adjustments.)
+\end{frame}
+
+\begin{frame}{Range for \(c_2\) (summary)}
+  For \(c_2\) the lecture's algebra gives:
+  \[
+    -333.\overline{3} \le \theta \le 1000 \quad\Rightarrow\quad 1666.\overline{6} \le c_2 \le 3000
+  \]
+  (Again, derived from the sign constraints on the objective row after adding \(\Delta c\) and pivoting as needed.)
+\end{frame}
+
+
+\section{Resource Variations, Marginal Values, and Range Analysis}
+\begin{frame}{Resource variation questions}
+  Suppose we change a right-hand-side (RHS) resource (e.g., purchase more wafers). Typical questions:
+  \begin{enumerate}
+    \item How many additional units should we buy?
+    \item What is the most we should pay per unit?
+    \item What is the new optimal schedule after purchasing?
+  \end{enumerate}
+  The dual variables (shadow prices) provide the marginal value of resources for small changes (within allowable intervals).
+\end{frame}
+
+\begin{frame}{RHS perturbation and marginal values (sketch)}
+  \begin{itemize}
+    \item Let \(b\) be the RHS vector and suppose basis \(B\) is optimal with record matrix \(R\).
+    \item The basic solution is \(x_B = R b\). If \(b\) changes by \(\Delta b\), the basic solution becomes \(x_B = R (b + \Delta b)\).
+    \item If \(x_B\) remains feasible (nonnegative), the basis remains feasible; combined with dual feasibility, the basis remains optimal.
+    \item The dual solution \(y\) remains the same for small enough changes; the change in optimal objective is \(y^\top \Delta b\).
+  \end{itemize}
+\end{frame}
+
+\section{Right Hand Side Perturbations}
+\begin{frame}{Allowable RHS changes (concept)}
+  \begin{itemize}
+    \item For each basic variable, determine how far the RHS can move until a basic variable becomes zero (i.e., feasibility violated).
+    \item These bounds yield intervals for each RHS entry within which the current basis remains optimal.
+    \item Shadow prices hold within these intervals.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example: marginal value interpretation}
+  If the dual variable (shadow price) associated with raw wafers is \(\pi_1\), then:
+  \[
+    \text{small increase of 1 wafer} \Rightarrow \text{increase in objective} \approx \pi_1.
+  \]
+  For finite changes, use range analysis to confirm how large a change preserves the basis (so \(\pi_1\) stays valid).
+\end{frame}
+
+
+
+\section{Pricing Out}
+\begin{frame}{Pricing out (brief)}
+  \begin{itemize}
+    \item When a resource is extremely expensive (or cheap) it may be optimal to remove it (or saturate it).
+    \item Analyze by varying the RHS or adding cost to resource availability to see when shadow prices change sign or basis changes.
+  \end{itemize}
+\end{frame}
+
+\section{The Fundamental Theorem on Sensitivity Analysis}
+\begin{frame}{Fundamental theorem (informal statement)}
+  Given a linear program with current optimal basis \(B\), there exist non-empty intervals for each objective coefficient and each RHS entry such that any changes to those coefficients within their respective intervals preserve the optimal basis.
+  Within those intervals:
+  \begin{itemize}
+    \item The dual solution stays constant.
+    \item The objective value changes linearly with the perturbations (via the dual for RHS, via basic solution for objective-row changes).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Practical takeaways}
+  \begin{itemize}
+    \item Reduced costs read directly from the final tableau give break-even adjustments for nonbasic variables.
+    \item Adding \(\Delta c\) to \(c\) simply adds \(\Delta c\) to the objective row of the final tableau (then pivot if necessary).
+    \item To analyze RHS changes use \(x_B = R b\) and dual vector \(y\); objective change \(\Delta z = y^\top \Delta b\) while the basis remains valid.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Practical takeaways}
+  \begin{itemize}
+    \item Use reduced costs to read break-even prices for nonbasic variables.
+    \item Use range analysis to find intervals where the basis remains optimal (both for \(c\) and \(b\)).
+    \item Use shadow prices (dual variables) for marginal valuations of resources — valid for small changes within allowable intervals.
+    \item When changes fall outside allowable intervals, recompute basis (re-run LP) or update tableau with pivots.
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Some tools that help interpreting the calculations}
 
   Find \href{https://github.com/Biocomputing-Teaching/ORcourse/blob/main/code/linear_programming.ipynb}{\em here} a code with the solution using ORtools.
