@@ -46,6 +46,8 @@ Study Abroad. Operations Research\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Sensitivity Analysis}
+
 \begin{frame}
 \frametitle{Learning outcomes}
 \begin{itemize}
@@ -63,9 +65,10 @@ Study Abroad. Operations Research\\
     \item confirming or updating problem parameters (cost and availabilities of activities and resources)
     \item if changes need to be introduced in the original parameters, assessing their impact on the optimality of the solution.
   \end{itemize}
-  \item If changes are small, re-optimization may not be needed.
+  \item If changes are small, re-optimization may not be needed. LP solutions can be \emph{very} sensitive — practical importance: decisions may change drastically.
   \item {\bf Sensitivity analysis} is the study of the effect that types, ranges, and magnitude of changes in problem parameters have in the value of the objective function, {\em without the need to solve again the new linear problem}.
 \end{itemize}
+See, also: \url{https://home.ubalt.edu/ntsbarsh/opre640a/PARTVII.HTM}
 \end{frame}
 
 \begin{frame}{Two types of parameter modifications}
@@ -78,6 +81,23 @@ Study Abroad. Operations Research\\
 one can have two situations: one may have interest in knowing what happens with modifications in the parameters $c$ or modifications in the parameters $b$.
 
 In addition, one can explore what occurs when adding an extra constraint or adding a new variable.
+
+
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Remember some concepts}
+Remember:
+\begin{itemize}
+  \item A binding constraint is active at the optimal solution: the left-hand side equals the right-hand side. 
+  \item A non-binding constraint has slack or surplus and does not influence the current optimal solution; therefore its shadow price is zero.
+  \item A shadow price measures the rate of improvement of the objective when the RHS increases by one unit.
+  \item In a maximization problem: positive shadow price $\Rightarrow$ increasing availability (relaxing the constraint) improves the objective until shadow price = 0 $\Rightarrow$ constraint not binding.
+  \item In a minimization problem, a negative shadow price indicates that relaxing the constraint would worsen the objective.
+\end{itemize}
+  
 
 \end{frame}
 
@@ -96,7 +116,7 @@ In addition, one can explore what occurs when adding an extra constraint or addi
     \end{tabular}
     \end{center}
 
-    Find how resilient is she to the changes in the price? What happens with respect to basic vs non-basic variables in a general case?
+    How does the price change affects the minimum (consider $c_1$ and $c_2$ as new prices and compare the slope of the new objective function with the original one)? What happens with respect to basic vs non-basic variables in a general case?
 
   \end{Exercise}
 \note{veure  \url{https://youtu.be/o1pznRt_-y0?t=3378} minut 50 i següent capítol}
@@ -128,6 +148,14 @@ In addition, one can explore what occurs when adding an extra constraint or addi
 
 
 
+
+\begin{frame}{Allowable Ranges and Sensitivity}
+\begin{itemize}
+  \item The allowable range of an objective coefficient is the interval within which that change does not alter the optimal basis: therefore, if a coefficient changes within this interval, the optimal solution does not change.
+  \item The allowable range for the right-hand side (RHS) is the range over which the shadow prices remain valid; outside this interval the basis must be recalculated.
+\end{itemize}
+\end{frame}
+
 \note{venim de \url{https://youtu.be/o1pznRt_-y0?t=1603} i \url{https://www.youtube.com/watch?v=yU8updOR87c}}
 
 \begin{frame}{Shadow price is the solution of the dual problem}
@@ -155,16 +183,137 @@ In addition, one can explore what occurs when adding an extra constraint or addi
 
 \end{frame}
 
+\begin{frame}{Shadow price is the solution of the dual problem}
 
-\section{Sensitivity Analysis}
-\begin{frame}{Sensitivity Analysis: Overview}
+  \small
+  \textbf{Primal problem (production of bikes A and B):}
+  \[
+  \begin{aligned}
+  \max_{x_A,x_B\ge0}\;&50x_A + 60x_B\\
+  \text{s.t. }&
+  \begin{cases}
+  50x_A +30x_B \le 2000 &\text{(Titanium)}\\
+  6x_A +5x_B \le 300 &\text{(Machine time)}\\
+  3x_A +5x_B \le 200 &\text{(Labor)}
+  \end{cases}
+  \end{aligned}
+  \]
+
+  \vspace{0.3em}
+  \textbf{Vertices and optimum:}
+  \[
+  (x_A,x_B)=(25,25), \quad Z_{\max}=2750
+  \]
+  Binding constraints: (1) Titanium, (3) Labor.
+
+\end{frame}
+\begin{frame}{Dual formulation}
+
+  \small
+  \textbf{Dual problem:}
+  \[
+  \begin{aligned}
+  \min_{y_1,y_2,y_3\ge0}\;&2000y_1 +300y_2 +200y_3\\
+  \text{s.t. }&
+  \begin{cases}
+  50y_1 +6y_2 +3y_3 \ge 50 &\text{(A)}\\
+  30y_1 +5y_2 +5y_3 \ge 60 &\text{(B)}
+  \end{cases}
+  \end{aligned}
+  \]
+
+  \textbf{Interpretation:}  
+  \(y_i\) = marginal value (shadow price) of resource \(i\):  
   \begin{itemize}
-    \item Study how optimal solutions to LPs change when input data change.
-    \item Changes considered: objective coefficients, right-hand sides (resources), constraints.
-    \item LP solutions can be \emph{very} sensitive — practical importance: decisions may change drastically.
-    \item We will use a concrete example (Silicon Chip Corporation) to illustrate basic concepts:
-      break-even prices, reduced costs, range analysis, marginal values, and the fundamental theorem of sensitivity analysis.
+    \item \(y_1\): Titanium  
+    \item \(y_2\): Machine time  
+    \item \(y_3\): Labor
   \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Solving the dual problem}
+
+  \small
+  From the primal optimum:
+  \begin{itemize}
+    \item \(x_A>0,\,x_B>0\) $\Rightarrow$ dual constraints (A) and (B) are binding, so... \textbf{equalities}.
+    \item Constraints (1) and (3) binding $\Rightarrow$ \(y_1\geq 0,\,y_3\geq 0\).
+    \item Constraint (2) slack $\Rightarrow$ \(y_2=0\).
+  \end{itemize}
+
+  \[
+  \begin{cases}
+  50y_1 + 3y_3 = 50\\
+  30y_1 + 5y_3 = 60
+  \end{cases}
+  \Rightarrow
+  y_1=\frac{7}{16}=0.4375,\quad
+  y_3=\frac{75}{8}=9.375,\quad
+  y_2=0.
+  \]
+
+  \[
+  Z_D = 2000y_1 +300y_2 +200y_3 = 2750 = Z_P.
+  \]
+
+  \textbf{Strong duality holds.}
+
+\end{frame}
+
+\begin{frame}{Interpretation of shadow prices}
+
+  \small
+  \begin{tabular}{lcl}
+  \textbf{Resource} & \textbf{Dual variable} & \textbf{Interpretation}\\
+  \hline
+  Titanium & $y_1=0.4375$ & Profit increases €0.4375 per extra unit\\
+  Machine time & $y_2=0$ & Not limiting $\Rightarrow$ no effect\\
+  Labor & $y_3=9.375$ & Profit increases €9.375 per extra unit\\
+  \hline
+  \end{tabular}
+
+  \vspace{1em}
+
+  \textbf{Economic meaning:}
+  \begin{itemize}
+    \item Only scarce resources (binding constraints) have positive shadow prices.
+    \item Shadow prices measure marginal worth of each resource.
+    \item Dual solution explains how resources limit total profit.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Complementary slackness summary}
+
+  \small
+  \begin{itemize}
+    \item \(x_j>0 \Rightarrow\) corresponding dual constraint holds with equality.
+    \item \(y_i>0 \Rightarrow\) corresponding primal constraint is binding.
+  \end{itemize}
+
+  \vspace{0.5em}
+  \begin{center}
+  \begin{tabular}{l|ccc}
+   & Primal constraint & Dual var. & Binding?\\
+   \hline
+   Titanium & $50x_A+30x_B\le2000$ & $y_1=0.4375$ & Yes\\
+   Machine time & $6x_A+5x_B\le300$ & $y_2=0$ & No\\
+   Labor & $3x_A+5x_B\le200$ & $y_3=9.375$ & Yes\\
+  \end{tabular}
+  \end{center}
+
+  \vspace{0.5em}
+  The dual gives the shadow prices directly — the economic value of each constraint.
+
+\end{frame}
+
+
+\begin{frame}{Degeneracy and Alternative Optima}
+\begin{itemize}
+  \item Degeneracy: one or more basic variables have value zero in the optimal solution. This can lead to multiple optimal solutions or complicate sensitivity analysis.
+  \item Sensitivity analysis can help detect redundant constraints and identify alternative optima; therefore, it answers the question about what can be done with degenerate solutions.
+\end{itemize}
 \end{frame}
 
 \section{Silicon Chip Corporation}
@@ -549,6 +698,10 @@ variations as well as resource availability variations.
 
 \begin{frame}{Practical takeaways}
   \begin{itemize}
+    \item Binding constraint $\Rightarrow$ LHS = RHS.
+    \item Shadow price = 0 $\Rightarrow$ constraint not binding.
+    \item If an objective coefficient changes outside the allowable interval, the optimal solution may change.
+    \item Shadow prices indicate how the objective changes with small changes in the RHS.
     \item Use reduced costs to read break-even prices for nonbasic variables.
     \item Use range analysis to find intervals where the basis remains optimal (both for \(c\) and \(b\)).
     \item Use shadow prices (dual variables) for marginal valuations of resources — valid for small changes within allowable intervals.
