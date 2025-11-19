@@ -436,83 +436,70 @@ menting path, and the current flow of 14 is optimal\cite{carter}}
 
 \begin{frame}[allowframebreaks]
 
+We aim to find the \textbf{maximum flow} from \( A \) (source) to \( G \) (sink) using the Ford--Fulkerson labelling algorithm.
 
-We aim to find the \textbf{maximum flow} from \( A \) (source) to \( G \) (sink) in the given network.
-
-\textbf{Step-by-Step Ford-Fulkerson Algorithm}
-The capacities of each edge are shown in the graph. We start with an initial flow of 0 and iteratively find augmenting paths until no more can be found.
-
-\subsubsection*{Step 1: Augmenting Path 1}
-An augmenting path is \( A \to C \to F \to G \) with a bottleneck capacity of:
+\subsubsection*{Iteration 1}
+We start with zero flow on all arcs.  
+Label \(A\), then we can label \(D\) via arc \(A\!\to\!D\) (capacity 6), and then \(G\) via arc \(D\!\to\!G\) (capacity 4).  
+Thus we find the augmenting path:
 \[
-\min(8, 8, 6) = 6.
+A \to D \to G,
+\qquad \text{bottleneck } = 4.
 \]
-We augment this flow along the path and update the residual capacities:
-
-\begin{itemize}
-    \item \( A \to C: 8 - 6 = 2 \) (residual capacity).
-    \item \( C \to F: 8 - 6 = 2 \).
-    \item \( F \to G: 6 - 6 = 0 \).
-\end{itemize}
-
-The current total flow is now:
+Update flows:
 \[
-\text{Total flow} = 6.
+x_{AD} = 4,\qquad x_{DG} = 4,\qquad f = 4.
 \]
 
-\textbf{Step 2: Augmenting Path 2}
-Next, we find the augmenting path \( A \to B \to E \to G \) with a bottleneck capacity of:
+\subsubsection*{Iteration 2}
+Label \(A\), then \(B\) and \(C\). From \(B\) we label \(D\), from \(D\) we label \(E\), and from \(E\) we label \(G\).  
+We obtain the augmenting path:
 \[
-\min(5, 10, 4) = 4.
+A \to B \to D \to E \to G,
+\qquad \text{bottleneck } = 4.
 \]
-Augmenting this flow and updating residual capacities:
-\begin{itemize}
-    \item \( A \to B: 5 - 4 = 1 \).
-    \item \( B \to E: 10 - 4 = 6 \).
-    \item \( E \to G: 4 - 4 = 0 \).
-\end{itemize}
-
-The current total flow is now:
+Update flows:
 \[
-\text{Total flow} = 6 + 4 = 10.
+x_{AB}=4,\quad x_{BD}=4,\quad x_{DE}=4,\quad x_{EG}=4,\qquad f=8.
 \]
 
-\textbf{Step 3: Augmenting Path 3}
-We find another augmenting path \( A \to C \to D \to E \to G \) with a bottleneck capacity of:
+\subsubsection*{Iteration 3}
+We still have unused capacity in \(A\!\to\!B\), so we label \(A\), \(B\), and \(E\), but cannot reach \(G\).  
+However, we can also label \(C\), \(D\), \(F\), and finally \(G\), giving the path:
 \[
-\min(2, 4, 6, 4) = 2.
+A \to D \to F \to G,
+\qquad \text{bottleneck } = 2
 \]
-Augmenting this flow and updating residual capacities:
-\begin{itemize}
-    \item \( A \to C: 2 - 2 = 0 \).
-    \item \( C \to D: 4 - 2 = 2 \).
-    \item \( D \to E: 6 - 2 = 4 \).
-    \item \( E \to G: 4 - 2 = 2 \).
-\end{itemize}
-
-The current total flow is now:
+(the remaining capacity in \(A\!\to\!D\)).  
+Update flows:
 \[
-\text{Total flow} = 10 + 2 = 12.
+x_{AD}=6,\qquad x_{DF}=2,\qquad x_{FG}=2,\qquad f=10.
 \]
 
-\textbf{Step 4: No More Augmenting Paths}
-At this point, no more augmenting paths exist in the residual network. The algorithm terminates.
-
-\textbf{Maximum Flow}
-The maximum flow from \( A \) to \( G \) is:
+\subsubsection*{Iteration 4}
+We can label \(A, C, D, F, G\).  
+This yields the augmenting path:
 \[
-\boxed{12}.
+A \to C \to D \to F \to G,
+\qquad \text{bottleneck } = 4
+\]
+(the remaining capacity in \(F\!\to\!G\)).  
+Update flows:
+\[
+x_{AC}=4,\quad x_{CD}=4,\quad x_{DF}=6,\quad x_{FG}=6,\qquad f=14.
 \]
 
-\textbf{Verification: Flow Conservation and Saturation}
-We verify that:
-\begin{itemize}
-    \item \textbf{Flow conservation} holds at all intermediate nodes (\( B, C, D, E, F \)).
-    \item The flows on edges do not exceed their capacities.
-\end{itemize}
+\subsubsection*{Iteration 5 (Termination)}
+We can label all nodes \emph{except} \(G\).  
+No augmenting path exists.  
+Therefore, the current flow is maximal.
 
+\[
+\boxed{f_{\max} = 14}
+\]
 
 \end{frame}
+
 
 \begin{frame}
   \begin{itemize}
@@ -636,6 +623,108 @@ We verify that:
     \end{itemize}
 \end{frame}
 
+\begin{frame}[allowframebreaks]{Solution -- min cost flow (step by step)}
+
+We must send total supply \(5\) from node \(1\) (source) to node \(5\) (sink). Edge capacities and unit costs are:
+\[
+\begin{array}{c|cccccc}
+\text{arc} & (1,2) & (1,3) & (2,4) & (3,4) & (3,5) & (4,5) \\ \hline
+\text{capacity } u & 5 & 8 & 6 & 7 & 9 & 10 \\
+\text{cost } c & 3 & 1 & 4 & 2 & 3 & 1
+\end{array}
+\]
+
+We start with zero flow on every arc.
+
+\bigskip
+\textbf{Method:} At each iteration find a least–cost path from node \(1\) to node \(5\) in the residual network (costs on original forward arcs = \(c_{ij}\); reversed residual arcs have cost \(-c_{ij}\)). Augment by the path bottleneck and update residual capacities. Keep going until the supply at node \(1\) is exhausted.
+
+\framebreak
+
+\textbf{Iteration 1: find shortest path (costwise) from 1 to 5}
+
+Possible simple forward paths (cost = sum of edges):
+\begin{itemize}
+  \item \(1\to 3\to 5\): cost \(= c_{13}+c_{35}=1+3=4\).
+  \item \(1\to 3\to 4\to 5\): cost \(=1+2+1=4\).
+  \item \(1\to 2\to 4\to 5\): cost \(=3+4+1=8\).
+\end{itemize}
+
+The shortest path cost is \(4\). Choose one shortest path; here we take
+\[
+P_1:\quad 1 \to 3 \to 5.
+\]
+
+\textbf{Bottleneck on \(P_1\)} (minimum residual capacity along the path):
+\[
+\min\{u_{13},\,u_{35},\,\text{remaining supply at 1}\}=\min\{8,\,9,\,5\}=5.
+\]
+
+So we can push \(5\) units along \(1\to 3\to 5\).
+
+\textbf{Update flows after iteration 1:}
+\[
+x_{13}=5,\qquad x_{35}=5,
+\]
+all other \(x_{ij}=0\).
+
+\textbf{Update residual capacities (forward minus used):}
+\[
+u_{13}^{\text{res}} = 8-5 = 3,\qquad u_{35}^{\text{res}} = 9-5=4,
+\]
+and the supply at node 1 is now satisfied (sent 5 units), so no further augmentations from the source are required.
+
+\framebreak
+
+\textbf{Check flow feasibility (flow conservation):}
+\begin{itemize}
+  \item Node 1: \(x_{12}+x_{13}=0+5=5\) equals supply \(b_1=5\).
+  \item Node 2: \(x_{12}-x_{24}=0-0=0=b_2\).
+  \item Node 3: \(x_{13}-x_{34}-x_{35}=5-0-5=0=b_3\).
+  \item Node 4: \(x_{24}+x_{34}-x_{45}=0+0-0=0=b_4\).
+  \item Node 5: \(x_{35}+x_{45}=5+0=5\), which matches demand \(|b_5|=5\) (note \(b_5=-5\) in the formulation).
+\end{itemize}
+All capacity constraints are respected.
+
+\framebreak
+
+\textbf{Compute total cost of current feasible flow:}
+\[
+\begin{aligned}
+\text{Cost} &= 3x_{12} + 1x_{13} + 4x_{24} + 2x_{34} + 3x_{35} + 1x_{45} \\
+&= 3\cdot 0 + 1\cdot 5 + 4\cdot 0 + 2\cdot 0 + 3\cdot 5 + 1\cdot 0 \\
+&= 5 + 15 = 20.
+\end{aligned}
+\]
+
+\bigskip
+\textbf{Claim:} this flow is optimal.
+
+\textbf{Reason (short argument using path costs / complementary slackness):}
+\begin{itemize}
+  \item The cheapest possible cost per unit from node \(1\) to node \(5\) (over forward-only simple paths) is \(4\) (achieved by both \(1\!-\!3\!-\!5\) and \(1\!-\!3\!-\!4\!-\!5\)). We sent the whole supply of 5 units along a path of cost \(4\), so the total cost cannot be smaller than \(5\times 4 = 20\).
+  \item All remaining forward paths from 1 to 5 in the residual network have cost \(\ge 4\); we have already saturated the source supply. No negative-reduced-cost augmenting cycle exists that could reduce the objective (one can check residual forward arcs costs and the absence of beneficial backward augmentations for this assignment).
+\end{itemize}
+
+Hence the flow found is optimal and \(\boxed{f_{\max}=5}\) units delivered at minimum total cost \(\boxed{20}\).
+
+\framebreak
+
+\textbf{One alternative optimal basic solution (illustrating non-uniqueness):}
+
+We could split the 5 units between the two equal-cost routes \(1\!-\!3\!-\!5\) and \(1\!-\!3\!-\!4\!-\!5\). For instance:
+\[
+x_{13}=5,\quad x_{34}=5,\quad x_{45}=5,\quad x_{35}=0,
+\]
+is also feasible (capacities allow it: \(x_{34}\le 7, x_{45}\le 10\)) and its cost is
+\[
+1\cdot 5 + 2\cdot 5 + 1\cdot 5 = 5 + 10 +5 = 20.
+\]
+So multiple optimal flows exist; objective value remains \(20\).
+
+\end{frame}
+
+
 \subsection{Transportation problem}
 
 \begin{frame}{Transportation problem}
@@ -707,7 +796,7 @@ We verify that:
 
 \end{frame}
 
-\begin{frame}{Transportation simplex}
+\begin{frame}{ Transportation simplex}
 In practice:
 \begin{enumerate}
   \item We find first an initial feasible solution as explained above
