@@ -82,24 +82,55 @@ Study Abroad. Operations Research\\
 \end{frame}
 
 \begin{frame}
-  \frametitle{Integer programming}
+  \frametitle{Integer programming (knapsack problem)}
+
+ Example: The \textbf{knapsack problem} is a classic integer programming problem where items with different weights and values must be selected to maximize total value while staying within a weight capacity constraint.
 
   \begin{equation*}
     \begin{aligned}
       \text{maximize } \quad & \sum_{j=1}^{n} c_j x_j \\
       \text{subject to }\quad &
       \begin{array}{rcl}
-        \sum_{j=1}^n a_{ij} x_j= b_i&i=1,2,\ldots,m&  \\
+        \sum_{j=1}^n a_{ij} x_j \leq b_i&i=1,2,\ldots,m&  \\
         x_j > 0 &j=1,2,\ldots,n&\\
         x_j \quad \mathrm{integer} & \mathrm{for\,some\,or\,all\,} & j=1,2,\ldots,n
       \end{array}
     \end{aligned}
   \end{equation*}
-
-
+  In the 0-1 version of the knapsack problem, each item can either be included (1) or excluded (0) from the knapsack.
 
 \end{frame}
-\begin{frame}{General integer programming problems}
+\subsection{example}
+\begin{frame}[allowframebreaks]{General integer programming problems}
+
+Example: A manufacturer has 300 person-hours available this week and 1,800 units of raw material. These resources can be used to produce two products, A and B. The requirements and the profit for each item are given in the table below:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Product} & \textbf{Person-Hours} & \textbf{Raw Material} & \textbf{Profit (\$)} \\
+\hline
+A & 150 & 300 & 600 \\
+B & 10 & 400 & 100 \\
+\hline
+\end{tabular}
+\end{center}
+\framebreak 
+  The manufacturer wants to determine how many units of each product to produce in order to maximize profit, given the constraints on person-hours and raw material. Since the products cannot be produced in fractional units, this is an integer programming problem.
+Let $x_1$ and $x_2$ represent the \textit{integer number of units} of products A and B, respectively. We can formulate this problem as the following integer linear programming model:
+
+\[
+\begin{array}{c}
+\text{maximize} \quad z = 600x_1 + 100x_2\\
+\text{subject to}
+\begin{cases}
+150x_1 + 10x_2 \leq 300\\
+300x_1 + 400x_2 \leq 1800\\
+x_1, x_2 \geq 0 \quad \text{and integer}
+\end{cases}
+\end{array}
+\]
+
     \begin{center}
       \includegraphics[width=0.4\linewidth]{../figures/IntegerProgramming.png}
     \end{center}
@@ -118,7 +149,7 @@ Study Abroad. Operations Research\\
     \end{itemize}
   
   \end{frame}
-
+\subsection{Zero-One Scheduling Problem}
 \begin{frame}
   \frametitle{\href{https://fastercapital.com/content/Optimization--Solving-Complex-Problems-with-Zero-One-Integer-Programming.html}{Zero-One (0-1) scheduling problem}}
 
@@ -158,7 +189,7 @@ Study Abroad. Operations Research\\
 \begin{frame}
   \frametitle{Travelling Salesman Problem (TSP): Variables and Objective}
 
-  \textbf{Decision variables:}
+ Decision variables:
   \[
     x_{ij} =
     \begin{cases}
@@ -167,7 +198,7 @@ Study Abroad. Operations Research\\
     \end{cases}
   \]
 
-  \textbf{Objective function (minimise total cost):}
+Objective function (minimise total cost):
   \[
     \min \sum_{i=1}^{n} \sum_{j=1,\, j\neq i}^{n} c_{ij} x_{ij}
   \]
@@ -188,7 +219,6 @@ Study Abroad. Operations Research\\
     \sum_{i=1,\, i\neq j}^{n} x_{ij} = 1 \quad \forall j = 1,\ldots,n
   \]
 
-  \textbf{Binary variables:}
   \[
     x_{ij} \in \{0,1\} \quad \forall i, j
   \]
@@ -214,7 +244,7 @@ Study Abroad. Operations Research\\
 
   \medskip
 
-  We must restrict the model so that there is \textbf{exactly one single tour}.
+  We must restrict the model so that there is exactly one single tour.
 
 \end{frame}
 
