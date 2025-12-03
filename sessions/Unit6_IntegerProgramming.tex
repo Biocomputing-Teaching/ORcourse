@@ -43,7 +43,7 @@ Study Abroad. Operations Research\\
 \medskip
 \textit{jordi.villa@uvic.cat\\\url{https://mon.uvic.cat/cbbl}\\\tiny{last updated: \today}}
 }
-\date{November 26th - December 3rd, 2025}
+\date{December 3rd-10th, 2025}
 \logo{\includegraphics[width=.1\textwidth]{FCTE}}
 \begin{document}
 
@@ -125,6 +125,9 @@ Study Abroad. Operations Research\\
   {\bf Airline crew scheduling problem}: The airlines first design a flight schedule composed of a large number of {\em flight legs} (specific flight on a specific piece of equipment, such as a 747 from New York to Chicago departing at 6:27 a.m.). A flight crew is a complete set of people, including pilots, navigator, and flight attendants who are trained for a specific airplane. A work schedule or rotation is a collection of flight legs that are feasible for a flight crew, and that normally terminate at the point of origin. Variables $x_{ij}$ have value 1 if flight leg $i$ is assigned to crew $j$. All flight legs should be covered at minimum total cost. 
   \\[10pt]
   Also called a {\em set-partitioning problem}
+    \end{frame}
+
+\begin{frame}
   \begin{equation*}
     \begin{aligned}
       \text{minimize } \quad & \sum_{j=1}^{n} c_j x_j \\
@@ -137,7 +140,7 @@ Study Abroad. Operations Research\\
   \end{equation*}
 
 \end{frame}
-
+\subsection{Travelling Salesman Problem}
 \begin{frame}
   \frametitle{Travelling salesman problem}
 
@@ -148,6 +151,144 @@ Study Abroad. Operations Research\\
       \item how to avoid disjoint tours?
     \end{itemize}
   \end{Exercise}
+
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+  \frametitle{Travelling Salesman Problem (TSP): Variables and Objective}
+
+  \textbf{Decision variables:}
+  \[
+    x_{ij} =
+    \begin{cases}
+      1 & \text{if the salesman travels from city $i$ to city $j$}\\
+      0 & \text{otherwise}
+    \end{cases}
+  \]
+
+  \textbf{Objective function (minimise total cost):}
+  \[
+    \min \sum_{i=1}^{n} \sum_{j=1,\, j\neq i}^{n} c_{ij} x_{ij}
+  \]
+
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+  \frametitle{Basic constraints}
+
+  Each city must be left exactly once and entered exactly once:
+
+  \[
+    \sum_{j=1,\, j\neq i}^{n} x_{ij} = 1 \quad \forall i = 1,\ldots,n
+  \]
+
+  \[
+    \sum_{i=1,\, i\neq j}^{n} x_{ij} = 1 \quad \forall j = 1,\ldots,n
+  \]
+
+  \textbf{Binary variables:}
+  \[
+    x_{ij} \in \{0,1\} \quad \forall i, j
+  \]
+
+  These constraints guarantee cycles, but still allow \textit{subtours} (disconnected tours).
+
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+  \frametitle{What are subtours?}
+
+  Even if every city has one incoming and one outgoing arc, the model may produce
+  several disconnected cycles:
+
+  \bigskip
+
+  Example of an infeasible solution with subtours:
+  \begin{itemize}
+    \item Tour 1: $1 \to 2 \to 3 \to 1$
+    \item Tour 2: $4 \to 5 \to 6 \to 4$
+  \end{itemize}
+
+  \medskip
+
+  We must restrict the model so that there is \textbf{exactly one single tour}.
+
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+  \frametitle{Subtour elimination constraints (SEC)}
+
+  For any subset of cities $S \subset \{1,\ldots,n\}$:
+
+  \[
+    \sum_{i \in S} \sum_{j \in S} x_{ij} \le |S| - 1
+  \]
+
+  These are known as \textbf{subtour elimination constraints (SEC)}.
+
+  \bigskip
+
+  They prevent a subset of cities from forming an independent cycle.
+  
+  \medskip
+  \textit{Drawback:} The number of such sets $S$ is exponential.
+
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+  \frametitle{Alternative formulation: MTZ (Miller--Tucker--Zemlin)}
+
+  See also this \href{https://how-to.aimms.com/Articles/332/332-Miller-Tucker-Zemlin-formulation.html}{HowTo} web page.
+
+  Introduce additional continuous variables $u_i$ (visiting order):
+
+  \[
+    u_i - u_j + n\, x_{ij} \le n - 1
+    \quad \forall i \neq j,\ i,j = 2,\ldots,n
+  \]
+
+  with:
+
+  \[
+    1 \le u_i \le n \quad \forall i = 2,\ldots,n
+  \]
+
+  These constraints \textbf{eliminate subtours} by enforcing a consistent visiting order.
+
+  \bigskip
+  \textit{Advantage:} polynomial number of constraints.
+
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+  \frametitle{Complete model (summary)}
+
+  \[
+    \min \sum_{i=1}^{n}\sum_{j\neq i} c_{ij}x_{ij}
+  \]
+
+  subject to:
+  \[
+    \sum_{j\neq i} x_{ij} = 1 \quad \forall i
+  \]
+  \[
+    \sum_{i\neq j} x_{ij} = 1 \quad \forall j
+  \]
+  \[
+    u_i - u_j + n x_{ij} \le n-1 \quad \forall i \neq j
+  \]
+  \[
+    x_{ij} \in \{0,1\}, \quad u_i \ge 0
+  \]
+
+  \bigskip
+  This formulation guarantees a single tour visiting all cities.
 
 \end{frame}
 
@@ -176,12 +317,8 @@ Study Abroad. Operations Research\\
   \end{itemize}
 
   as well as several composite techniques
-  
-
 \end{frame}
-
-
-
+\subsection{Branch and Bound}
   \begin{frame}
     \begin{center}
       \includegraphics[width=0.4\linewidth]{../figures/BranchandBound.png}
@@ -190,7 +327,6 @@ Study Abroad. Operations Research\\
   \end{frame}
 
 \begin{frame}
-
   \begin{Exercise}
     Using the graphical representation and the branch-and-bound procedure, solve this integer program:
     \begin{equation*}
@@ -205,7 +341,176 @@ Study Abroad. Operations Research\\
       \end{aligned}
     \end{equation*}
   \end{Exercise}
+\end{frame}
 
+%-------------------------------------------------
+\begin{frame}
+\frametitle{LP Relaxation (Graphical Solution)}
+
+Relax the integrality constraints: $x_1, x_2 \geq 0$ continuous.
+\[
+-4x_1 + 3x_2 \le 6 \;\;\Rightarrow\;\; x_2 \le 2 + \frac{4}{3}x_1
+\]
+\[
+3x_1 + 2x_2 \le 18 \;\;\Rightarrow\;\; x_2 \le 9 - \frac{3}{2}x_1
+\]
+Intersection of the two lines:
+\[
+\begin{cases}
+-4x_1 + 3x_2 = 6 \\
+3x_1 + 2x_2 = 18
+\end{cases}
+\Rightarrow
+x_1 = \frac{42}{17}, \; x_2 = \frac{90}{17}
+\]
+Evaluate the objective function:
+\[
+z = x_1 + 5x_2 = \frac{492}{17} \approx 28.94
+\]
+\[
+\Rightarrow \textbf{LP optimum: } \left(\frac{42}{17}, \frac{90}{17}\right)
+\]
+This solution is \textbf{not integer} $\Rightarrow$ Branch and Bound is needed.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Branch and Bound – First Branching}
+We branch on the fractional variable:
+\[
+x_2 = \frac{90}{17} \approx 5.29
+\]
+Two subproblems:
+\[
+\text{(A) } x_2 \le 5 \qquad\qquad
+\text{(B) } x_2 \ge 6
+\]
+\textbf{Branch B:} If $x_2 = 6$ then
+\[
+3x_1 + 12 \le 18 \Rightarrow x_1 \le 2
+\]
+But also
+\[
+-4x_1 + 18 \le 6 \Rightarrow x_1 \ge 3
+\]
+Contradiction $\Rightarrow$ \textbf{Branch B is infeasible}. Proceed with \textbf{Branch A: $x_2 \le 5$}
+
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Branch A: LP relaxation}
+Add constraint $x_2 \le 5$.
+\[
+3x_1 + 2(5) = 18 \Rightarrow x_1 = \frac{8}{3}
+\]
+LP solution:
+\[
+(x_1, x_2) = \left(\frac{8}{3}, 5\right)
+\]
+\[
+z = \frac{8}{3} + 25 = \frac{83}{3} \approx 27.67
+\]
+Still fractional → branch on $x_1$:
+\[
+\text{(A1) } x_1 \le 2 \qquad\qquad
+\text{(A2) } x_1 \ge 3
+\]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Node A1: $x_1 \le 2$}
+Try point $(x_1,x_2) = (2,4)$ (largest integer feasible):
+Check constraints:
+\[
+-4(2) + 3(4) = 4 \le 6 \quad \checkmark
+\]
+\[
+3(2) + 2(4) = 14 \le 18 \quad \checkmark
+\]
+\[
+z = 2 + 5(4) = 22
+\]
+$\Rightarrow$ Feasible integer solution found:
+\[
+z = 22 \Rightarrow \textbf{Current best (incumbent)}
+\]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Node A2: $x_1 \ge 3$}
+For $x_1 = 3$:
+\[
+3(3) + 2x_2 = 18 \Rightarrow x_2 = 4.5
+\]
+LP solution:
+\[
+(x_1, x_2) = (3,\,4.5)
+\quad\Rightarrow\quad
+z = 3 + 5(4.5) = 25.5
+\]
+This is fractional → branch on $x_2$:
+\[
+\text{(A2a) } x_2 \le 4 \qquad\qquad
+\text{(A2b) } x_2 \ge 5
+\]
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Node A2b: $x_2 \ge 5$}
+Earlier we saw:
+\[
+x_2 \ge 5 \Rightarrow x_1 \le \frac{8}{3}
+\]
+But here we have:
+\[
+x_1 \ge 3
+\]
+Contradiction $\Rightarrow$ \textbf{Node A2b is infeasible (pruned)}
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Node A2a: $x_2 \le 4$}
+Try the best integer point $(x_1,x_2) = (3,4)$:
+\[
+-4(3) + 3(4) = 0 \le 6 \quad \checkmark
+\]
+\[
+3(3) + 2(4) = 17 \le 18 \quad \checkmark
+\]
+\[
+z = 3 + 5(4) = \boxed{23}
+\]
+Update:
+\[
+\text{Best solution } = (3,4), \quad z = 23
+\]
+All other branches are either infeasible or have lower bounds ⇒ STOP.
+\end{frame}
+
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Final Answer}
+\[
+\boxed{x_1 = 3,\;\; x_2 = 4}
+\]
+\[
+\boxed{z_{\max} = 23}
+\]
+\textbf{Summary:}
+\begin{itemize}
+  \item LP relaxation value: $z = 28.94$ (not integer)
+  \item Branch-and-bound explored feasible regions
+  \item Best integer point: $(3,4)$
+\end{itemize}
+\bigskip
+\[
+\boxed{\text{Optimal integer solution: } z = 23}
+\]
 \end{frame}
 
 
