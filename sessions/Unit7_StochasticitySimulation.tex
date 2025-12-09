@@ -59,6 +59,225 @@ Study Abroad. Operations Research\\
 
 \section{Markov chains}
 
+%
+\subsection{State Transitions}
+
+\begin{frame}{State Transitions}
+A Markov process is a discrete-time stochastic process in which the next state depends only on the current state:
+\[
+P(X_{t+1}=s_{t+1}\mid X_t=s_t)=P(X_{t+1}=s_{t+1}\mid X_t=s_t,\dots,X_0=s_0).
+\]
+\begin{itemize}
+    \item Finite number of states: $1,\dots,N$
+    \item System occupies one state at each time
+    \item Transitions occur randomly according to probabilities
+\end{itemize}
+
+\bigskip
+\fbox{\textit{[Placeholder: Basic state-transition diagram]}}
+\end{frame}
+
+%
+\subsection{State Probabilities}
+
+\begin{frame}{State Probabilities}
+Let $p^{(0)}$ be the initial state probability vector.  
+State probabilities evolve as:
+\[
+p^{(1)} = p^{(0)}P, \quad p^{(2)} = p^{(0)}P^2, \dots
+\]
+
+To compute $n$-step transition probabilities:
+\[
+P^{(n)} = P^n.
+\]
+
+Examples include:
+\begin{itemize}
+    \item computing probability of a sequence of weather conditions
+    \item identifying that probabilities tend to stabilize in many cases
+\end{itemize}
+
+\fbox{\textit{[Placeholder: Example computed $P^n$ table]}}
+\end{frame}
+
+%
+\subsection{First Passage Probabilities}
+
+\begin{frame}{First Passage Probabilities}
+First passage probability $f^{(n)}_{ij}$ is the probability that the process enters $j$ for the first time exactly at step $n$.
+
+Properties:
+\[
+p^{(n)}_{ij} = f^{(n)}_{ij} + \sum_{k} f^{(k)}_{ij} p^{(n-k)}_{jj}.
+\]
+
+Used to compute:
+\begin{itemize}
+    \item probability of reaching a state for the first time
+    \item probability of return to a state after some steps
+\end{itemize}
+
+\fbox{\textit{[Placeholder: First-passage illustration]}}
+\end{frame}
+
+%
+\subsection{State Properties}
+
+\begin{frame}{Properties of States}
+\begin{itemize}
+    \item \textbf{Reachable:} $j$ reachable from $i$ if $p^{(n)}_{ij} > 0$ for some $n$
+    \item \textbf{Irreducible:} every state reachable from every other state
+    \item \textbf{Closed set:} no transitions from the set to outside
+    \item \textbf{Absorbing state:} once entered, never left ($p_{ii}=1$)
+    \item \textbf{Transient state:} possible to leave forever
+    \item \textbf{Periodic state:} returns occur only at multiples of some $t>1$
+    \item \textbf{Ergodic chain:} irreducible and aperiodic
+\end{itemize}
+
+\fbox{\textit{[Placeholder: State classification diagrams]}}
+\end{frame}
+
+%
+\subsection{Steady-State Analysis}
+
+\begin{frame}{Steady-State Analysis}
+For an ergodic chain:
+\[
+P^n \to 
+\begin{bmatrix}
+\pi \\
+\pi \\
+\vdots \\
+\pi
+\end{bmatrix},
+\quad
+\pi P = \pi, \quad \sum \pi_i=1.
+\]
+
+Interpretation:
+\begin{itemize}
+    \item $\pi_i$ = long-run probability of being in state $i$
+    \item independent of initial state
+\end{itemize}
+
+\fbox{\textit{[Placeholder: Convergence of $P^n$]}}
+\end{frame}
+
+%
+\subsection{Expected First Passage Times}
+
+\begin{frame}{Expected First Passage Times}
+First passage time $T_{ij}$: steps needed to reach $j$ from $i$.
+
+For $i\ne j$:
+\[
+m_{ij} = 1 + \sum_k p_{ik} m_{kj}.
+\]
+
+For recurrence:
+\[
+m_{ii} = \frac{1}{\pi_i}.
+\]
+
+Applications include computing expected times between weather changes.
+
+\fbox{\textit{[Placeholder: First passage time system of equations]}}
+\end{frame}
+
+%
+\subsection{Absorbing Chains}
+
+\begin{frame}{Absorbing Chains}
+A Markov chain with at least one absorbing state.
+
+Reorder states so transient states come first:
+\[
+P = 
+\begin{bmatrix}
+Q & R \\
+0 & I
+\end{bmatrix}.
+\]
+
+\begin{itemize}
+    \item $Q$: transitions among transient states
+    \item $R$: transitions from transient to absorbing
+\end{itemize}
+
+\fbox{\textit{[Placeholder: Example absorbing chain diagram]}}
+\end{frame}
+
+\begin{frame}{Fundamental Matrix and Absorption Probabilities}
+Fundamental matrix:
+\[
+F = (I - Q)^{-1}.
+\]
+
+Meaning:
+\begin{itemize}
+    \item element $f_{ij}$ = expected number of visits to transient state $j$ starting from $i$
+\end{itemize}
+
+Absorption probabilities:
+\[
+A = F\,R.
+\]
+
+\fbox{\textit{[Placeholder: $Q$, $R$, $F$, $A$ example matrices]}}
+\end{frame}
+
+\subsection{Illustrative Applications}
+
+\begin{frame}{Water Reservoir Operations}
+\begin{itemize}
+    \item States represent storage volumes
+    \item Transitions derived from historical inflow data and release decisions
+    \item Objectives: flood control, power generation, low-season flow
+    \item Markov analysis improves long-term expected reward and performance
+\end{itemize}
+
+\fbox{\textit{[Placeholder: Reservoir state transition diagram]}}
+\end{frame}
+
+\begin{frame}{Dynamic Memory Allocation}
+\begin{itemize}
+    \item States represent sequences of allocated/free memory block lengths
+    \item Transition matrix derived from allocation/release rules
+    \item Steady-state probabilities used to evaluate memory usage
+    \item Applicable to “first-fit”, “best-fit”, “worst-fit”, buddy systems
+\end{itemize}
+
+\fbox{\textit{[Placeholder: Memory configuration figure]}}
+\end{frame}
+
+\begin{frame}{Manufacturing Production Capability}
+\begin{itemize}
+    \item States track failures in a multi-unit system
+    \item Elements may be catastrophic, dependent, or independent
+    \item Steady-state analysis gives:
+    \begin{itemize}
+        \item expected production rate
+        \item probability of shutdown
+        \item optimal repair policies
+    \end{itemize}
+\end{itemize}
+
+\fbox{\textit{[Placeholder: Failure/repair transition diagram]}}
+\end{frame}
+
+\begin{frame}{Virtual Memory Systems}
+\begin{itemize}
+    \item States represent page configurations (FIFO, LRU)
+    \item Transitions occur on memory references
+    \item Steady-state analysis yields expected page fault rates
+    \item Allows comparison of replacement algorithms
+\end{itemize}
+
+\fbox{\textit{[Placeholder: Page replacement state diagram]}}
+\end{frame}
+
+
 \begin{frame}
 \begin{Exercise}
     Here is a simple game:
@@ -591,6 +810,21 @@ We can start wth the graphical representation of the HMM
 \end{center}
 \end{frame}
 
+\begin{frame}
+  \frametitle{HMM}
+  An HMM is defined by:
+  \begin{itemize}
+    \item A set of $N$ hidden states $S=\{s_1,s_2,\ldots,s_N\}$.
+    \item A set of $M$ observation symbols $O=\{o_1,o_2,\ldots,o_M\}$.
+    \item State transition probability distribution $A=\{a_{ij}\}$, where $a_{ij}=P(q_{t+1}=s_j|q_t=s_i)$.  
+    \item Observation symbol probability distribution $B=\{b_j(k)\}$, where $b_j(k)=P(v_k|q_t=s_j)$.
+    \item Initial state distribution $\pi=\{\pi_i\}$, where $\pi_i=P(q_1=s_i)$.
+  \end{itemize} 
+  The complete parameter set of the model is $\lambda=(A,B,\pi)$.
+  
+
+\end{frame}
+
 % \begin{frame}
 % To learn more on HMM:
 % \begin{itemize}
@@ -599,13 +833,88 @@ We can start wth the graphical representation of the HMM
 % \end{itemize}
 % \begin{frame}
 
-\section{Discrete Evenet Simulations (DES)}
-\begin{frame}{Running simulations in OR}
-  \begin{center}
-    \includegraphics[width=0.7\linewidth]{../figures/simulation.pdf}
-  \end{center}
-  Taken from \url{https://texample.net/tikz/examples/simulation-abstraction/}
-\end{frame}
+% \section{Discrete Evenet Simulations (DES)}
+% exemple de gràfic de text amb latex. El contingut no té massa sentit aquí
+% \begin{frame}{Running simulations in OR}
+%   \begin{center}
+%     \resizebox{\linewidth}{!}{
+% \begin{tikzpicture} 
+%    \tikzset{
+%      box/.style    = { rounded corners = 5pt,
+%                        align           = left,
+%                        font            = \sffamily\footnotesize,
+%                        text width      = 3.45cm, 
+%                        blur shadow     = {shadow blur steps = 15} },    
+%      legend/.style = { font       = \sffamily\bfseries, 
+%                        align      = right,
+%                        text width = 3.4cm},
+%   }
+%   \node [shade,
+%     blur shadow  = {shadow blur steps = 15},
+%     text width   = 1.01\textwidth,
+%     text         = white, 
+%     font         = \sffamily\bfseries\large] (A)
+%     {Aggregates, global feedback dynamics, ...  \\ \vspace{.6\textwidth} 
+%     Individual objects, exact sizes, distances, velocities, timings, ...};
+%   \node [box, below left  = -4.5cm and -3.85cm of A, fill = yellow!80!orange,]
+%     (DE)
+%     {\underline{\bfseries Discrete Event (DE)}
+%       \begin{itemize} 
+%         \setlength{\itemindent} {-.5cm}
+%         \item entities (passive objects)
+%         \item flowcharts 
+%         \item network ressources
+%       \end{itemize}
+%     };
+
+%   \node [box, above right  = -3.5cm and .5cm of DE,
+%     minimum height=0.55\textwidth, fill = orange, text depth = 0.35\textwidth]
+%     (AB)
+%     { \underline{\bfseries Agent Based (AB)} 
+%         \begin{itemize} \setlength{\itemindent}{-.5cm}
+%           \item Active objects
+%           \item Individual behavior rules
+%           \item (In)direct interaction
+%           \item Environnement models
+%           \end{itemize}  
+%     };
+
+%   \node [box, above right  = -2.cm and .5cm of AB, fill = cyan]
+%     (SD)
+%     { \underline{\bfseries System Dynamics (SD)}
+%       \begin{itemize} \setlength{\itemindent}{-.5cm}
+%         \item Levels (aggregates)
+%         \item Stocks \& flow diagrams
+%         \item Feedback loops
+%       \end{itemize}
+%     }; 
+
+%   \node [legend, above left = -1.25cm and 4.75cm of AB] (HA)
+%     {High Abstraction \\ Less Details \\ Macro Level \\ Strategic Level};
+
+%   \node [legend, below = 1.5cm of HA] (MA)
+%     {Middle Abstraction \\ Average Details \\ Meso Level \\ Tactical Level};
+  
+%   \node [legend, below = 1.5cm of MA] (LA)
+%     {Low Abstraction \\ More Details \\ Micro Level \\ Operational Level};
+
+%   \node [below = 1.25cm of AB, font = \sffamily\bfseries\large ] (d1) 
+%     {Mostly Discrete $\triangleleft$};
+
+%   \node [right = .5cm of d1, font = \sffamily\bfseries\large ] (d2) 
+%     {$\triangleright$ Mostly Continuous };
+  
+%    \path [ draw, color = gray, dashed, line width = 2pt ]
+%      (d1.south east) + (0.3cm,0)   coordinate(x1) -- (x1|-A.north);  
+   
+%    \path [draw, <->, >=latex, line width = 2pt ]
+%      (A.south west)  + (-0.25cm,0) coordinate(x2) -- (x2|-A.north);
+% \end{tikzpicture}  
+%     }
+% \end{center}
+
+%  %% Adapted from \url{https://texample.net/tikz/examples/simulation-abstraction/}
+% \end{frame}
 
 \input{Biblio.tex}
 %----------------------------------------------------------------------------------------
