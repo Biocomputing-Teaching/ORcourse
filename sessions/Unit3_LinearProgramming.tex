@@ -64,7 +64,7 @@ Study Abroad. Operations Research\\
 
   \begin{block}{Linear programming}
     Linear programs consist of a linear objective function and linear constraints, which can include both equalities and inequalities. The feasible region forms a polytope —a convex, connected set with flat, polygonal faces. The contours of the objective function are flat planes.
-   \cite{nocedal}
+   \cite{nocedal_numerical_1999}
   \end{block}
   A wide variety of applications can be modeled with linear programming.
 
@@ -102,7 +102,7 @@ Linearization of \( f(x) = x^2 \) around \( x = 1 \): $f(x) \approx 1 + 2(x - 1)
 
 \begin{frame}[allowframebreaks]{Problem formulation}
   \begin{Exercise}
-    A manufacturer of computer system components assembles two models of wireless routers, model A and model B. The amounts of materials and labor required for each assembly, and the total amounts available, are shown in the following table. The profits that can be realized from the sale of each router are \$22 and \$28 for models A and B, respectively, and we assume there is a market for as many routers as can be manufactured.\cite{carter}
+    A manufacturer of computer system components assembles two models of wireless routers, model A and model B. The amounts of materials and labor required for each assembly, and the total amounts available, are shown in the following table. The profits that can be realized from the sale of each router are \$22 and \$28 for models A and B, respectively, and we assume there is a market for as many routers as can be manufactured.\cite{carter_operations_2019}
     \begin{center}
     \begin{tabular}{cccc}
       & Resources  & Resources  B & Resources  \\
@@ -130,7 +130,7 @@ Linearization of \( f(x) = x^2 \) around \( x = 1 \): $f(x) \approx 1 + 2(x - 1)
 \framebreak
 
   \begin{Exercise}
-  A company wishes to minimize its combined costs of production and inventory over a four-week time period. An item produced in a given week is available for consumption during that week, or it may be kept in inventory for use in later weeks. Initial inventory at the beginning of week 1 is 250 units. The minimum allowed inventory carried from one week to the next is 50 units. Unit production cost is \$15, and the cost of storing a unit from one week to the next is \$3. The following table shows production capacities and the demands that must be met during each week.\cite{carter}
+  A company wishes to minimize its combined costs of production and inventory over a four-week time period. An item produced in a given week is available for consumption during that week, or it may be kept in inventory for use in later weeks. Initial inventory at the beginning of week 1 is 250 units. The minimum allowed inventory carried from one week to the next is 50 units. Unit production cost is \$15, and the cost of storing a unit from one week to the next is \$3. The following table shows production capacities and the demands that must be met during each week.\cite{carter_operations_2019}
     \begin{center}
     \begin{tabular}{ccc}
       Period  & Production capacity & Demand  \\\hline
@@ -340,7 +340,7 @@ Linearization of \( f(x) = x^2 \) around \( x = 1 \): $f(x) \approx 1 + 2(x - 1)
       (a), (c), and (d) are both extreme points and boundary points. \\
       (b) and (e) are boundary points that are not extreme. \\
       (f) is interior because no constraint is active. \\
-      (g) is neither interior nor boundary (nor extreme) because it is infeasible.\cite{rardin}
+      (g) is neither interior nor boundary (nor extreme) because it is infeasible.\cite{rardin_optimization_2017}
     \end{column}
   \end{columns}
 \end{frame}
@@ -381,7 +381,7 @@ Thus:
 \end{frame}
 
 \begin{frame}
-Of course, not always the system is proposed in this standard form, so\cite{carter}:
+Of course, not always the system is proposed in this standard form, so\cite{carter_operations_2019}:
 \begin{itemize}
   \item We need to leave a maximization problem. If the problem is to minimize the objective function, we simply multiply it by $(-1)$.
   \item In order to change inequality constraints into equality constraints we use {\it slack} variables for $\leq$ inequalities:
@@ -423,7 +423,7 @@ extreme points. A transition to an adjacent extreme point will be made only if b
 so the objective function is improved (or stays the same). It is a property of linear programming problems that this type of search will lead us to the discovery of an optimal
 solution (if one exists). The Simplex method is not only successful in this sense, but it
 is remarkably efficient because it succeeds after examining only a fraction of the basic
-feasible solutions.\cite{carter}
+feasible solutions.\cite{carter_operations_2019}
 \end{frame}
 
 \begin{frame}
@@ -436,7 +436,7 @@ solution,
 \end{enumerate}
 From any basic feasible solution, we have the assurance
 that, if a better solution exists at all, then there is an adjacent solution that is better than the
-current one.\cite{carter}
+current one.\cite{carter_operations_2019}
 \end{frame}
 
 \begin{frame}{The algorithm}
@@ -581,7 +581,7 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
   \begin{center}
     \includegraphics[width=0.4\linewidth]{simplex_example.png}
   \end{center}
-  Simplex steps for the given example (taken from \cite{carter}).
+  Simplex steps for the given example (taken from \cite{carter_operations_2019}).
 \end{frame}
 
 \begin{frame}{Exercises}
@@ -592,7 +592,7 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
 
 \begin{frame}{Artificial variables}
 
-  When adding slack variables, we end up finding an initial feasible set of basic variables. But what happens when not all constraints are of the form "$\leq$"?\cite{carter}
+  When adding slack variables, we end up finding an initial feasible set of basic variables. But what happens when not all constraints are of the form "$\leq$"?\cite{carter_operations_2019}
 
   \begin{enumerate}
     \item Make all right hand sides $b_i$ of the constraint (in)equalities positive. If they are not, multiply the expression by $(-1)$.
@@ -757,7 +757,7 @@ $\boxed{P_D=(125,250)}$ and $\boxed{z(P_D)=2250}$ with $t,u=0$ (binding constrai
   \begin{center}
     \includegraphics[width=0.7\linewidth]{simplex_nonlinear.png}
   \end{center}
-  The simplex method moves the vertices of the simplex (in two dimensions, a triangle) until it contains the local minimum, and shrinks the simplex to find the local minimum (taken from \cite{beers}).
+  The simplex method moves the vertices of the simplex (in two dimensions, a triangle) until it contains the local minimum, and shrinks the simplex to find the local minimum (taken from \cite{beers_numerical_2009}).
 \end{frame}
 
 \section{Duality}
