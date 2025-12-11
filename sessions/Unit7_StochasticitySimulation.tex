@@ -262,55 +262,30 @@ A = F\,R.
 
 \end{frame}
 
-\begin{frame}{Virtual Memory Systems}
-\begin{itemize}
-    \item States represent page configurations (FIFO, LRU)
-    \item Transitions occur on memory references
-    \item Steady-state analysis yields expected page fault rates
-    \item Allows comparison of replacement algorithms
-\end{itemize}
-
-
-\end{frame}
-
-
 \begin{frame}
 \begin{Exercise}
-    Here is a simple game:
+Consider the following simple betting game (adapted from \href{https://en.wikibooks.org/wiki/Linear_Algebra/Topic:_Markov_Chains}{Wikibooks}):
 \begin{itemize}
-    \item a player bets on coin tosses, a dollar each time,
-    \item the game ends either when the player has no money left
-    or is up to five dollars.
+  \item The player wagers \$1 on each fair coin toss.
+  \item The game stops when the player's capital reaches \$0 or \$5.
 \end{itemize}
-If the player starts with three dollars, what is the chance that the game
-    takes at least five flips?
-    Twenty-five flips?
+If the player starts with \$3, what is the probability that the game lasts at least 5 tosses? At least 25 tosses?
 \end{Exercise}
 
-At any point, this player has either \$0, or \$1, \ldots, or \$5.
-We say that the player is in the
-state
-$s_0$, $s_1$, \ldots, or $s_5$.
-A game consists of moving from state to state.
-For instance,
-a player now in state $s_3$ has on the next flip a $.5$ chance of moving
-to state $s_2$ and a $.5$ chance of moving to $s_4$.
-The boundary states are a bit different;
-once in state~$s_0$ or state~$s_5$,
-the player never leaves.
-
+At any time the player's capital is \$0, \$1, \ldots, \$5, which we denote by states \(s_0,\ldots,s_5\).
+From an interior state \(s_i\) (with \(1\le i\le4\)) the process moves to \(s_{i-1}\) or \(s_{i+1}\) with probability \(1/2\) each.
+States \(s_0\) and \(s_5\) are absorbing (once reached the process stays there).
 \end{frame}
 
 \begin{frame}
 
-Let $p_{i}(n)$ be the probability that the player is in state $s_i$
-after $n$ flips.
-Then, for instance, we have that the probability of being in state~$s_0$
-after flip~$n+1$ is
-$p_{0}(n+1)=p_{0}(n)+0.5\cdot p_{1}(n)$.
-This matrix equation sumarizes.
-\begin{equation*}
-  \begin{pmatrix}
+Let $p_i(n)$ denote the probability that the player is in state $s_i$ after $n$ flips.
+For example,
+\[
+p_0(n+1)=p_0(n)+\tfrac{1}{2}p_1(n).
+\]
+In matrix form this becomes
+\begin{equation*}\begin{pmatrix}
       1  &.5 &0  &0  &0   &0  \\
       0  &0  &.5 &0  &0   &0  \\
       0  &.5 &0  &.5 &0   &0  \\
@@ -334,8 +309,11 @@ This matrix equation sumarizes.
 \end{frame}
 
 \begin{frame}
-With the initial condition that the player starts with
-three dollars, calculation gives this.
+Assuming the player starts with \$3 (state $s_3$), the state probability vector after $n$ tosses is
+\[
+p^{(n)}=p^{(0)}P^n,\qquad p^{(0)}=\begin{pmatrix}0\\0\\0\\1\\0\\0\end{pmatrix}.
+\]
+The table below lists $p^{(0)},p^{(1)},\dots,p^{(24)}$.
 \begin{center}
   \begin{tabular}{@{}c|cccccc@{}}
     $n=0$
@@ -377,38 +355,30 @@ three dollars, calculation gives this.
 
 \begin{frame}
 \begin{itemize}
-    \item The player quickly ends in either state~$s_0$
-    or state~$s_5$. For instance, after the fourth flip there is a probability of $0.50$ that
-    the game is already over: The boundary states
-    are said to be {\bf absorbtive}.
-    \item {\em The Markov chain model is
-    historyless}: with a fixed transition matrix, the next state depends only on the current state,
-    not on any prior states. More formally:
-    \begin{eqnarray*}
-    P(x_{t+1}=s_{t+1}|x_t=s_t, x_{t-1}=s_{t-1},...,x_1=s_1,x_0=s_0)=\\
-    P(x_{t+1}=s_{t+1}|x_t=s_t)
-  \end{eqnarray*}
-    \item In addition, it is clear that the probability of a transition from state $i$ to state $j$ is independent of time ({\bf stationarity property}):
-    \[
-    P(x_{t+1}=j|x_t=i)=p_{ij}
-    \]
-    \item Each column vector is a probability vector (and it sums up 1) and the matrix is a transition matrix.
+  \item The process is quickly absorbed into either $s_0$ or $s_5$; for example, after four flips there is a probability of $0.50$ that the game has already ended. These boundary states are absorbing.
+  \item Memoryless (Markov) property:
+  \[
+  P\bigl(X_{t+1}=s_{t+1}\mid X_t=s_t,X_{t-1}=s_{t-1},\dots,X_0=s_0\bigr)
+  =P\bigl(X_{t+1}=s_{t+1}\mid X_t=s_t\bigr).
+  \]
+  \item Stationarity: transition probabilities do not depend on time,
+  \[
+  P\bigl(X_{t+1}=s_j\mid X_t=s_i\bigr)=p_{ij}\quad\text{for all }t.
+  \]
+  \item Each row of the transition matrix \(P\) is a probability vector:
+  \[
+  \sum_j p_{ij}=1\quad\text{for every state }i,
+  \]
+  so \(P\) is a (row-)stochastic matrix.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 
 \begin{Exercise}
-    A study 
-divided occupations in the United Kingdom into
-upper level (executives and professionals),
-middle level (supervisors and skilled manual workers),
-and lower level (unskilled).\cite{halsey_british_1988}
-To determine
-the mobility across these levels in a generation, about
-two thousand men were asked, ``At which level are you,
-and at which level was your father when you were fourteen years old?''
-\end{Exercise}
+    A study classified occupations in the United Kingdom into three groups—upper (executives and professionals), middle (supervisors and skilled manual workers), and lower (unskilled) \cite{halsey_british_1988}.
+    About two thousand men were asked to report their own occupation and the occupation of their father when the respondent was fourteen, to measure intergenerational occupational mobility.
+    \end{Exercise}
 \end{frame}
 
 \begin{frame}
@@ -435,16 +405,12 @@ This equation and transition diagram summarizes the results.
 \end{frame}
 
 \begin{frame}
-For instance,
-a child of a lower class worker has a $.27$ probability of
-growing up to be middle class.
-Notice that the Markov model assumption about history
-seems reasonable-- we expect that
-while a parent's occupation has a direct influence on the occupation of the
-child, the grandparent's occupation has no such direct influence.
-With the initial distribution of the respondents's fathers given below,
-this table lists the
-distributions for the next five generations.
+For example, a child of a lower–class worker has a $0.27$ probability of
+becoming middle class. The Markov assumption—that the next state depends
+only on the current state—seems reasonable here: a parent's occupation
+directly influences the child's outcome, whereas any grandparent effect
+is largely indirect. Using the initial distribution of the respondents' fathers
+given below, the table shows the occupational distributions for the next five generations.
 \begin{center}
   \begin{tabular}{c|ccccc}
     $n=0$  &$n=1$  &$n=2$  &$n=3$  &$n=4$  &$n=5$  \\ \hline
@@ -460,19 +426,9 @@ distributions for the next five generations.
 
 \begin{frame}
 \begin{Exercise}
-The World Series of American baseball is
-played between the team winning the American League
-and the team winning the National League.
-The series is won by the first team to win four games.
-That means that a series is in one of twenty-four states:
-0-0 (no games won yet by either team), 1-0
-(one game won for the American League
-team and no games for the National League team), etc.
-If we assume that there is a probability $p$ that
-the American League team wins each game then we have the following transition
-matrix.
+The World Series is played between the American League (AL) and National League (NL) champions. The first team to win four games wins the series, so the contest can be represented by one of 24 states: $0$--$0$, $1$--$0$, \dots, $4$--$3$, where $a$--$b$ denotes $a$ wins for the AL team and $b$ for the NL team (states with a $4$ are absorbing). Assuming each game is independently won by the AL team with probability $p$, the sequence of states is a Markov chain with the following transition matrix. Adapted from \href{https://en.wikibooks.org/wiki/Linear_Algebra/Topic:_Markov_Chains}{Wikibooks}.
 \end{Exercise}
-\end{frame}
+\end{frame} 
 
 \begin{frame}
 \begin{equation*}
